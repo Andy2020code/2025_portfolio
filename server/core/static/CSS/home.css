@@ -1,4 +1,62 @@
+@font-face {
+    font-family: 'Prata_Custom';
+    src: url('/static/Fonts/Prata/Prata-Regular.ttf') format('truetype')
+	;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-ExtraLight.ttf') format('truetype')
+	;
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-Light.ttf') format('truetype')
+	;
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-Regular.ttf') format('truetype')
+	;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-Medium.ttf') format('truetype')
+	;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-SemiBold.ttf') format('truetype')
+	;
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald_Custom';
+    src: url('/static/Fonts/Oswald/static/Oswald-Bold.ttf') format('truetype')
+	;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
 :root{
+	--second_color: #F2F2F2;
 	--body_background: #f2f2f2;
 	--section_01_background: linear-gradient(140deg, rgba(195,205,190,1) -15%, rgba(94,119,120,1) 60%);
 	--navigation_bar_container: linear-gradient(140deg, rgba(195,205,190,1) -15%, rgba(94,119,120,1) 60%);
@@ -13,15 +71,12 @@ body{
 	background: var(--body_background);
 }
 
-
-
-
-
-
 .section_01{
 	width: 100%;
 	height: 100vh;
 	background: var(--section_01_background);
+	display: flex;
+	flex-direction: column;
 }
 
 .navigation_bar_container{
@@ -40,7 +95,7 @@ body{
 
 .navigation_bar_logo{
 	width: 100px;
-	height: 100%;
+	height: 60px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -49,8 +104,8 @@ body{
 }
 
 .navigation_bar_logo img{
-	width: 85px;
-	height: 85px;
+	width: 50px;
+	height: 50px;
 }
 
 .navigation_bar_wrapper ul{
@@ -60,8 +115,55 @@ body{
 }
 
 .navigation_bar_wrapper ul a{
-	font-size: 17px;
+	font-family: 'Italiana_Custom';
+	font-weight: 400;
+	font-style: 'normal';
+	font-size: 16px;
 	color: var(--text_color_01);
 	text-decoration: none;
 	margin: auto 40px;
+}
+
+.bottom_navigation_devider{
+	width: 100%;
+	height: 5px;
+	background: var(--second_color);
+	padding: 0;
+	margin: 0;
+}
+
+.landing_page_container{
+	width: 100%;
+	height: 100%;
+}
+
+.landing_page_text{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.landing_page_title_tag{
+	font-family: 'Prata_Custom', 'sans-serif';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 64px;
+	text-align: center;
+	color: var(--text_color_01);
+	padding: 0;
+	margin: 0;
+}
+
+.landing_page_title_slogan{
+	font-family: 'Oswald_Custom';
+	font-weight: 200;
+	font-style: normal;
+	font-size: 24px;
+	text-align: center;
+	color: var(--text_color_01);
+	padding: 0;
+	margin: 0;
 }
