@@ -68,8 +68,9 @@
 	--text_color_01: #F2F2F2;
 	--text_color_02: #ffedd8;
 
-	--boder_color_01: #bc6c25;
-	--boder_color_02: #444444;
+	--border_color_01: #bc6c25;
+	--border_color_02: #444444;
+	--border_color_03: #ccd5ae;
 }
 
 body{
@@ -160,18 +161,53 @@ body{
 	width: 200px;
 	height: 300px;
 	background: var(--landing_page_cards_background);
-	border: 2px solid var(--boder_color_01);
+	border: 2px solid var(--border_color_01);
 	border-radius: 8px;
 	place-content: center;
 	place-items: center;
 	margin: 0px 10px 0px 0px;
 }
 
+.Box_path{
+	fill: var(--border_color_03);
+	stroke: var(--border_color_02);
+	stroke-miterlimit: 10;
+	stroke-width: 8px;
+}
+
+.Light_Box{
+	fill: none;
+	stroke: none;
+	stroke-miterlimit: 10;
+	stroke-width: 8px;
+}
+
+.Light_Bulb{
+	fill: transparent;
+	stroke: var(--border_color_03);
+	stroke-miterlimit: 10;
+	stroke-width: 8px;
+}
+
+.Light_Streaks{
+	fill: transparent;
+	stroke: var(--border_color_03);
+	stroke-miterlimit: 10;
+	stroke-width: 8px;
+}
+
+.cls-1 {
+	fill: var(--border_color_01);
+	stroke: transparent;
+	stroke-miterlimit: 10;
+	stroke-width: 5px;
+  }
+
 .landing_page_card_02{
 	width: 200px;
 	height: 300px;
 	background: var(--landing_page_cards_background);
-	border: 2px solid var(--boder_color_01);
+	border: 2px solid var(--border_color_01);
 	border-radius: 8px;
 	place-content: center;
 	place-items: center;
@@ -182,7 +218,7 @@ body{
 	width: 200px;
 	height: 300px;
 	background: var(--landing_page_cards_background);
-	border: 2px solid var(--boder_color_01);
+	border: 2px solid var(--border_color_01);
 	border-radius: 8px;
 	place-content: center;
 	place-items: center;
@@ -193,7 +229,7 @@ body{
 	content: "";
 	width: 90%;
 	height: 93%;
-	border: 1px solid var(--boder_color_01);
+	border: 1px solid var(--border_color_01);
 	border-radius: 5px;
 }
 
@@ -219,7 +255,7 @@ body{
 	text-align: center;
 	letter-spacing: 0.5px;
 	color: var(--text_color_02);
-	border-top: 1px solid var(--boder_color_01);
+	border-top: 1px solid var(--border_color_01);
 	padding: 8px 0px 0px 0px;
 	margin: 35px 0px 0px 0px;
 }
