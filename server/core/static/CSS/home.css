@@ -168,6 +168,28 @@ body{
 	margin: 0px 10px 0px 0px;
 }
 
+.landing_page_card_01_inner_border_01{
+	width: 90%;
+	height: 93%;
+	border: 1px solid var(--border_color_01);
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.landing_page_card_01_icon_01{
+	width: max-content;
+	height: auto;
+	margin: 40px 0px 0px 0px;
+	border: 1px solid red;
+}
+
+.Creativity_icon{
+	width: 130px;
+}
+
 .Box_path{
 	fill: var(--border_color_03);
 	stroke: var(--border_color_02);
@@ -196,12 +218,19 @@ body{
 	stroke-width: 8px;
 }
 
-.cls-1 {
-	fill: var(--border_color_01);
-	stroke: transparent;
-	stroke-miterlimit: 10;
-	stroke-width: 5px;
-  }
+.landing_page_card_title_tag_01{
+	width: 100%;
+	font-family: 'Prata_Custom', 'sans-serif';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 22px;
+	text-align: center;
+	letter-spacing: 0.5px;
+	color: var(--text_color_02);
+	border-top: 1px solid var(--border_color_01);
+	padding: 8px 0px 0px 0px;
+	margin: 0px 0px 6px 0px;
+}
 
 .landing_page_card_02{
 	width: 200px;
@@ -212,6 +241,58 @@ body{
 	place-content: center;
 	place-items: center;
 	margin: 0px 10px 150px 10px;
+}
+
+.Inimitability_icon{
+	width: 130px;
+}
+
+.First_Lens_Stroke{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Bigger_Lens_Handle_Box{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Smaller_Lens_Handle_Box{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Second_Lens_Stroke{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Star_Box_Stroke{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Top_Box{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Base_Box{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+}
+
+.Star{
+	fill: transparent;
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
 }
 
 .landing_page_card_03{
@@ -225,26 +306,22 @@ body{
 	margin: 0px 0px 0px 10px;
 }
 
-.landing_page_card_01_inner_border_01{
-	content: "";
-	width: 90%;
-	height: 93%;
-	border: 1px solid var(--border_color_01);
-	border-radius: 5px;
+.Human_icon{
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+	fill: transparent;
 }
 
-.landing_page_card_01_icon_01{
-	width: 100%;
-	height: auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.Ramp_icon{
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+	fill: transparent;
 }
 
-.landing_page_card_01_icon_01 img{
-	width: 130px;
-	height: 130px;
-	margin: 50px auto 20px auto;
+.Gear_icon{
+	stroke-width: 15px;
+	stroke: var(--border_color_02);
+	fill: transparent;
 }
 
 .landing_page_card_title_tag{
@@ -257,7 +334,7 @@ body{
 	color: var(--text_color_02);
 	border-top: 1px solid var(--border_color_01);
 	padding: 8px 0px 0px 0px;
-	margin: 35px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
 }
 
 .landing_page_title_slogan{
