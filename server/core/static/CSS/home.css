@@ -71,6 +71,7 @@
 	--border_color_01: #bc6c25;
 	--border_color_02: #444444;
 	--border_color_03: #ccd5ae;
+	--border_color_04: #dbb42c;
 }
 
 body{
@@ -151,7 +152,7 @@ body{
 
 .landing_page_cards_wrapper{
 	width: 100%;
-	height: 100%;
+	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -165,7 +166,8 @@ body{
 	border-radius: 8px;
 	place-content: center;
 	place-items: center;
-	margin: 0px 10px 0px 0px;
+	margin: 0px 50px 0px 0px;
+	transform: rotate(-20deg);
 }
 
 .landing_page_card_01_inner_border_01{
@@ -199,7 +201,7 @@ body{
 
 .Light_Box{
 	fill: none;
-	stroke: none;
+	fill: var(--border_color_02);
 	stroke-miterlimit: 10;
 	stroke-width: 8px;
 }
@@ -243,56 +245,54 @@ body{
 	margin: 0px 10px 150px 10px;
 }
 
-.Inimitability_icon{
+.Inimatibility_Icon{
 	width: 130px;
 }
 
 .First_Lens_Stroke{
 	fill: transparent;
-	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke-width: 7px;
+	stroke: var(--border_color_03);
 }
 
 .Bigger_Lens_Handle_Box{
 	fill: transparent;
-	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke-width: 10px;
+	stroke: var(--border_color_03);
 }
 
 .Smaller_Lens_Handle_Box{
 	fill: transparent;
-	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke-width: 10px;
+	stroke: var(--border_color_03);
 }
 
 .Second_Lens_Stroke{
 	fill: transparent;
 	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke: var(--border_color_03);
 }
 
 .Star_Box_Stroke{
 	fill: transparent;
 	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke: var(--border_color_03);
 }
 
 .Top_Box{
-	fill: transparent;
-	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	fill: var(--border_color_04);
 }
 
 .Base_Box{
-	fill: transparent;
-	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	fill: var(--border_color_02);
+	stroke-width: 5px;
+	stroke: var(--border_color_03);
 }
 
 .Star{
-	fill: transparent;
+	fill: var(--border_color_04);
 	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke: var(--border_color_03);
 }
 
 .landing_page_card_03{
@@ -303,12 +303,18 @@ body{
 	border-radius: 8px;
 	place-content: center;
 	place-items: center;
-	margin: 0px 0px 0px 10px;
+	margin: 0px 0px 0px 50px;
+	transform: rotate(20deg);
+}
+
+.Pertinacity_Icon{
+	width: 130px;
+	height: 130px;
 }
 
 .Human_icon{
 	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke: var(--border_color_04);
 	fill: transparent;
 }
 
@@ -320,7 +326,7 @@ body{
 
 .Gear_icon{
 	stroke-width: 15px;
-	stroke: var(--border_color_02);
+	stroke: var(--border_color_03);
 	fill: transparent;
 }
 
@@ -337,13 +343,20 @@ body{
 	margin: 0px 0px 0px 0px;
 }
 
+.landing_page_cards_div_devider{
+	width: 30%;
+	height: 4px;
+	background: var(--border_color_01);
+	border-radius: 10px;
+}
+
 .landing_page_title_slogan{
 	font-family: 'Oswald_Custom';
 	font-weight: 200;
 	font-style: normal;
-	font-size: 24px;
+	font-size: 34px;
 	text-align: center;
 	color: var(--text_color_01);
 	padding: 0;
-	margin: 0;
+	margin: 20px auto;
 }
