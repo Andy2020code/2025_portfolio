@@ -28,14 +28,18 @@ const observer = new IntersectionObserver((entries, obs) => {
   });
 });
 
-document.querySelectorAll('.section_02_header_image_01').forEach(el => {
-  observer.observe(el);
-});
-
-document.querySelectorAll('.section_02_title_wrapper span').forEach(el => {
-  observer.observe(el);
-});
-
-document.querySelectorAll('.section_02_content_title').forEach(el => {
-  observer.observe(el);
-});
+[
+  '.section_02_header_image_01',
+  '.section_02_header_image_01 h2',
+  '.section_02_content_01_wrapper',
+  '.section_02_title_wrapper span',
+  '.section_02_decor_01_element',
+  '.section_02_content_title span',
+  '.element_content',
+  '.element_content_img',
+  '.element_content_text_title',
+  '.element_content_text_description',
+  '.scroll_arrow_down_circle_icon_wrapper_section_02'
+].forEach(selector =>
+  document.querySelectorAll(selector).forEach(el => observer.observe(el))
+);
