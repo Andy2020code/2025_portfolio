@@ -18,12 +18,14 @@ window.addEventListener('wheel', (e) => {
   });
 });
 
-const observer = new IntersectionObserver((entries, obs) => {
+const page_02_observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('page_02_animation');
       // Optionally, stop observing after animation starts
       obs.unobserve(entry.target);
+    } else {
+      entry.target.classList.remove('page_02_animation');
     }
   });
 });
@@ -41,5 +43,25 @@ const observer = new IntersectionObserver((entries, obs) => {
   '.element_content_text_description',
   '.scroll_arrow_down_circle_icon_wrapper_section_02'
 ].forEach(selector =>
-  document.querySelectorAll(selector).forEach(el => observer.observe(el))
+  document.querySelectorAll(selector).forEach(el => page_02_observer.observe(el))
+);
+
+const page_03_observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('page_03_animation');
+      // Optionally, stop observing after animation starts
+      obs.unobserve(entry.target);
+    } else {
+      entry.target.classList.remove('page_03_animation');
+    }
+  });
+});
+
+[
+  '.section_03_header_title_wrapper h2',
+  '.section_03_01_header_title_wrapper span',
+
+].forEach(selector =>
+  document.querySelectorAll(selector).forEach(el => page_03_observer.observe(el))
 );
