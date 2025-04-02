@@ -61,6 +61,14 @@ const page_03_observer = new IntersectionObserver((entries, obs) => {
 [
   '.section_03_header_title_wrapper h2',
   '.section_03_01_header_title_wrapper span',
+  '.section_03_01_content_element_01',
+  '.section_03_01_content_element_01_title span',
+  '.arrow_right_01_svg_icon',
+  '.section_03_01_content_element_01_description p',
+  '.section_03_01_content_sub_elements',
+  '.section_03_01_content_sub_elements h2',
+  '.section_03_02_card_elements_wrapper .card_elements',
+  '.card_04',
 
 ].forEach(selector =>
   document.querySelectorAll(selector).forEach(el => page_03_observer.observe(el))
