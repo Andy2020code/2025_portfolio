@@ -67,6 +67,7 @@
 	--section_02_background_color: #31473A;
 	--section_03_background_color: #EBEBDE;
 	--section_03_element_gradient_background_color_01: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
+	--section_03_element_gradient_background_color_02: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
 	--section_03_element_background_color_01: #505039;
 	--section_03_element_background_color_02: #696905;
 	--section_03_element_background_color_03: #A5A54C;
@@ -90,6 +91,7 @@
 	--border_color_06: #EDF4F2;
 	--border_color_07: #4F4747;
 	--border_color_08: #EBEBDE;
+	--border_color_09: #777764;
 
 	--cards_icon_fill_color_01: #bc6c25;
 	--cards_icon_fill_color_02: #ccd5ae;
@@ -1533,12 +1535,24 @@ body{
 				35px 35px 18px 5px rgba(0, 0, 0, 0.5)
 	;
 	opacity: 0;
-	animation: section_03_01_content_sub_elements_h2_animation 1s forwards;
-	animation-delay: calc(1s + (12 - 1) * 0.2s);
+	animation: section_03_02_card_elements_wrapper_cards_animation 1s forwards;
+	animation-delay: calc(1s + (6 - 1) * 0.2s);
 }
 
 @keyframes section_03_02_card_elements_wrapper_cards_animation {
 	to { opacity: 1; }
+}
+
+.card_elements.page_03_animation:nth-child(1) {
+	animation-delay: calc(1s + (6 - 1) * 0.2s);
+}
+
+.card_elements.page_03_animation:nth-child(2) {
+	animation-delay: calc(1s + (7 - 1) * 0.2s);
+}
+
+.card_elements.page_03_animation:nth-child(3) {
+	animation-delay: calc(1s + (8 - 1) * 0.2s);
 }
 
 .section_03_02_card_elements_wrapper .card_elements:hover {
@@ -1856,7 +1870,7 @@ body{
 	margin: 20px auto 20px auto;
 }
 
-.section_03_02_card_01_content_media_footer span{
+.section_03_02_card_01_content_media_footer span {
 	font-family: 'Prata_Custom', 'sans-serif';
 	font-weight: 600;
 	font-style: normal;
@@ -1866,7 +1880,7 @@ body{
 	color: var(--text_color_09);
 }
 
-.section_03_02_card_01_footer_devider{
+.section_03_02_card_01_footer_devider {
 	width: 90%;
 	height: 2px;
 	background: var(--border_color_08);
@@ -1877,13 +1891,170 @@ body{
 	width: 90%;
 	height: auto;
 	display: flex;
-	justify-content: space-around;
-	margin: 0px auto;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px auto 0px auto;
 }
 
 .section_03_media_01 {
-	width: 400px;
+	width: 200px;
 	height: auto;
+}
+
+.sun_path{
+	fill: #6a6a6a;
+}
+
+.clouds_path {
+	fill: #9a9a9a;
+}
+
+.stars_path {
+	fill: #fff;
+}
+
+.character_body_color {
+	fill: #7c7c7c;
+}
+
+.character_body_lines {
+	fill: #0e0e0e;
+}
+
+.character_hair_color {
+	fill: #131313;
+}
+
+.character_hair_deco {
+	fill: #949494;
+}
+
+.character_eyebrows {
+	fill: #171717;
+}
+
+.character_eye_lid {
+	fill: #151515;
+}
+
+.character_eye_02 {
+	fill: #181818;
+}
+
+.character_eye_bulb {
+	fill: #bababa;
+}
+
+.character_nose {
+	fill: #242424;
+}
+
+.character_lips {
+	fill: #4f4f4f;
+}
+
+.character_mouth_lips {
+	fill: #171717;
+}
+
+.character_paint_brush {
+	fill: #a4a4a4;
+}
+
+.character_paint_brush_tip {
+	fill: #151515;
+}
+
+.character_shirt {
+	fill: #d0d0d0;
+}
+
+.character_shirt_colar {
+	fill: #959595;
+}
+
+.shirt_dot_deco {
+	fill: #b2b2b2;
+}
+
+.pants_color {
+	fill: #848484;
+}
+
+.pants_dot_deco {
+	fill: #c1c1c1;
+}
+
+.socks_color {
+	fill: #c1c1c1;
+}
+
+.character_shoes {
+	fill: #9a9a9a;
+}
+
+.character_shoes_laces {
+	fill: #1b1b1b;
+}
+
+.character_shoes_bottom {
+	fill: #131313;
+}
+
+.seat_top_color_deco {
+	fill: #888;
+}
+
+.seat_color_deco {
+	fill: #a8a8a8;
+}
+
+.seat_stroke_deco {
+	fill: #c8c8c8;
+}
+
+.back_wall_deco {
+	fill: #dcdcdc;
+}
+
+.back_wall_deco_02 {
+	fill: #ccc;
+}
+
+.svg_glitch_01 {
+	fill: transparent;
+}
+
+.section_03_02_media_content_text {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-left: 10px solid var(--border_color_01);
+	padding: 0;
+	margin: 0;
+}
+
+.section_03_02_vertical_text {
+	width: 20%;
+	height: 100%;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 45px;
+	border: 10px solid var(--border_color_09);
+	padding: 10px 5px 10px 5px;
+	margin: 0px 0px 0px 10px;
+}
+
+.section_03_02_media_content_text span {
+	font-family: 'Oswald_Custom';
+	font-weight: 800;
+	font-size: 105px;
+	color: var(--text_color_06);
+	letter-spacing: 0;
+	line-height: 1;
 }
 
 .section_03_scroll_arrow_down_circle_icon_wrapper{
@@ -1893,7 +2064,7 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: auto 0px 0px 0px;
+	margin: auto auto 0px auto;
 }
 
 .secton_03_scroll_wrapper_text{
