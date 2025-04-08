@@ -59,6 +59,7 @@ const page_03_observer = new IntersectionObserver((entries, obs) => {
 });
 
 [
+  '.section_03_header_title_wrapper_01 h2',
   '.section_03_header_title_wrapper h2',
   '.section_03_01_header_title_wrapper span',
   '.section_03_01_content_element_01',
