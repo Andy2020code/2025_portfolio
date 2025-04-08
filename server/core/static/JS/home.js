@@ -65,10 +65,21 @@ const page_03_observer = new IntersectionObserver((entries, obs) => {
   '.section_03_01_content_element_01_title span',
   '.arrow_right_01_svg_icon',
   '.section_03_01_content_element_01_description p',
+  '.glass_flare_01',
   '.section_03_01_content_sub_elements',
+  '.section_03_01_content_sub_elements img',
   '.section_03_01_content_sub_elements h2',
-  '.section_03_02_card_elements_wrapper .card_elements',
   '.card_04',
+  '.card_05',
+  '.glass_flare_02',
+  '.card_elements',
+  '.section_03_media_01',
+  '.section_03_02_media_content_text',
+  '.section_03_02_media_content_text span',
+  '.section_03_02_vertical_text',
+  '.section_03_02_vertical_text span',
+  '.section_03_scroll_arrow_down_circle_icon_wrapper',
+  '.section_03_scroll_arrow_down_svg_button',
 
 ].forEach(selector =>
   document.querySelectorAll(selector).forEach(el => page_03_observer.observe(el))
