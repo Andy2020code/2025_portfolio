@@ -69,6 +69,8 @@
 	--section_04_background_color: #EDCD44;
 	--section_04_portfolio_timeline_container_background_color: #DC3E26;
 	--section_04_section_04_timeline_path: #81CAD6;
+	--section_04_section_04_timeline_path_circle: #EDCD44;
+	--section_04_section_04_timeline_sticks_path: #81CAD6;
 	--section_03_element_gradient_background_color_01: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
 	--section_03_element_gradient_background_color_02: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
 	--section_03_element_background_color_01: #505039;
@@ -2300,24 +2302,96 @@ body{
 .section_04_portfolio_timeline_container {
 	width: 90%;
 	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: var(--section_04_portfolio_timeline_container_background_color);
 	border-radius: 10px;
 	margin: 0px auto 0px auto;
+}
+
+.section_04_timeline_path_wrapper {
+	position: relative;
+	width: 80%;
+	height: 200px;
+	place-self: center;
+	border: 1px solid white;
+	z-index: 0;
+}
+
+.svg_icon_01 {
+	width: 100%;
+	height: auto;
+}
+
+.svg_icon_01 svg {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: auto;
+	display: block;
+	fill: var(--section_04_section_04_timeline_path);
+}
+
+.svg_icon {
+	width: 100%;
+	height: auto;
+}
+
+.icon_02 {
 	position: relative;
 }
 
-.section_04_timeline_path {
-	content: " ";
-	width: 80%;
-	height: 10px;
-	background: var(--section_04_section_04_timeline_path);
-	border-radius: 50px;
-	transform: translateY(-50%);
+.icon_02_wrapper {
+	transform: translate(-50%, -50%);
 	position: absolute;
 	top: 50%;
-	left: 0;
-	margin: 0px auto 0px auto;
+	left: 50%;
+	display: block;
+	border: 1px solid red;
 }
+
+.icon_02_wrapper svg {
+	width: 5%;
+}
+
+.icon_wrapper_01 {
+	width: 100%;
+	height: auto;
+}
+
+.section_04_timeline_path_svg {
+	display: block;
+	height: auto;
+	fill: var(--section_04_section_04_timeline_path);
+	place-self: center;
+	z-index: 1;
+}
+
+.section_04_timeline_path_circle_svg {
+	display: block;
+	height: auto;
+	width: 50%;
+	fill: var(--section_04_section_04_timeline_path_circle);
+	z-index: 2;
+}
+
+.section_04_timeline_sticks_path_svg {
+	width: 100%;
+	border: 1px solid white;
+	height: auto;
+	transform: rotate(90deg);
+}
+
+.section_04_timeline_sticks_path {
+	display: block;
+	fill: var(--section_04_section_04_timeline_sticks_path);
+
+	z-index: 3;
+}
+
 
 @media screen and (max-width: 2000px) {
 
