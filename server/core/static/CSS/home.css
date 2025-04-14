@@ -2764,4 +2764,77 @@ body{
 		margin: auto 0px 0px 10px;
 	}
 
+	.svg_icon_01 {
+		width: 100%;
+		height: auto;
+	}
+	
+	.svg_icon_01 svg {
+		transform: translate(-50%, -50%);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: auto;
+		display: block;
+		fill: var(--section_04_section_04_timeline_path);
+	}
+	
+	.svg_icon {
+		width: 100%;
+		height: auto;
+	}
+	
+	.icon_02 {
+		position: relative;
+	}
+	
+	.icon_02_wrapper {
+		transform: translate(-50%, -50%);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: block;
+		border: 1px solid red;
+	}
+	
+	.icon_02_wrapper svg {
+		width: 5%;
+	}
+	
+	.icon_wrapper_01 {
+		width: 100%;
+		height: auto;
+	}
+	
+	.section_04_timeline_path_svg {
+		display: block;
+		height: auto;
+		fill: var(--section_04_section_04_timeline_path);
+		place-self: center;
+		z-index: 1;
+	}
+	
+	.section_04_timeline_path_circle_svg {
+		display: block;
+		height: auto;
+		width: 50%;
+		fill: var(--section_04_section_04_timeline_path_circle);
+		z-index: 2;
+	}
+	
+	.section_04_timeline_sticks_path_svg {
+		width: 100%;
+		border: 1px solid white;
+		height: auto;
+		transform: rotate(90deg);
+	}
+	
+	.section_04_timeline_sticks_path {
+		display: block;
+		fill: var(--section_04_section_04_timeline_sticks_path);
+	
+		z-index: 3;
+	}
+
 }
