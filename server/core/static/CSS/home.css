@@ -71,6 +71,7 @@
 	--section_04_section_04_timeline_path: #81CAD6;
 	--section_04_section_04_timeline_path_circle: #EDCD44;
 	--section_04_section_04_timeline_sticks_path: #81CAD6;
+	--section_04_section_04_timeline_sticks_path_02: #DC3E26;
 	--section_03_element_gradient_background_color_01: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
 	--section_03_element_gradient_background_color_02: linear-gradient(140deg, rgba(105, 105, 5, 1) 25%, rgba(165, 165, 76, 1) 100%);
 	--section_03_element_background_color_01: #505039;
@@ -87,6 +88,7 @@
 	--text_color_07: #777764;
 	--text_color_08: #4F4747;
 	--text_color_09: #EBEBDE;
+	--text_color_10: #DC3E26;
 
 	--border_color_01: #bc6c25;
 	--border_color_02: #444444;
@@ -2299,99 +2301,275 @@ body{
 	background: var(--section_04_background_color);
 }
 
-.section_04_portfolio_timeline_container {
+.section_04_portfolio_timeline_container.page_04_animation {
 	width: 90%;
-	height: 300px;
+	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background: var(--section_04_portfolio_timeline_container_background_color);
-	border-radius: 10px;
+	border: 1px solid white;
+	border-radius: 200px;
 	margin: 0px auto 0px auto;
+	opacity: 0;
+	animation: section_04_portfolio_timeline_container_animation 1s forwards;
+	animation-delay: calc(1s + (1 - 1) * 0.1s);
+}
+
+@keyframes section_04_portfolio_timeline_container_animation {
+	to { opacity: 1; }
 }
 
 .section_04_timeline_path_wrapper {
-	position: relative;
 	width: 80%;
-	height: 200px;
+	height: auto;
 	place-self: center;
-	border: 1px solid white;
 	z-index: 0;
 }
 
 .svg_icon_01 {
 	width: 100%;
-	height: auto;
-}
-
-.svg_icon_01 svg {
-	transform: translate(-50%, -50%);
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 100%;
-	height: auto;
-	display: block;
-	fill: var(--section_04_section_04_timeline_path);
-}
-
-.svg_icon {
-	width: 100%;
-	height: auto;
-}
-
-.icon_02 {
+	height: 250px;
+	place-self: center;
 	position: relative;
 }
 
-.icon_02_wrapper {
+.section_04_timeline_path_svg {
 	transform: translate(-50%, -50%);
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	display: block;
-	border: 1px solid red;
-}
-
-.icon_02_wrapper svg {
-	width: 5%;
-}
-
-.icon_wrapper_01 {
 	width: 100%;
 	height: auto;
-}
-
-.section_04_timeline_path_svg {
 	display: block;
-	height: auto;
 	fill: var(--section_04_section_04_timeline_path);
-	place-self: center;
 	z-index: 1;
 }
 
-.section_04_timeline_path_circle_svg {
-	display: block;
+.section_04_timeline_path_svg rect.page_04_animation {
+	transform-origin: left;
+	transform: scaleX(0);
+	animation: section_04_timeline_path_svg_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+	animation-delay: calc(1s + (2 - 1) * 0.1s);
+}
+
+@keyframes section_04_timeline_path_svg_animation {
+	to {
+	  transform: scaleX(1);
+	}
+}
+  
+.section_04_timeline_circle_elements {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 105.4%;
 	height: auto;
-	width: 50%;
-	fill: var(--section_04_section_04_timeline_path_circle);
+	display: flex;
+	justify-content: space-between;
 	z-index: 2;
 }
 
-.section_04_timeline_sticks_path_svg {
-	width: 100%;
-	border: 1px solid white;
+.section_04_timeline_circle_elements svg {
+	width: 10%;
 	height: auto;
-	transform: rotate(90deg);
+	fill: var(--section_04_section_04_timeline_path_circle);
+	stroke-width: 40px;
+	stroke: white;
+	scale: 0;
+	animation: section_04_timeline_circle_elements_animation 0.5s forwards;
+	animation-delay: calc(1s + (2 - 1) * 0.2s);
 }
 
-.section_04_timeline_sticks_path {
-	display: block;
-	fill: var(--section_04_section_04_timeline_sticks_path);
+.section_04_timeline_circle_elements svg:nth-child(1) {
+	animation-delay: calc(1s + (2 - 1) * 0.3s);
+}
 
+.section_04_timeline_circle_elements svg:nth-child(2) {
+	animation-delay: calc(1s + (2 - 1) * 0.4s);
+}
+
+.section_04_timeline_circle_elements svg:nth-child(3) {
+	animation-delay: calc(1s + (2 - 1) * 0.5s);
+}
+
+.section_04_timeline_circle_elements svg:nth-child(4) {
+	animation-delay: calc(1s + (2 - 1) * 0.6s);
+}
+
+.section_04_timeline_circle_elements svg:nth-child(5) {
+	animation-delay: calc(1s + (2 - 1) * 0.7s);
+}
+
+@keyframes section_04_timeline_circle_elements_animation {
+	to { 
+		scale: 1;
+	}
+}
+
+.section_04_timeline_sticks_elements {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
+}
+
+.section_04_timeline_sticks_elements svg.page_04_animation {
+	width: 10px;
+	height: auto;
+	fill: var(--section_04_section_04_timeline_sticks_path);
+	margin: 0px 29px;
+	transform-origin: bottom;
+	transform: scaleY(0);
+	animation: section_04_timeline_sticks_elements_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+	animation-delay: calc(1s + (3 - 1) * 0.1s);
+}
+
+.section_04_timeline_sticks_elements svg:nth-child(1) {
+	animation-delay: calc(1s + (3 - 1) * 0.1s);
+}
+
+.section_04_timeline_sticks_elements svg:nth-child(2) {
+	animation-delay: calc(1s + (3 - 1) * 0.2s);
+}
+
+.section_04_timeline_sticks_elements svg:nth-child(3) {
+	animation-delay: calc(1s + (3 - 1) * 0.3s);
+}
+
+.section_04_timeline_sticks_elements svg:nth-child(4) {
+	animation-delay: calc(1s + (3 - 1) * 0.4s);
+}
+
+.section_04_timeline_sticks_elements svg:nth-child(5) {
+	animation-delay: calc(1s + (3 - 1) * 0.5s);
+}
+
+@keyframes section_04_timeline_sticks_elements_animation {
+	to {
+	  transform: scaleY(1);
+	}
+}
+
+.section_04_timeline_sticks_elements_02 {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: -30%;
+	left: 46.75%;
+	width: 102.5%;
+	height: auto;
+	display: flex;
+	gap: 229px;
 	z-index: 3;
 }
 
+.section_04_timeline_sticks_elements_02 svg {
+	width: 100px;
+	height: auto;
+	fill: var(--section_04_section_04_timeline_sticks_path_02);
+	margin: 0px 0px 0px 0px;
+	transform-origin: right;
+	transform: scaleX(0);
+	animation: section_04_timeline_sticks_elements_02_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+	animation-delay: calc(1s + (4 - 1) * 0.2s);
+}
+
+.section_04_timeline_sticks_elements_02 svg:nth-child(1) {
+	animation-delay: calc(1s + (4 - 1) * 0.2s);
+}
+
+.section_04_timeline_sticks_elements_02 svg:nth-child(2) {
+	animation-delay: calc(1s + (4 - 1) * 0.25s);
+}
+
+.section_04_timeline_sticks_elements_02 svg:nth-child(3) {
+	animation-delay: calc(1s + (4 - 1) * 0.3s);
+}
+
+.section_04_timeline_sticks_elements_02 svg:nth-child(4) {
+	animation-delay: calc(1s + (4 - 1) * 0.35s);
+}
+
+.section_04_timeline_sticks_elements_02 svg:nth-child(5) {
+	animation-delay: calc(1s + (4 - 1) * 0.4s);
+}
+
+@keyframes section_04_timeline_sticks_elements_02_animation {
+	to {
+	  transform: scaleX(1);
+	}
+}
+
+.section_04_timeline_year_numbers {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: -50%;
+	left: 46.75%;
+	z-index: 3;
+}
+
+.year_number_wrapper {
+	position: relative;
+
+}
+
+.section_04_timeline_year_numbers h2.page_04_animation {
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: max-content;
+	height: auto;
+	font-family: 'Prata_Custom', 'sans-serif';
+	font-weight: 800;
+	font-style: normal;
+	font-size: 38px;
+	letter-spacing: 0.5px;
+	line-height: 0.8;
+	color: var(--text_color_10);
+	clip-path: inset(100px 0 0 0);
+	animation: section_04_timeline_year_numbers_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+	animation-delay: calc(1s + (4 - 1) * 0.2s);
+	z-index: 3;
+}
+
+.section_04_timeline_year_numbers h2:nth-child(1) {
+	left: 2.5%;
+	animation-delay: calc(1s + (4 - 1) * 0.2s);
+}
+
+.section_04_timeline_year_numbers h2:nth-child(2) {
+	left: 26.1%;
+	animation-delay: calc(1s + (4 - 1) * 0.25s);
+}
+
+.section_04_timeline_year_numbers h2:nth-child(3) {
+	left: 50%;
+	animation-delay: calc(1s + (4 - 1) * 0.3s);
+}
+
+.section_04_timeline_year_numbers h2:nth-child(4) {
+	left: 73.9%;
+	animation-delay: calc(1s + (4 - 1) * 0.35s);
+}
+
+.section_04_timeline_year_numbers h2:nth-child(5) {
+	left: 97.65%;
+	animation-delay: calc(1s + (4 - 1) * 0.4s);
+}
+  
+@keyframes section_04_timeline_year_numbers_animation {
+	to {
+	  clip-path: inset(-20px 0 0 0);
+	}
+}
+  
 
 @media screen and (max-width: 2000px) {
 

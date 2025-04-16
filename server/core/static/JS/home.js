@@ -85,3 +85,27 @@ const page_03_observer = new IntersectionObserver((entries, obs) => {
 ].forEach(selector =>
   document.querySelectorAll(selector).forEach(el => page_03_observer.observe(el))
 );
+
+const page_04_observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('page_04_animation');
+      // Optionally, stop observing after animation starts
+      obs.unobserve(entry.target);
+    } else {
+      entry.target.classList.remove('page_04_animation');
+    }
+  });
+});
+
+[
+  '.section_04_portfolio_timeline_container',
+  '.section_04_timeline_path_svg rect',
+  '.section_04_timeline_circle_elements',
+  '.section_04_timeline_sticks_elements svg',
+  '.section_04_timeline_sticks_elements_02 svg',
+  '.section_04_timeline_year_numbers h2',
+
+].forEach(selector =>
+  document.querySelectorAll(selector).forEach(el => page_04_observer.observe(el))
+);
