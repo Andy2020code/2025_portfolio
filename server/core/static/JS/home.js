@@ -100,7 +100,7 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
 
 [
   '.section_04_portfolio_timeline_container',
-  '.section_04_timeline_path_svg rect',
+  '.section_04_timeline_path',
   '.section_04_timeline_circle_elements',
   '.section_04_timeline_sticks_elements svg',
   '.section_04_timeline_sticks_elements_02 svg',
