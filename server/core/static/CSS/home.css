@@ -2312,6 +2312,10 @@ body{
 	border-radius: 80px;
 	margin: 0px auto 0px auto;
 	opacity: 0;
+	box-shadow:
+			0 20px 8px rgba(220, 62, 38, 0.3),
+			0 10px rgba(237, 205, 68, 0.55)
+	;
 	animation: section_04_portfolio_timeline_container_animation 1s forwards;
 	animation-delay: calc(1s + (1 - 1) * 0.1s);
 	position: relative;
@@ -2332,6 +2336,7 @@ body{
 	height: 100px;
 	place-self: center;
 	position: relative;
+	z-index: 1;
 }
 
 .section_04_timeline_path_svg {
@@ -2343,7 +2348,6 @@ body{
 	height: auto;
 	display: block;
 	fill: var(--section_04_section_04_timeline_path);
-	z-index: 1;
 }
 
 .section_04_timeline_path.page_04_animation {
@@ -2368,39 +2372,63 @@ body{
 	height: auto;
 	display: flex;
 	justify-content: center;
-	gap: 280px;
+	gap: calc((100% - (5 * 75px)) / 4);
 	z-index: 2;
+}
+
+.section_04_timeline_circle_elements button {
+	width: 75px;
+	height: 75px;
+	border: 0;
+	border-radius: 55px;
+	margin: 0px 0px 0px 0px;
 
 }
 
-.section_04_timeline_circle_elements svg {
-	width: 75px;
+.section_04_timeline_circle_svg.page_04_animation {
+	width: 60px;
 	height: auto;
 	fill: var(--section_04_section_04_timeline_path_circle);
 	stroke-width: 40px;
 	stroke: white;
+	margin: 3px 0px 0px 0px;
 	scale: 0;
 	animation: section_04_timeline_circle_elements_animation 0.5s forwards;
 	animation-delay: calc(1s + (2 - 1) * 0.2s);
+	transition: transform 0.35s ease;
+	filter: 
+			drop-shadow(0 8px 12px rgba(0, 0, 0, 0.8))
+			drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5))
+			drop-shadow(0 0 10px rgba(237, 205, 68, 0.65))
+	;
 }
 
-.section_04_timeline_circle_elements svg:nth-child(1) {
+.section_04_timeline_circle_svg.page_04_animation:hover {
+	transform: scale(1.15);
+	filter: 
+			drop-shadow(0 12px 20px rgba(0, 0, 0, 0.5))
+			drop-shadow(0 16px 32px rgba(0, 0, 0, 0.65))
+			drop-shadow(0 0 15px rgba(237, 205, 68, 0.5))
+	;
+}
+
+.section_04_timeline_circle_svg:nth-child(1) {
 	animation-delay: calc(1s + (2 - 1) * 0.3s);
 }
 
-.section_04_timeline_circle_elements svg:nth-child(2) {
+.section_04_timeline_circle_svg:nth-child(2) {
 	animation-delay: calc(1s + (2 - 1) * 0.4s);
 }
 
-.section_04_timeline_circle_elements svg:nth-child(3) {
+.section_04_timeline_circle_svg:nth-child(3) {
 	animation-delay: calc(1s + (2 - 1) * 0.5s);
 }
 
-.section_04_timeline_circle_elements svg:nth-child(4) {
+.section_04_timeline_circle_svg:nth-child(4) {
 	animation-delay: calc(1s + (2 - 1) * 0.6s);
 }
 
-.section_04_timeline_circle_elements svg:nth-child(5) {
+.section_04_timeline_circle_svg:nth-child(5) {
 	animation-delay: calc(1s + (2 - 1) * 0.7s);
 }
 
@@ -2418,8 +2446,8 @@ body{
 	width: 100%;
 	height: auto;
 	display: flex;
-	justify-content: center;
-	gap: 337.5px;
+	justify-content: space-between;
+	gap: calc((100% - (5 * 10px)) / 4);
 	z-index: 1;
 }
 
@@ -2464,21 +2492,18 @@ body{
 	position: absolute;
 	top: -37%;
 	left: 50%;
-	width: 103%;
+	width: 103.5%;
 	height: auto;
 	display: flex;
-	justify-content: right;
+	justify-content: space-between;
 	gap: calc((100% - (5 * 120px)) / 4);
 	z-index: 3;
-	border: 1px solid black;
 }
 
 .section_04_timeline_sticks_elements_02 svg {
 	width: 120px;
 	height: auto;
 	fill: var(--section_04_section_04_timeline_sticks_path_02);
-	margin: 0px 0px 0px 0px;
-	transform-origin: right;
 	transform: scaleX(0);
 	animation: section_04_timeline_sticks_elements_02_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 	animation-delay: calc(1s + (4 - 1) * 0.2s);
@@ -2519,8 +2544,9 @@ body{
 	width: 100%;
 	height: auto;
 	display: flex;
-	justify-content: center;
-	gap: 260px;
+	justify-content: space-between;
+	margin: 0px 0px 0px 0px;
+	gap: calc((100% - (4 * 160px)) / 3);
 	z-index: 3;
 }
 
@@ -2535,7 +2561,10 @@ body{
 	clip-path: inset(100px 0 0 0);
 	animation: section_04_timeline_year_numbers_animation 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 	animation-delay: calc(1s + (4 - 1) * 0.2s);
-	z-index: 3;
+	filter: 
+			drop-shadow(0 0 10px rgba(237, 205, 68, 0.35))
+			drop-shadow(0 8px 20px rgba(237, 205, 68, 0.3))
+	;
 }
 
 .section_04_timeline_year_numbers h2:nth-child(1) {
@@ -2936,77 +2965,23 @@ body{
 		margin: auto 0px 0px 10px;
 	}
 
-	.svg_icon_01 {
-		width: 100%;
-		height: auto;
+	.section_04_timeline_sticks_elements {
+		width: 94.3%;
+		gap: calc((100% - (5 * 10px)) / 4);
 	}
-	
-	.svg_icon_01 svg {
-		transform: translate(-50%, -50%);
-		position: absolute;
-		top: 50%;
+
+	.section_04_timeline_sticks_elements_02 {
+		gap: calc((100% - (5 * 120px)) / 4);
+	}
+
+	.section_04_timeline_circle_elements {
+		gap: calc((100% - (5 * 75px)) / 4);
+	}
+
+	.section_04_timeline_year_numbers {
+		top: -65%;
 		left: 50%;
-		width: 100%;
-		height: auto;
-		display: block;
-		fill: var(--section_04_section_04_timeline_path);
-	}
-	
-	.svg_icon {
-		width: 100%;
-		height: auto;
-	}
-	
-	.icon_02 {
-		position: relative;
-	}
-	
-	.icon_02_wrapper {
-		transform: translate(-50%, -50%);
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		display: block;
-		border: 1px solid red;
-	}
-	
-	.icon_02_wrapper svg {
-		width: 5%;
-	}
-	
-	.icon_wrapper_01 {
-		width: 100%;
-		height: auto;
-	}
-	
-	.section_04_timeline_path_svg {
-		display: block;
-		height: auto;
-		fill: var(--section_04_section_04_timeline_path);
-		place-self: center;
-		z-index: 1;
-	}
-	
-	.section_04_timeline_path_circle_svg {
-		display: block;
-		height: auto;
-		width: 50%;
-		fill: var(--section_04_section_04_timeline_path_circle);
-		z-index: 2;
-	}
-	
-	.section_04_timeline_sticks_path_svg {
-		width: 100%;
-		border: 1px solid white;
-		height: auto;
-		transform: rotate(90deg);
-	}
-	
-	.section_04_timeline_sticks_path {
-		display: block;
-		fill: var(--section_04_section_04_timeline_sticks_path);
-	
-		z-index: 3;
+		gap: calc((100% - (5 * 160px)) / 4);
 	}
 
 }
