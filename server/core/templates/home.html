@@ -10,8 +10,17 @@
 <body>
 
 	<section id="section_04" class="section section_04">
+
+		<div class="section_04_portfolio_Title_Wrapper">
+			<div class="Section_04_Portfolio_Title">
+				<span>SELECT</span>
+				<span>A</span>
+				<span>YEAR</span>
+				<span>.</span>
+			</div>
+		</div>
+
 		<div class="section_04_portfolio_timeline_container">
-			
 			<div class="section_04_timeline_path_wrapper">
 				<div class="svg_icon_01">
 					<svg class="section_04_timeline_path_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 16.00">
@@ -19,34 +28,44 @@
 					</svg>
 
 					<div class="section_04_timeline_circle_elements">
-						<button class= "circle_btn_anim_trigger" data-group="1">
-							<svg class="section_04_timeline_circle_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-								<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450"/>
-							</svg>
+						<button class="circle_btn_anim_trigger" onclick="triggerCircleAnimation(this)">
+							<div class="circle_svg_wrapper">
+								<svg class="section_04_timeline_circle_svg" viewBox="0 0 1000 1000">
+									<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450" />
+								</svg>
+							</div>
 						</button>
 
-						<button class= "circle_btn_anim_trigger" data-group="2">
-							<svg class="section_04_timeline_circle_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-								<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450"/>
-							</svg>
+						<button class="circle_btn_anim_trigger" onclick="triggerCircleAnimation(this)">
+							<div class="circle_svg_wrapper">
+								<svg class="section_04_timeline_circle_svg" viewBox="0 0 1000 1000">
+									<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450" />
+								</svg>
+							</div>
 						</button>
 
-						<button class= "circle_btn_anim_trigger" data-group="3">
-							<svg class="section_04_timeline_circle_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-								<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450"/>
-							</svg>
+						<button class="circle_btn_anim_trigger" onclick="triggerCircleAnimation(this)">
+							<div class="circle_svg_wrapper">
+								<svg class="section_04_timeline_circle_svg" viewBox="0 0 1000 1000">
+									<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450" />
+								</svg>
+							</div>
 						</button>
 						
-						<button class= "circle_btn_anim_trigger" data-group="4">
-							<svg class="section_04_timeline_circle_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-								<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450"/>
-							</svg>
+						<button class="circle_btn_anim_trigger" onclick="triggerCircleAnimation(this)">
+							<div class="circle_svg_wrapper">
+								<svg class="section_04_timeline_circle_svg" viewBox="0 0 1000 1000">
+									<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450" />
+								</svg>
+							</div>
 						</button>
 
-						<button class= "circle_btn_anim_trigger" data-group="5">
-							<svg class="section_04_timeline_circle_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-								<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450"/>
-							</svg>
+						<button class="circle_btn_anim_trigger" onclick="triggerCircleAnimation(this)">
+							<div class="circle_svg_wrapper">
+								<svg class="section_04_timeline_circle_svg" viewBox="0 0 1000 1000">
+									<circle class="section_04_timeline_circle_path" cx="500" cy="500" r="450" />
+								</svg>
+							</div>
 						</button>
 					</div>
 
@@ -988,6 +1007,6 @@
 
 
 	
-	<script src="{% static 'JS/home.js' %}"></script>
+	<script src="{% static 'JS/home.js' %}" defer></script>
 </body>
 </html>

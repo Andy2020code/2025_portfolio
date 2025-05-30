@@ -99,13 +99,52 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
 });
 
 [
+  '.Section_04_Portfolio_Title span',
   '.section_04_portfolio_timeline_container',
   '.section_04_timeline_path',
+  '.section_04_timeline_circle_elements button',
   '.section_04_timeline_circle_svg',
-  '.section_04_timeline_sticks_elements svg',
+  '.section_04_timeline_sticks_elements',
+  '.section_04_timeline_sticks_svg',
   '.section_04_timeline_sticks_elements_02 svg',
   '.section_04_timeline_year_numbers h2',
 
 ].forEach(selector =>
   document.querySelectorAll(selector).forEach(el => page_04_observer.observe(el))
 );
+
+document.addEventListener("DOMContentLoaded", () => {
+	const svgs = document.querySelectorAll('.section_04_timeline_circle_svg');
+
+	svgs.forEach((svg, index) => {
+		const baseDelay = 2000; // 1s
+		const stagger = 100;    // 0.1s per item
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			svg.style.transform = 'scale(1)';
+		}, delay);
+	});
+});
+// Circle button animation on page load
+
+document.addEventListener("DOMContentLoaded", () => {
+	const buttons = document.querySelectorAll('.circle_btn_anim_trigger');
+
+	buttons.forEach((btn, index) => {
+		const baseDelay = 2000; // 1s base delay
+		const stagger = 100;    // 0.1s per button
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			btn.style.transform = 'scale(1)';
+		}, delay);
+	});
+});
+
+// Click-triggered animation (keep if you want to bounce on click too)
+window.triggerCircleAnimation = function (button) {
+	button.classList.remove('circle_anim_triggered');
+	void button.offsetWidth;
+	button.classList.add('circle_anim_triggered');
+};
