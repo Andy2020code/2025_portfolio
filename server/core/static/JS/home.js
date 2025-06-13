@@ -114,6 +114,89 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
 );
 
 document.addEventListener("DOMContentLoaded", () => {
+	const section_04_portfolio_title_01 = document.querySelectorAll('.Section_04_Portfolio_Title_span');
+
+	section_04_portfolio_title_01.forEach((span, index) => {
+		const baseDelay = 2000; // 1s
+		const stagger = 200;    // 0.1s per item
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			span.style.transform = 'translateY(50%)';
+      span.style.opacity = '1';
+		}, delay);
+	});
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const red_timeline_container = document.querySelector('.section_04_portfolio_timeline_container');
+
+	const baseDelay = 2100;
+
+	setTimeout(() => {
+		red_timeline_container.style.opacity = '1';
+    red_timeline_container.style.transform = 'scaleX(1)';
+	}, baseDelay);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const timeline_bar_svg = document.querySelector('.section_04_timeline_path_svg');
+
+	const baseDelay = 2300;
+
+	setTimeout(() => {
+    timeline_bar_svg.style.transform = 'scaleX(1)';
+	}, baseDelay);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const buttons = document.querySelectorAll('.circle_btn_anim_trigger');
+
+
+	buttons.forEach((btn, index) => {
+		const baseDelay = 2600;
+		const stagger = 150;
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			btn.style.transform = 'scale(1)';
+		}, delay);
+	});
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const svgs = document.querySelectorAll('.section_04_timeline_sticks_svg');
+
+	svgs.forEach((svg, index) => {
+		const baseDelay = 2200; // 1s
+		const stagger = 100;    // 0.1s per item
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			svg.style.transform = 'scale(1)';
+		}, delay);
+	});
+});
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+	const svgs = document.querySelectorAll('.section_04_timeline_sticks_svg_02');
+
+	svgs.forEach((svg, index) => {
+		const baseDelay = 2300; // 1s
+		const stagger = 100;    // 0.1s per item
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			svg.style.transform = 'scale(1)';
+		}, delay);
+	});
+});
+
+document.addEventListener("DOMContentLoaded", () => {
 	const svgs = document.querySelectorAll('.section_04_timeline_circle_svg');
 
 	svgs.forEach((svg, index) => {
@@ -126,10 +209,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, delay);
 	});
 });
-// Circle button animation on page load
 
 document.addEventListener("DOMContentLoaded", () => {
 	const buttons = document.querySelectorAll('.circle_btn_anim_trigger');
+
 
 	buttons.forEach((btn, index) => {
 		const baseDelay = 2000; // 1s base delay
@@ -142,9 +225,95 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
-// Click-triggered animation (keep if you want to bounce on click too)
+document.addEventListener("DOMContentLoaded", () => {
+	const text = document.querySelectorAll('.section_04_timeline_year_h2_tags');
+
+	text.forEach((h2, index) => {
+		const baseDelay = 2250; // 1s
+		const stagger = 100;    // 0.1s per item
+		const delay = baseDelay + index * stagger;
+
+		setTimeout(() => {
+			h2.style.clipPath = 'inset(-20px 0 0 0)';
+		}, delay);
+	});
+});
+
 window.triggerCircleAnimation = function (button) {
+	// Circle animation reset
 	button.classList.remove('circle_anim_triggered');
+
+	// Trigger reflow
 	void button.offsetWidth;
-	button.classList.add('circle_anim_triggered');
+
+	// Re-add class after a minimal delay
+	requestAnimationFrame(() => {
+		button.classList.add('circle_anim_triggered');
+	});
+
+	const group = button.dataset.group;
+	const stick = document.querySelector(`.section_04_timeline_sticks_svg[data-group="${group}"]`);
+  const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
+  const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
+  const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
+
+	if (stick) {
+
+		stick.classList.remove('stick_anim_triggered');
+		void stick.offsetWidth;
+
+		requestAnimationFrame(() => {
+			stick.classList.add('stick_anim_triggered');
+		});
+	}
+
+  if (stick_02) {
+
+		stick_02.classList.remove('stick_02_anim_triggered');
+		void stick_02.offsetWidth;
+
+		requestAnimationFrame(() => {
+			stick_02.classList.add('stick_02_anim_triggered');
+		});
+	}
+
+  if (date_year) {
+
+		date_year.classList.remove('year_date_anim_triggered');
+		void date_year.offsetWidth;
+
+		requestAnimationFrame(() => {
+			date_year.classList.add('year_date_anim_triggered');
+		});
+	}
+
+	if (portfolio_title) {
+		portfolio_title.forEach((span, index) => {
+			span.classList.remove('title_span_triggered');
+			span.style.animation = 'none';
+			span.offsetHeight; // Force reflow
+			span.style.animation = `Section_04_Portfolio_Title_Span_animation 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5) forwards`;
+			span.style.animationDelay = `${index * 90}ms`;
+			span.classList.add('title_span_triggered');
+		});
+
+		setTimeout(() => {
+			trigger_open_section_04_portfolio_display_animation();
+		}, 850 + portfolio_title.length * 90); // Total duration of the title animation
+	}
 };
+
+
+//Function to display the selected portfolio items based on the year//
+
+function trigger_open_section_04_portfolio_display_animation() {
+	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper');
+	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
+}
+
+function trigger_close_section_04_portfolio_display_animation() {
+	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper');
+	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_close');
+}
+
+//You were editing the blur effect in the buttons of the portfolio display. You removed the position:relative stuff and it wont get begind of the text
