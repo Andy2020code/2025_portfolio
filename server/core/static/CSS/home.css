@@ -61,6 +61,43 @@
 }
 
 
+@font-face {
+  font-family: 'Bodoni_Custom';
+  src: url('/static/Fonts/Bodoni/BodoniModaSC_18pt-Regular.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bodoni_Custom';
+  src: url('/static/Fonts/Bodoni/BodoniModaSC_18pt-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Bodoni_Custom';
+  src: url('/static/Fonts/Bodoni/BodoniModaSC_18pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bodoni_Custom';
+  src: url('/static/Fonts/Bodoni/BodoniModaSC_18pt-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Bodoni_Custom';
+  src: url('/static/Fonts/Bodoni/BodoniModaSC_9pt-Black.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+
 :root{
 	--second_color: #F2F2F2;
 	--body_background: #b6ad90;
@@ -2584,7 +2621,7 @@ body{
 .section_04_timeline_year_numbers {
 	transform: translate(-50%, -50%);
 	position: absolute;
-	top: -8%;
+	top: -80%;
 	left: 50%;
 	width: 100.6%;
 	height: auto;
@@ -2741,40 +2778,105 @@ body{
 }
 
 .section_04_portfolio_category_wrapper button {
-	width: 100%;
-	height: 85px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
+	position: relative;
+	width: 90%;
+	height: 100px;
 	background: transparent;
 	border: none;
-	border-radius: 10px;
-	z-index: 1;
+	box-shadow:
+				2px 1px 24px rgba(0, 0, 0, 0.3),
+				2px 1px 8px rgba(245, 245, 245, 0.15)
+	;
+}
+
+.category_btn_border {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: 0.05em solid var(--text_color_10);
+	border-radius: 1em;
+	opacity: 0.6;
+	padding: 0;
+	margin: 0;
 }
 
 .section_04_portfolio_category_wrapper button span {
-	width: 100%;
-	height: 100%;
-	font-family: 'Prata_Custom', 'sans-serif';
+	font-family: 'Bodoni_Custom';
 	font-weight: 200;
 	font-style: normal;
 	font-size: 20px;
 	letter-spacing: 1.5px;
-	line-height: 110%;
-	align-content: center;
+	line-height: 1.3em;
 	text-transform: uppercase;
 	color: var(--text_color_12);
+	text-shadow:
+  				2px 4px 6px rgba(0, 0, 0, 0.4),
+  				0 0 8px rgba(255, 255, 255, 0.15)
+	;
 	transition: color 0.5s ease;
 	z-index: 2;
 }
 
 .section_04_portfolio_category_wrapper button:nth-of-type(1) span:nth-child(1) {
-	font-size: 20px;
+	font-weight: 200;
+	font-size: 2.5em;
+	letter-spacing: 0.1em;
+	margin: 0px 0px 0px 0.1em;
 }
 
-.section_04_portfolio_category_wrapper button:nth-of-type(2) span {
-	font-size: 40px;
+.section_04_portfolio_category_wrapper button:nth-of-type(1) span:nth-child(2) {
+	font-weight: 800;
+	font-size: 3.5em;
+	letter-spacing: 0.2em;
+	margin: 0px 0px 0px 0.2em;
+
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(2) span:nth-child(1) {
+	font-weight: 200;
+	font-size: 2.5em;
+	letter-spacing: 0.3em;
+	margin: 0px 0px 0px 0.3em;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(2) span:nth-child(2) {
+	font-size: 2.5em;
+	font-weight: 800;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(3) span:nth-child(1),
+.section_04_portfolio_category_wrapper button:nth-of-type(4) span:nth-child(1) {
+	font-size: 2.5em;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(3) span:nth-child(2) {
+	font-weight: 200;
+	font-size: 2.5em;
+	letter-spacing: 0.5em;
+	margin: 0px 0px 0px 0.5em;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(4) span:nth-child(2) {
+	font-weight: 400;
+	font-size: 3em;
+	letter-spacing: 0.6em;
+	margin: 0px 0px 0px 0.6em;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(5) span:nth-child(1) {
+	font-size: 2.5em;
+	letter-spacing: 0.2em;
+	margin: 0px 0px 0px 0.2em;
+}
+
+.section_04_portfolio_category_wrapper button:nth-of-type(5) span:nth-child(2) {
+	font-size: 3.5em;
+	letter-spacing: 0.2em;
+	margin: 0px 0px 0px 0.2em;
 }
 
 .section_04_portfolio_category_wrapper button::before {
