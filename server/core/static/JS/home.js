@@ -253,9 +253,9 @@ window.triggerCircleAnimation = function (button) {
 
 	const group = button.dataset.group;
 	const stick = document.querySelector(`.section_04_timeline_sticks_svg[data-group="${group}"]`);
-  const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
-  const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
-  const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
+  	const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
+ 	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
+  	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
 
 	if (stick) {
 
@@ -316,4 +316,27 @@ function trigger_close_section_04_portfolio_display_animation() {
 	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_close');
 }
 
-//You were editing the blur effect in the buttons of the portfolio display. You removed the position:relative stuff and it wont get begind of the text
+window.PortfolioCategoryButtonAnimations = function (button) {
+
+	const group = button.dataset.group;
+	const select_portfolio_screen = document.querySelector('.section_04_select_portfolio_section_wrapper');
+	const all_portfolio_wrappers = document.querySelectorAll('.section_04_portfolio_wrapper');
+
+	all_portfolio_wrappers.forEach(wrapper => {
+		wrapper.style.display = 'none';
+		wrapper.classList.remove('portfolio_reveal_anim_triggered');
+	});
+
+	const target_portfolio = document.querySelector(`.section_04_portfolio_wrapper[data-group="${group}"]`);
+
+	if (target_portfolio) {
+		select_portfolio_screen.style.display = 'none';
+
+		void target_portfolio.offsetWidth;
+
+		target_portfolio.style.display = 'flex';
+		requestAnimationFrame(() => {
+			target_portfolio.classList.add('portfolio_reveal_anim_triggered');
+		});
+	}
+};

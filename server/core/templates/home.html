@@ -180,7 +180,7 @@
 			<div class="section_04_portfolio_right_wrapper">
 
 				<div class="section_04_portfolio_category_wrapper">
-					<button>
+					<button onclick="PortfolioCategoryButtonAnimations(this)" data-group="6">
 
 						<span>
 							Codex
@@ -189,15 +189,13 @@
 						<span>
 							Aureus
 						</span>
-
-						<div class="category_btn_border"></div>
 					</button>
 
 					<svg class="section_04_portfolio_category_border" height="2" xmlns="http://www.w3.org/2000/svg">
 						<rect class="section_04_portfolio_category_border_path" x="0" y="0" width="100%" height="2" rx="1.5" ry="1.5"/>
 					</svg>
 
-					<button>
+					<button onclick="PortfolioCategoryButtonAnimations(this)" data-group="7">
 						<span>
 							Ars
 						</span>
@@ -213,7 +211,7 @@
 						<rect class="section_04_portfolio_category_border_path" x="0" y="0" width="100%" height="2" rx="1.5" ry="1.5"/>
 					</svg>
 
-					<button>
+					<button onclick="PortfolioCategoryButtonAnimations(this)" data-group="8">
 						<span>
 							Captura
 						</span>
@@ -229,9 +227,9 @@
 						<rect class="section_04_portfolio_category_border_path" x="0" y="0" width="100%" height="2" rx="1.5" ry="1.5"/>
 					</svg>
 
-					<button>
+					<button onclick="PortfolioCategoryButtonAnimations(this)" data-group="9">
 						<span>
-							Lux In
+							Lux&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspIn
 						</span>
 
 						<span>
@@ -245,7 +243,7 @@
 						<rect class="section_04_portfolio_category_border_path" x="0" y="0" width="100%" height="2" rx="1.5" ry="1.5"/>
 					</svg>
 
-					<button>
+					<button onclick="PortfolioCategoryButtonAnimations(this)" data-group="10">
 						<span>
 							Tri
 						</span>
@@ -260,6 +258,116 @@
 
 				<div class="section_04_portfolio_display_viewport_wrapper">
 
+					<div class="section_04_select_portfolio_section_wrapper">
+
+						<div class="section_04_select_portfolio_button_svg_wrapper">
+							<svg class="section_04_select_portfolio_button_svg" width="10" height="50" xmlns="http://www.w3.org/2000/svg">
+								<rect class="section_04_select_portfolio_button_svg_path" x="0" y="0" width="6" height="50" rx="5" ry="5"/>
+							</svg>
+
+							<svg class="section_04_select_portfolio_button_svg" width="10" height="50" xmlns="http://www.w3.org/2000/svg">
+								<rect class="section_04_select_portfolio_button_svg_path" x="0" y="0" width="6" height="50" rx="5" ry="5"/>
+							</svg>
+
+							<svg class="section_04_select_portfolio_button_svg" width="10" height="50" xmlns="http://www.w3.org/2000/svg">
+								<rect class="section_04_select_portfolio_button_svg_path" x="0" y="0" width="6" height="50" rx="5" ry="5"/>
+							</svg>
+
+							<svg class="section_04_select_portfolio_button_svg" width="10" height="50" xmlns="http://www.w3.org/2000/svg">
+								<rect class="section_04_select_portfolio_button_svg_path" x="0" y="0" width="6" height="50" rx="5" ry="5"/>
+							</svg>
+
+							<svg class="section_04_select_portfolio_button_svg" width="10" height="50" xmlns="http://www.w3.org/2000/svg">
+								<rect class="section_04_select_portfolio_button_svg_path" x="0" y="0" width="6" height="50" rx="5" ry="5"/>
+							</svg>
+						</div>
+
+						<div class="section_04_select_portfolio_title_wrapper">
+							<span>Select</span>
+							<span>a</span>
+							<span>Portfolio</span>
+						</div>
+						
+					</div>
+
+					<div class="section_04_portfolio_wrapper codex_aureus" data-group="6">
+						<div class="codex_aureus_main_title">
+							<span>Codex</span>
+							<span>Aureus</span>
+						</div>
+
+						<div class="codex_aureus_project_viewport_wrapper">
+							<div class="codex_aureus_projects_container">
+								
+								<div class="codex_aureus_project proj_01">
+									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
+									</svg>
+								</div>
+
+								<div class="codex_aureus_project proj_02">
+									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
+									</svg>
+								</div>
+
+								<div class="codex_aureus_project proj_03">
+									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
+									</svg>
+								</div>
+
+								<div class="codex_aureus_project proj_04">
+									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<div class="codex_aureus_project_notes_wrapper">
+
+							<div class="codex_aureus_project_note column_01">
+								<img class="notes_company_logo" src="{% static 'path/to/image.jpg' %}" alt="Company_Logo">
+							</div>
+
+							<div class="codex_aureus_project_note column_02">
+								<h2 class="note_column_01_title_01">
+									Project N01
+								</h2>
+
+								<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+									Quis, necessitatibus. Dolorum laudantium eveniet rem minima quia, 
+									veritatis nostrum possimus sunt nam sit similique tempora illo.
+								</p>
+							</div>
+
+							<div class="codex_aureus_project_note column_03">
+
+								<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+									Quis, necessitatibus. Dolorum laudantium eveniet rem minima quia, 
+									veritatis nostrum possimus sunt nam sit similique tempora illo, 
+									eligendi dolores vitae distinctio facere.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="section_04_portfolio_wrapper ars_designandi" data-group="7">
+						<h2>test1</h2>
+					</div>
+
+					<div class="section_04_portfolio_wrapper captura_lucis" data-group="8">
+						<h2>test2</h2>
+					</div>
+
+					<div class="section_04_portfolio_wrapper lux_in_moto" data-group="9">
+						<h2>test3</h2>
+					</div>
+
+					<div class="section_04_portfolio_wrapper tri_forma" data-group="10">
+						<h2>test13</h2>
+					</div>
 				</div>
 			</div>
 		</div>
