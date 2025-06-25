@@ -178,10 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
 	const svgs = document.querySelectorAll('.section_04_timeline_sticks_svg_02');
 
@@ -239,6 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
+//function to trigger transition from timeline to selected portfolio//
 window.triggerCircleAnimation = function (button) {
 	// Circle animation reset
 	button.classList.remove('circle_anim_triggered');
@@ -304,10 +301,10 @@ window.triggerCircleAnimation = function (button) {
 };
 
 
-//Function to display the selected portfolio items based on the year//
+//Function to open selected portfolio based on year selection//
 
 function trigger_open_section_04_portfolio_display_animation() {
-	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper');
+	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper_2020');
 	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
 }
 

@@ -1,0 +1,6 @@
+-- To evenly distribute letter spacing to the remaining area:
+
+	- Code Line: letter-spacing: calc((width - (n of letters * Spacing Width)) / N of spacing minus 1); 
+
+	Example:
+	- 18px: 	letter-spacing: calc((125px - (6 * 15px)) / 5); 
