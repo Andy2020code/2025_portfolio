@@ -4,3 +4,11 @@
 
 	Example:
 	- 18px: 	letter-spacing: calc((125px - (6 * 15px)) / 5); 
+
+
+
+-- Data-Group Labels:
+
+	- 01 / 02 / 03 / 04 / 05
+		- Animations on buttons, sticks, and year text tag.
+		- Timeline buttons for portfolio selection based on year.

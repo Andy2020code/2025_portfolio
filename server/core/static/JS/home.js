@@ -114,17 +114,23 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
 );
 
 document.addEventListener("DOMContentLoaded", () => {
+	const section_04_portfolio_title_wrapper = document.querySelector('.section_04_portfolio_Title_Wrapper');
 	const section_04_portfolio_title_01 = document.querySelectorAll('.Section_04_Portfolio_Title_span');
 
-	section_04_portfolio_title_01.forEach((span, index) => {
-		const baseDelay = 2000; // 1s
-		const stagger = 200;    // 0.1s per item
-		const delay = baseDelay + index * stagger;
+	requestAnimationFrame(() => {
+		section_04_portfolio_title_wrapper.style.display = 'flex';
 
-		setTimeout(() => {
-			span.style.transform = 'translateY(50%)';
-      span.style.opacity = '1';
-		}, delay);
+		section_04_portfolio_title_01.forEach((span, index) => {
+
+			const baseDelay = 2000;
+			const stagger = 200; 
+			const delay = baseDelay + index * stagger;
+	
+			setTimeout(() => {
+				span.style.transform = 'translateY(50%)';
+				span.style.opacity = '1';
+			}, delay);
+		});
 	});
 });
 
@@ -237,103 +243,194 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //function to trigger transition from timeline to selected portfolio//
 window.triggerCircleAnimation = function (button) {
-	// Circle animation reset
+	console.log('triggerCircleAnimation triggered');
+
 	button.classList.remove('circle_anim_triggered');
-
-	// Trigger reflow
 	void button.offsetWidth;
-
-	// Re-add class after a minimal delay
 	requestAnimationFrame(() => {
 		button.classList.add('circle_anim_triggered');
 	});
 
 	const group = button.dataset.group;
+
 	const stick = document.querySelector(`.section_04_timeline_sticks_svg[data-group="${group}"]`);
-  	const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
- 	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
-  	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
+	const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
+	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
+	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
+	const portfolio_title_wrapper = document.querySelector(`.section_04_portfolio_Title_Wrapper`);
 
 	if (stick) {
-
 		stick.classList.remove('stick_anim_triggered');
 		void stick.offsetWidth;
-
-		requestAnimationFrame(() => {
-			stick.classList.add('stick_anim_triggered');
-		});
+		requestAnimationFrame(() => stick.classList.add('stick_anim_triggered'));
 	}
 
-  if (stick_02) {
-
+	if (stick_02) {
 		stick_02.classList.remove('stick_02_anim_triggered');
 		void stick_02.offsetWidth;
-
-		requestAnimationFrame(() => {
-			stick_02.classList.add('stick_02_anim_triggered');
-		});
+		requestAnimationFrame(() => stick_02.classList.add('stick_02_anim_triggered'));
 	}
 
-  if (date_year) {
-
+	if (date_year) {
 		date_year.classList.remove('year_date_anim_triggered');
 		void date_year.offsetWidth;
-
-		requestAnimationFrame(() => {
-			date_year.classList.add('year_date_anim_triggered');
-		});
+		requestAnimationFrame(() => date_year.classList.add('year_date_anim_triggered'));
 	}
 
 	if (portfolio_title) {
-		portfolio_title.forEach((span, index) => {
-			span.classList.remove('title_span_triggered');
-			span.style.animation = 'none';
-			span.offsetHeight; // Force reflow
-			span.style.animation = `Section_04_Portfolio_Title_Span_animation 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5) forwards`;
-			span.style.animationDelay = `${index * 90}ms`;
-			span.classList.add('title_span_triggered');
-		});
+		requestAnimationFrame(() => {
+			portfolio_title_wrapper.style.display = 'flex';
 
-		setTimeout(() => {
-			trigger_open_section_04_portfolio_display_animation();
-		}, 850 + portfolio_title.length * 90); // Total duration of the title animation
+
+			let completedAnimations = 0;
+			const totalSpans = portfolio_title.length;
+	
+			portfolio_title.forEach((span, index) => {
+				span.offsetHeight;
+	
+				span.classList.remove('title_span_triggered');
+				span.style.animation = '';
+				void span.offsetHeight;
+	
+				// Add the class to start animation
+				span.style.animationDelay = `${index * 90}ms`;
+				span.classList.add('title_span_triggered');
+	
+				// Listen for the end of animation and clean up
+				const handleAnimationEnd = () => {
+					span.classList.remove('title_span_triggered');
+
+					completedAnimations++;
+					if (completedAnimations === totalSpans) {
+						console.log('All title animations completed');
+						portfolio_title_wrapper.style.display = 'none';
+					}
+
+					span.removeEventListener('animationend', handleAnimationEnd);
+				};
+	
+				span.addEventListener('animationend', handleAnimationEnd);
+			});
+		});
 	}
+
+	// Lookup table for wrappers by group
+	const wrappers = {
+		'1': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
+		'2': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
+		'3': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
+		'4': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
+		'5': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
+	};
+
+	// Delay opening selected portfolio until after Main title animation completes
+	setTimeout(() => {
+		const wrapper = wrappers[group];
+
+		if (wrapper) {
+
+			requestAnimationFrame(() => {
+				wrapper.offsetHeight;
+				wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
+
+				wrapper.addEventListener('animationend', function handleMainPtfloWrapperStartLoadAnimationEnd() {
+					wrapper.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open');
+					wrapper.style.width = '95%';
+					wrapper.style.opacity = '1';
+					wrapper.removeEventListener('animationend', handleMainPtfloWrapperStartLoadAnimationEnd);
+				});
+			});
+
+			wrapper.offsetHeight;
+		}
+	}, 850 + portfolio_title.length * 90);
 };
 
-
-//Function to open selected portfolio based on year selection//
-
-function trigger_open_section_04_portfolio_display_animation() {
-	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper_2020');
-	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
-}
-
-function trigger_close_section_04_portfolio_display_animation() {
-	const Portfolio_Main_Wrapper = document.getElementById('section_04_portfolio_display_main_wrapper');
-	Portfolio_Main_Wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_close');
-}
-
 window.PortfolioCategoryButtonAnimations = function (button) {
-
 	const group = button.dataset.group;
-	const select_portfolio_screen = document.querySelector('.section_04_select_portfolio_section_wrapper');
-	const all_portfolio_wrappers = document.querySelectorAll('.section_04_portfolio_wrapper');
 
-	all_portfolio_wrappers.forEach(wrapper => {
+	document.querySelectorAll('.section_04_portfolio_wrapper').forEach(wrapper => {
 		wrapper.style.display = 'none';
 		wrapper.classList.remove('portfolio_reveal_anim_triggered');
 	});
 
+	document.querySelectorAll('.section_04_select_portfolio_section_wrapper').forEach(wrapper => {
+		wrapper.style.display = 'none';
+	});
+
 	const target_portfolio = document.querySelector(`.section_04_portfolio_wrapper[data-group="${group}"]`);
-
 	if (target_portfolio) {
-		select_portfolio_screen.style.display = 'none';
-
-		void target_portfolio.offsetWidth;
-
+		void target_portfolio.offsetWidth; // force reflow
 		target_portfolio.style.display = 'flex';
 		requestAnimationFrame(() => {
 			target_portfolio.classList.add('portfolio_reveal_anim_triggered');
 		});
 	}
+};
+
+//function to close main portfolio display wrappers
+
+
+window.PortfolioReturnTimelineButtonAnimation = function (button) {
+	const group = button.dataset.group;
+
+	// Title wrapper and spans
+	const return_portfolio_title_wrapper = document.querySelector('.section_04_portfolio_Title_Wrapper');
+	const return_portfolio_title = document.querySelectorAll('.Section_04_Portfolio_Title_span');
+
+	// Portfolio display wrappers mapped by group
+	const allWrappers = {
+		'0001': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
+		'0002': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
+		'0003': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
+		'0004': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
+		'0005': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
+	};
+
+	const wrapper = allWrappers[group];
+	if (!wrapper) {
+		console.warn(`No wrapper found for group: ${group}`);
+		return;
+	}
+
+	// Trigger close animation on wrapper
+	requestAnimationFrame(() => {
+		wrapper.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
+
+		// Wait for wrapper animation to end
+		wrapper.addEventListener('animationend', function handleWrapperClose() {
+
+			// Slight delay to let browser finalize paint before removing class
+			setTimeout(() => {
+				wrapper.classList.remove('prtfl_main_wrapper_close_return_btn_triggered');
+				wrapper.style.display = 'none';
+				wrapper.offsetHeight;
+
+				return_portfolio_title_wrapper.style.visibility = 'hidden';
+				return_portfolio_title_wrapper.style.display = 'flex';
+				return_portfolio_title_wrapper.style.visibility = 'visible';
+
+
+
+				// Animate each title span with stagger
+				return_portfolio_title.forEach((span, index) => {
+
+
+					span.offsetHeight;
+					span.style.animationDelay = `${index * 90}ms`;
+					span.classList.add('ptfl_left_span_animation_return_btn_triggered');
+
+					span.addEventListener('animationend', function handleReturnSpanTitleAnim() {
+						span.classList.remove('ptfl_left_span_animation_return_btn_triggered');
+						span.style.animation = 'none';
+						span.removeEventListener('animationend', handleReturnSpanTitleAnim);
+					});
+
+					span.offsetHeight;
+				});
+
+				wrapper.removeEventListener('animationend', handleWrapperClose);
+			}, 50); // small delay after animation end to ensure smooth flow
+		});
+	});
 };
