@@ -2362,14 +2362,14 @@ body{
 .section_04_portfolio_Title_Wrapper {
 	width: 100%;
 	margin: 0 auto 250px auto;
-	display: none;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .Section_04_Portfolio_Title {
 	height: 100px;
-	display: flex;
+	display: none;
 	gap: 20px;
 }
 

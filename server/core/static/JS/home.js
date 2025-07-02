@@ -114,7 +114,7 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
 );
 
 document.addEventListener("DOMContentLoaded", () => {
-	const section_04_portfolio_title_wrapper = document.querySelector('.section_04_portfolio_Title_Wrapper');
+	const section_04_portfolio_title_wrapper = document.querySelector('.Section_04_Portfolio_Title');
 	const section_04_portfolio_title_01 = document.querySelectorAll('.Section_04_Portfolio_Title_span');
 
 	requestAnimationFrame(() => {
@@ -257,7 +257,7 @@ window.triggerCircleAnimation = function (button) {
 	const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
 	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
 	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
-	const portfolio_title_wrapper = document.querySelector(`.section_04_portfolio_Title_Wrapper`);
+	const portfolio_title_wrapper = document.querySelector(`.Section_04_Portfolio_Title`);
 
 	if (stick) {
 		stick.classList.remove('stick_anim_triggered');
@@ -278,9 +278,14 @@ window.triggerCircleAnimation = function (button) {
 	}
 
 	if (portfolio_title) {
-		requestAnimationFrame(() => {
-			portfolio_title_wrapper.style.display = 'flex';
 
+			if (getComputedStyle(portfolio_title_wrapper).display === 'none') {
+				portfolio_title_wrapper.style.display = 'flex';
+			} else {
+				console.warn('Portfolio title wrapper is already set to display flex.');
+			}
+
+		requestAnimationFrame(() => {
 
 			let completedAnimations = 0;
 			const totalSpans = portfolio_title.length;
@@ -330,7 +335,7 @@ window.triggerCircleAnimation = function (button) {
 		if (wrapper) {
 
 			requestAnimationFrame(() => {
-				wrapper.offsetHeight;
+				void wrapper.offsetHeight;
 				wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
 
 				wrapper.addEventListener('animationend', function handleMainPtfloWrapperStartLoadAnimationEnd() {
@@ -341,7 +346,7 @@ window.triggerCircleAnimation = function (button) {
 				});
 			});
 
-			wrapper.offsetHeight;
+			void wrapper.offsetHeight;
 		}
 	}, 850 + portfolio_title.length * 90);
 };
@@ -350,8 +355,8 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 	const group = button.dataset.group;
 
 	document.querySelectorAll('.section_04_portfolio_wrapper').forEach(wrapper => {
-		wrapper.style.display = 'none';
 		wrapper.classList.remove('portfolio_reveal_anim_triggered');
+		wrapper.style.display = 'none';
 	});
 
 	document.querySelectorAll('.section_04_select_portfolio_section_wrapper').forEach(wrapper => {
@@ -360,7 +365,7 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 
 	const target_portfolio = document.querySelector(`.section_04_portfolio_wrapper[data-group="${group}"]`);
 	if (target_portfolio) {
-		void target_portfolio.offsetWidth; // force reflow
+		void target_portfolio.offsetHeight; // force reflow
 		target_portfolio.style.display = 'flex';
 		requestAnimationFrame(() => {
 			target_portfolio.classList.add('portfolio_reveal_anim_triggered');
@@ -375,7 +380,7 @@ window.PortfolioReturnTimelineButtonAnimation = function (button) {
 	const group = button.dataset.group;
 
 	// Title wrapper and spans
-	const return_portfolio_title_wrapper = document.querySelector('.section_04_portfolio_Title_Wrapper');
+	const return_portfolio_title_wrapper = document.querySelector('.Section_04_Portfolio_Title');
 	const return_portfolio_title = document.querySelectorAll('.Section_04_Portfolio_Title_span');
 
 	// Portfolio display wrappers mapped by group
@@ -406,28 +411,29 @@ window.PortfolioReturnTimelineButtonAnimation = function (button) {
 				wrapper.style.display = 'none';
 				wrapper.offsetHeight;
 
-				return_portfolio_title_wrapper.style.visibility = 'hidden';
 				return_portfolio_title_wrapper.style.display = 'flex';
 				return_portfolio_title_wrapper.style.visibility = 'visible';
-
 
 
 				// Animate each title span with stagger
 				return_portfolio_title.forEach((span, index) => {
 
-
-					span.offsetHeight;
+					void span.offsetHeight;
 					span.style.animationDelay = `${index * 90}ms`;
 					span.classList.add('ptfl_left_span_animation_return_btn_triggered');
 
 					span.addEventListener('animationend', function handleReturnSpanTitleAnim() {
 						span.classList.remove('ptfl_left_span_animation_return_btn_triggered');
-						span.style.animation = 'none';
 						span.removeEventListener('animationend', handleReturnSpanTitleAnim);
 					});
-
-					span.offsetHeight;
 				});
+
+				if (getComputedStyle(portfolio_title_wrapper).display === 'flex') {
+					portfolio_title_wrapper.style.display = 'none';
+					console.log('Timeline title Element hidden successfully.');
+				} else {
+					console.warn('Timeline Element is not set to display flex, cannot hide.');
+				}
 
 				wrapper.removeEventListener('animationend', handleWrapperClose);
 			}, 50); // small delay after animation end to ensure smooth flow
