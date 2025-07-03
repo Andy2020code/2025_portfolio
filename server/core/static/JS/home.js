@@ -421,67 +421,32 @@ function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapper
 
 	if (wrapper_element_trigger_on) {
 		requestAnimationFrame(() => {
-			onportfolioUI.forEach((el) => {
-				if (!el) {
-					return;
-				}
-
-				el.style.transition = 'none';
-				void el.offsetHeight;
-	
-				setTimeout(() => {
+			setTimeout(() => {
+				onportfolioUI.forEach((el) => {
+					if (!el) {
+						return;
+					}
+		
 					// Add a transition on opacity
-					el.style.transition = 'opacity 0.4s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
-	
+					el.style.transition = 'opacity 0.8s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+
 					// Hide the element visually
+					el.style.delay = '0.3s';
 					el.style.opacity = '1';
-	
+					el.style.visibility = 'visible';
+					el.style.pointerEvents = 'auto';
+
 					// Listen for transition end
 					el.addEventListener('transitionend', function handlePtfloEleOnTransitionEnd() {
+						void el.offsetHeight;
+						
 						if (typeof onWrapperEleTriggerOnComplete === 'function') {
 							onWrapperEleTriggerOnComplete();
 						}
 						el.removeEventListener('transitionend', handlePtfloEleOnTransitionEnd);
 					});
-				}, 2050);
-			});
-		});
-	}
-}
-
-function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapperEleTriggerOffComplete) {
-
-	const portfolioUI = [
-		document.querySelector('.section_04_portfolio_year_return_button'),
-		document.querySelector('.section_04_portfolio_left_span_wrapper'),
-		document.querySelector('.section_04_portfolio_display_devider_01'),
-		document.querySelector('.section_04_select_portfolio_button_svg'),
-		document.querySelector('.section_04_select_portfolio_title_wrapper')
-	];
-
-	if (wrapper_element_trigger_off) {
-		requestAnimationFrame(() => {
-			portfolioUI.forEach((el) => {
-				if (!el) {
-					return;
-				}
-	
-				setTimeout(() => {
-					// Add a transition on opacity
-					el.style.transition = 'opacity 0.4s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
-	
-					// Hide the element visually
-					el.style.opacity = '0';
-	
-					// Listen for transition end
-					el.addEventListener('transitionend', function handleTransitionEnd() {
-						if (typeof onWrapperEleTriggerOffComplete === 'function') {
-							onWrapperEleTriggerOffComplete();
-						}
-						el.removeEventListener('transitionend', handleTransitionEnd);
-					});
-				}, 250);
-			});
+				});
+			}, 250);
 		});
 	}
 }
@@ -489,6 +454,8 @@ function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapp
 function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 
 	const group = button_group;
+
+	const wrapper_element_trigger_off = true;
 
 	if (group) {
 		// Portfolio display wrappers mapped by group
@@ -507,7 +474,6 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 
 		} else {
 			requestAnimationFrame(() => {
-				const wrapper_element_trigger_off = true;
 				triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off)
 
 				setTimeout(() => {
@@ -517,15 +483,57 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 					wrapper_return_animation.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
 
 					wrapper_return_animation.addEventListener('animationend', function handleMainPtfloWrapperCloseAnimationEnd() {
-
 						if (typeof onWrapperCloseComplete === 'function') {
 							onWrapperCloseComplete();
 						}
 						wrapper_return_animation.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
 					});
-				}, 200 + triggerPortfolioWrapperElementsOff.length * 250);
+				}, 200 + triggerPortfolioWrapperElementsOff.length * 200);
 			});
 		}
+	}
+}
+
+function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapperEleTriggerOffComplete) {
+
+	const portfolioUI = [
+		document.querySelector('.section_04_portfolio_year_return_button'),
+		document.querySelector('.section_04_portfolio_left_span_wrapper'),
+		document.querySelector('.section_04_portfolio_display_devider_01'),
+		document.querySelector('.section_04_select_portfolio_button_svg'),
+		document.querySelector('.section_04_select_portfolio_title_wrapper')
+	];
+
+	if (wrapper_element_trigger_off) {
+		requestAnimationFrame(() => {
+			setTimeout(() => {
+				portfolioUI.forEach((el) => {
+					if (!el) {
+						return;
+					}
+
+					// Add a transition on opacity
+					el.style.transition = 'opacity 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+
+					// Hide the element visually
+					el.style.delay = '0.3s';
+					el.style.opacity = '0';
+					el.style.visibility = 'hidden';
+					el.style.pointerEvents = 'none';
+
+					// Listen for transition end
+					el.addEventListener('transitionend', function handleTransitionEnd() {
+						if (typeof onWrapperEleTriggerOffComplete === 'function') {
+							onWrapperEleTriggerOffComplete();
+						}
+						el.removeEventListener('transitionend', handleTransitionEnd);
+					});
+		
+
+				});
+			}, 200);
+
+		});
 	}
 }
 
@@ -571,6 +579,6 @@ window.PortfolioReturnTimelineButtonAnimation = function (button) {
 
 			// Animate each title span with stagger
 			triggerPortfolioMainTitleShowAnimation(return_portfolio_title);
-		}, 450 + triggerPortfolioWrapperClose.length);
+		}, triggerPortfolioWrapperClose.length);
 	});
 };
