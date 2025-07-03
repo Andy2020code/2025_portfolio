@@ -2375,6 +2375,8 @@ body{
 
 .Section_04_Portfolio_Title_span {
 	will-change: transform, opacity;
+	transform: translateY(-20%);
+	opacity: 0;
 	font-family: 'Prata_Custom', sans-serif;
 	font-weight: 400;
 	font-style: normal;
@@ -2382,9 +2384,11 @@ body{
 	letter-spacing: 0.5px;
 	line-height: 1;
 	color: var(--text_color_11);
-	opacity: 0;
-	transform: translateY(-20%);
-	transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.Section_04_Portfolio_Title_span.title_span_Page_load_triggered {
+	animation: Section_04_Portfolio_Title_Span_Page_Load_animation 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5) forwards;
+	animation-delay: 2000ms;
 }
 
 .Section_04_Portfolio_Title_span.title_span_triggered {
@@ -2393,6 +2397,18 @@ body{
 
 .Section_04_Portfolio_Title_span.ptfl_left_span_animation_return_btn_triggered {
 	animation: Section_04_Portfolio_Title_Span_return_btn_animation 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5) forwards;
+}
+
+@keyframes Section_04_Portfolio_Title_Span_Page_Load_animation {
+	0% {
+		transform: translateY(-20%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(50%);
+		opacity: 1;
+	}
 }
   
 @keyframes Section_04_Portfolio_Title_Span_animation {
@@ -2403,7 +2419,7 @@ body{
 
 	40% {
 		transform: translateY(25%);
-		opacity: 0.6;
+		opacity: 0.65;
 	}
 
 	100% {
@@ -2417,12 +2433,12 @@ body{
 		transform: translateY(70%);
 		opacity: 0;
 	}
-	50% {
+	60% {
 		transform: translateY(30%);
 		opacity: 0.6;
 	}
 	100% {
-		transform: translateY(0%);
+		transform: translateY(50%);
 		opacity: 1;
 	}
 }
@@ -2705,16 +2721,14 @@ body{
 .section_04_portfolio_display_main_wrapper_2022,
 .section_04_portfolio_display_main_wrapper_2023,
 .section_04_portfolio_display_main_wrapper_2024 {
-	will-change: transform, width, opacity;
+	will-change: transform, width, opacity, display;
 	transform: translate(-50%, -50%);
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	opacity: 0;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: space-between;
-	width: 0%;
 	height: 90%;
 	background: var(--section_04_portfolio_display_main_wrapper_color);
 	border: 1px solid var(--text_color_10);
