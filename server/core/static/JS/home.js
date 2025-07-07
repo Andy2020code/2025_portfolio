@@ -488,7 +488,7 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 						}
 						wrapper_return_animation.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
 					});
-				}, 200 + triggerPortfolioWrapperElementsOff.length * 200);
+				}, 200 + triggerPortfolioWrapperElementsOff.length);
 			});
 		}
 	}
@@ -507,7 +507,7 @@ function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapp
 	if (wrapper_element_trigger_off) {
 		requestAnimationFrame(() => {
 			setTimeout(() => {
-				portfolioUI.forEach((el) => {
+				portfolioUI.forEach((el, index) => {
 					if (!el) {
 						return;
 					}
@@ -516,7 +516,7 @@ function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapp
 					el.style.transition = 'opacity 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
 
 					// Hide the element visually
-					el.style.delay = '0.3s';
+					el.style.delay = `${index * 0.3}s`;
 					el.style.opacity = '0';
 					el.style.visibility = 'hidden';
 					el.style.pointerEvents = 'none';
