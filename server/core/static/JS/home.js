@@ -306,7 +306,7 @@ window.triggerCircleAnimation = function (button) {
 	// Delay opening selected portfolio until after Main title animation completes
 	setTimeout(() => {
 		triggerPortfolioWrapperOpen(wrapper);
-	}, 850 + portfolio_title.length * 90);
+	}, 600 + portfolio_title.length * 90);
 };
 
 function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleShowComplete) {
@@ -579,6 +579,6 @@ window.PortfolioReturnTimelineButtonAnimation = function (button) {
 
 			// Animate each title span with stagger
 			triggerPortfolioMainTitleShowAnimation(return_portfolio_title);
-		}, triggerPortfolioWrapperClose.length);
+		}, 650 + triggerPortfolioWrapperClose.length);
 	});
 };
