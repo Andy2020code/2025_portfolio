@@ -268,7 +268,7 @@ window.triggerCircleAnimation = function (button) {
 	const stick = document.querySelector(`.section_04_timeline_sticks_svg[data-group="${group}"]`);
 	const stick_02 = document.querySelector(`.section_04_timeline_sticks_svg_02[data-group="${group}"]`);
 	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
-	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span[data-group="${group}"]`);
+	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span`);
 
 	if (stick) {
 		stick.classList.remove('stick_anim_triggered');
@@ -379,6 +379,9 @@ function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComp
 }
 
 function triggerPortfolioWrapperOpen(wrapper, onWrapperOpenComplete) {
+
+	let wrapper_element_trigger_on = false;
+
 	if (wrapper) {
 
 		if (getComputedStyle(wrapper).display === 'none') {
@@ -394,8 +397,14 @@ function triggerPortfolioWrapperOpen(wrapper, onWrapperOpenComplete) {
 			wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
 
 			setTimeout(() => {
-				const wrapper_element_trigger_on = true;
-				triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on);
+
+				wrapper_element_trigger_on = true;
+				if (wrapper_element_trigger_on) {
+					triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on);
+				} else {
+					console.warn('No elements to trigger on for the portfolio wrapper.');
+					return;
+				}
 
 				wrapper.addEventListener('animationend', function handleMainPtfloWrapperStartLoadAnimationEnd() {
 
@@ -411,30 +420,37 @@ function triggerPortfolioWrapperOpen(wrapper, onWrapperOpenComplete) {
 
 function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapperEleTriggerOnComplete) {
 
+	const stagger = 100;
+
 	const onportfolioUI = [
 		document.querySelector('.section_04_portfolio_year_return_button'),
 		document.querySelector('.section_04_portfolio_left_span_wrapper'),
 		document.querySelector('.section_04_portfolio_display_devider_01'),
-		document.querySelector('.section_04_select_portfolio_button_svg'),
-		document.querySelector('.section_04_select_portfolio_title_wrapper')
+		document.querySelector('.section_04_portfolio_category_wrapper'),
+		document.querySelector('.section_04_select_portfolio_section_wrapper'),
+		document.querySelector('.section_04_portfolio_wrapper')
 	];
 
 	if (wrapper_element_trigger_on) {
 		requestAnimationFrame(() => {
 			setTimeout(() => {
-				onportfolioUI.forEach((el) => {
+				onportfolioUI.forEach((el, index) => {
 					if (!el) {
 						return;
 					}
-		
-					// Add a transition on opacity
-					el.style.transition = 'opacity 0.8s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
 
-					// Hide the element visually
-					el.style.delay = '0.3s';
-					el.style.opacity = '1';
-					el.style.visibility = 'visible';
-					el.style.pointerEvents = 'auto';
+					void el.offsetHeight;
+
+					el.style.display = 'flex';
+
+					setTimeout(() => {
+						el.style.transition = 'opacity 0.3s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+						el.style.opacity = '1';
+						el.style.visibility = 'visible';
+						el.style.pointerEvents = 'auto';
+						
+					}, index * stagger); // stagger delay
+
 
 					// Listen for transition end
 					el.addEventListener('transitionend', function handlePtfloEleOnTransitionEnd() {
@@ -446,7 +462,7 @@ function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapper
 						el.removeEventListener('transitionend', handlePtfloEleOnTransitionEnd);
 					});
 				});
-			}, 250);
+			}, 350);
 		});
 	}
 }
@@ -454,8 +470,7 @@ function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapper
 function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 
 	const group = button_group;
-
-	const wrapper_element_trigger_off = true;
+	let wrapper_element_trigger_off = false;
 
 	if (group) {
 		// Portfolio display wrappers mapped by group
@@ -473,8 +488,16 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 			return;
 
 		} else {
+
 			requestAnimationFrame(() => {
-				triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off)
+				wrapper_element_trigger_off = true;
+
+				if (wrapper_element_trigger_off) {
+					triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off);
+				} else {
+					console.warn('No elements to trigger off for the portfolio wrapper.');
+					return;
+				}
 
 				setTimeout(() => {
 					wrapper_return_animation.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open'); 
@@ -483,12 +506,13 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 					wrapper_return_animation.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
 
 					wrapper_return_animation.addEventListener('animationend', function handleMainPtfloWrapperCloseAnimationEnd() {
+
 						if (typeof onWrapperCloseComplete === 'function') {
 							onWrapperCloseComplete();
 						}
 						wrapper_return_animation.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
 					});
-				}, 200 + triggerPortfolioWrapperElementsOff.length);
+				}, 200 + triggerPortfolioWrapperElementsOff.length * 90);
 			});
 		}
 	}
@@ -496,12 +520,15 @@ function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 
 function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapperEleTriggerOffComplete) {
 
+	const stagger = 300;
+	
 	const portfolioUI = [
 		document.querySelector('.section_04_portfolio_year_return_button'),
 		document.querySelector('.section_04_portfolio_left_span_wrapper'),
 		document.querySelector('.section_04_portfolio_display_devider_01'),
-		document.querySelector('.section_04_select_portfolio_button_svg'),
-		document.querySelector('.section_04_select_portfolio_title_wrapper')
+		document.querySelector('.section_04_portfolio_category_wrapper'),
+		document.querySelector('.section_04_select_portfolio_section_wrapper'),
+		document.querySelector('.section_04_portfolio_wrapper')
 	];
 
 	if (wrapper_element_trigger_off) {
@@ -512,24 +539,25 @@ function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapp
 						return;
 					}
 
-					// Add a transition on opacity
-					el.style.transition = 'opacity 0.85s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+					setTimeout(() => {
+						el.style.transition = 'opacity 0.5s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+						el.style.opacity = '0';
+						el.style.pointerEvents = 'none';
+						el.style.visibility = 'hidden';
 
-					// Hide the element visually
-					el.style.delay = `${index * 0.3}s`;
-					el.style.opacity = '0';
-					el.style.visibility = 'hidden';
-					el.style.pointerEvents = 'none';
+						setTimeout(() => {
+							el.style.display = 'none';
+						}, 500); // match transition duration
+					}, index * stagger); // stagger delay
+
 
 					// Listen for transition end
-					el.addEventListener('transitionend', function handleTransitionEnd() {
+					el.addEventListener('transitionend', function handletriggerPortfolioWrapperElementsOffAnimationEnd() {
 						if (typeof onWrapperEleTriggerOffComplete === 'function') {
 							onWrapperEleTriggerOffComplete();
 						}
-						el.removeEventListener('transitionend', handleTransitionEnd);
+						el.removeEventListener('transitionend', handletriggerPortfolioWrapperElementsOffAnimationEnd);
 					});
-		
-
 				});
 			}, 200);
 
