@@ -253,16 +253,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
+// Add event listeners to all buttons with the class 'circle_btn_anim_trigger'
+// This will trigger the portfolio wrapper animation when any button is clicked
+document.querySelectorAll('.circle_btn_anim_trigger').forEach(button => {
+	button.addEventListener('click', () => triggerCircleAnimation(button));
+});
+
 //function to trigger transition from timeline to selected portfolio//
-window.triggerCircleAnimation = function (button) {
-	console.log('triggerCircleAnimation triggered');
+async function triggerCircleAnimation(button) {
 
-	button.classList.remove('circle_anim_triggered');
-	void button.offsetWidth;
-	requestAnimationFrame(() => {
-		button.classList.add('circle_anim_triggered');
-	});
-
+	let trigger_open = false;
 	const group = button.dataset.group;
 
 	const stick = document.querySelector(`.section_04_timeline_sticks_svg[data-group="${group}"]`);
@@ -270,44 +270,47 @@ window.triggerCircleAnimation = function (button) {
 	const date_year = document.querySelector(`.section_04_timeline_year_h2_tags[data-group="${group}"]`);
 	const portfolio_title = document.querySelectorAll(`.Section_04_Portfolio_Title_span`);
 
-	if (stick) {
-		stick.classList.remove('stick_anim_triggered');
-		void stick.offsetWidth;
-		requestAnimationFrame(() => stick.classList.add('stick_anim_triggered'));
-	}
+	console.log('Portfolio Year Selected');
 
-	if (stick_02) {
-		stick_02.classList.remove('stick_02_anim_triggered');
-		void stick_02.offsetWidth;
-		requestAnimationFrame(() => stick_02.classList.add('stick_02_anim_triggered'));
-	}
+	await new Promise((resolve) => requestAnimationFrame(resolve));
 
-	if (date_year) {
-		date_year.classList.remove('year_date_anim_triggered');
-		void date_year.offsetWidth;
-		requestAnimationFrame(() => date_year.classList.add('year_date_anim_triggered'));
-	}
+	// Animate single element and wait for its animation end
+	const animateWithClass = (el, className) => {
+		return new Promise((resolve) => {
+			if (!el) return resolve();
+
+			el.classList.remove(className);
+			void el.offsetWidth;
+
+			const onEnd = () => {
+				el.removeEventListener('animationend', onEnd);
+				resolve();
+			};
+
+			el.addEventListener('animationend', onEnd);
+			requestAnimationFrame(() => el.classList.add(className));
+		});
+	};
 
 	if (portfolio_title) {
 		triggerPortfolioMainTitleHideAnimation(portfolio_title);
 	}
 
-	// Lookup table for wrappers by group
-	const wrappers = {
-		'1': document.querySelector(`.section_04_portfolio_display_main_wrapper_2020`),
-		'2': document.querySelector(`.section_04_portfolio_display_main_wrapper_2021`),
-		'3': document.querySelector(`.section_04_portfolio_display_main_wrapper_2022`),
-		'4': document.querySelector(`.section_04_portfolio_display_main_wrapper_2023`),
-		'5': document.querySelector(`.section_04_portfolio_display_main_wrapper_2024`)
-	};
+	// Wait for all animations to complete
+	await Promise.all([
+		animateWithClass(button, 'circle_anim_triggered'),
+		animateWithClass(stick, 'stick_anim_triggered'),
+		animateWithClass(stick_02, 'stick_02_anim_triggered'),
+		animateWithClass(date_year, 'year_date_anim_triggered'),
+	]);
 
-	const wrapper = wrappers[group];
-
-	// Delay opening selected portfolio until after Main title animation completes
-	setTimeout(() => {
-		triggerPortfolioWrapperOpen(wrapper);
-	}, 600 + portfolio_title.length * 90);
-};
+	trigger_open = true;
+	if (trigger_open === true && group) {
+		triggerPortfolioWrapperOpen(group);
+	} else {
+		console.error(`No group or wrapper found for group ${group}`);
+	}
+}
 
 function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleShowComplete) {
 	const portfolio_title_wrapper = document.querySelector(`.Section_04_Portfolio_Title`);
@@ -343,7 +346,6 @@ function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleS
 }
 
 function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComplete) {
-	const portfolio_title_wrapper = document.querySelector(`.Section_04_Portfolio_Title`);
 	const stagger = 100;
 
 	if (portfolio_title) {
@@ -366,59 +368,54 @@ function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComp
 					span.removeEventListener('animationend', handlePortfolioMainTitleHideAnimationEnd);
 				});
 			});
-
-			setTimeout(() => {
-				if (getComputedStyle(portfolio_title_wrapper).display === 'flex') {
-					portfolio_title_wrapper.style.display = 'none';
-				} else {
-					console.warn('Portfolio title wrapper is already set to display none.');
-				}
-			}, 650 + portfolio_title.length * 90);
 		});
 	}
 }
 
-function triggerPortfolioWrapperOpen(wrapper, onWrapperOpenComplete) {
+async function triggerPortfolioWrapperOpen(group, onWrapperOpenComplete) {
+	const wrappers = {
+		'1': document.querySelector(`.section_04_portfolio_display_main_wrapper_2020`),
+		'2': document.querySelector(`.section_04_portfolio_display_main_wrapper_2021`),
+		'3': document.querySelector(`.section_04_portfolio_display_main_wrapper_2022`),
+		'4': document.querySelector(`.section_04_portfolio_display_main_wrapper_2023`),
+		'5': document.querySelector(`.section_04_portfolio_display_main_wrapper_2024`)
+	};
 
-	let wrapper_element_trigger_on = false;
+	const wrapper = wrappers[group];
 
-	if (wrapper) {
-
-		if (getComputedStyle(wrapper).display === 'none') {
-			wrapper.style.display = 'flex';
-		} else {
-			console.warn('Portfolio title wrapper is already set to display flex.');
-			return;
-		}
-
-		requestAnimationFrame(() => {
-			wrapper.classList.remove('prtfl_main_wrapper_close_return_btn_triggered');
-			void wrapper.offsetHeight;
-
-			wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
-
-			wrapper.addEventListener('animationend', function handleMainPtfloWrapperStartLoadAnimationEnd() {
-
-				wrapper_element_trigger_on = true;
-				if (wrapper_element_trigger_on) {
-					triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on);
-				} else {
-					console.warn('No elements to trigger on for the portfolio wrapper.');
-					return;
-				}
-
-				if (typeof onWrapperOpenComplete === 'function') {
-					onWrapperOpenComplete();
-				}
-				wrapper.removeEventListener('animationend', handleMainPtfloWrapperStartLoadAnimationEnd);
-			});
-		});
+	if (!group || !wrapper) {
+		console.error(`No wrapper found for group ${group}`);
+		return;
 	}
+
+	if (getComputedStyle(wrapper).display === 'none') {
+		wrapper.style.display = 'flex';
+	} else {
+		console.warn('Portfolio title wrapper is already set to display flex.');
+		return;
+	}
+
+	await new Promise((resolve) => requestAnimationFrame(resolve));
+
+	wrapper.classList.remove('prtfl_main_wrapper_close_return_btn_triggered');
+	void wrapper.offsetHeight;
+
+	wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
+
+	wrapper.addEventListener('animationend', function handleMainPtfloWrapperStartLoadAnimationEnd() {
+		wrapper.removeEventListener('animationend', handleMainPtfloWrapperStartLoadAnimationEnd);
+
+		triggerPortfolioWrapperElementsOn(true);
+
+		if (typeof onWrapperOpenComplete === 'function') {
+			onWrapperOpenComplete();
+		}
+	});
 }
 
 function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapperEleTriggerOnComplete) {
-
-	const stagger = 50;
+	const stagger = 100;
+	let completed = 0;
 
 	const onportfolioUI = [
 		document.querySelector('.section_04_portfolio_year_return_button'),
@@ -429,91 +426,91 @@ function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapper
 		document.querySelector('.section_04_select_portfolio_section_wrapper')
 	];
 
-	if (wrapper_element_trigger_on) {
-		requestAnimationFrame(() => {
-			onportfolioUI.forEach((el, index) => {
-				if (!el) {
-					return;
-				}
+	return new Promise((resolve) => {
+		console.log('Portfolio Wrapper Elements Trigger On now');
+		if (!wrapper_element_trigger_on) return resolve();
 
-				setTimeout(() => {
-					el.style.transition = 'opacity 0.3s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
-					el.style.opacity = '1';
-					el.style.visibility = 'visible';
-					el.style.pointerEvents = 'auto';
-					
-				}, index * stagger);
-
-				// Listen for transition end
-				el.addEventListener('transitionend', function handlePtfloEleOnTransitionEnd() {
-
-					void el.offsetHeight;
-					
-					if (typeof onWrapperEleTriggerOnComplete === 'function') {
-						onWrapperEleTriggerOnComplete();
+		if (wrapper_element_trigger_on) {
+			requestAnimationFrame(() => {
+				onportfolioUI.forEach((el, index) => {
+					if (!el) {
+						return;
 					}
-					el.removeEventListener('transitionend', handlePtfloEleOnTransitionEnd);
+
+					setTimeout(() => {
+						el.style.transition = 'opacity 0.3s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+						el.style.opacity = '1';
+						el.style.visibility = 'visible';
+						el.style.pointerEvents = 'auto';
+						
+					}, index * stagger);
+
+					// Listen for transition end
+					el.addEventListener('transitionend', function handlePtfloEleOnTransitionEnd() {
+
+						completed++;
+						void el.offsetHeight;
+
+						if (completed === el.length) {
+							resolve(); // all elements done animating
+						}
+						
+						if (typeof onWrapperEleTriggerOnComplete === 'function') {
+							onWrapperEleTriggerOnComplete();
+						}
+						el.removeEventListener('transitionend', handlePtfloEleOnTransitionEnd);
+					});
 				});
 			});
-		});
-	}
+		}
+	});
 }
 
-function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
+async function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
 
-	const group = button_group;
 	let wrapper_element_trigger_off = false;
 
-	if (group) {
-		// Portfolio display wrappers mapped by group
-		const allWrappers = {
-			'0001': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
-			'0002': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
-			'0003': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
-			'0004': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
-			'0005': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
-		};
+	// Portfolio display wrappers mapped by group
+	const allWrappers = {
+		'0001': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
+		'0002': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
+		'0003': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
+		'0004': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
+		'0005': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
+	};
 
-		const wrapper_return_animation = allWrappers[group];
-		if (!wrapper_return_animation) {
-			console.warn(`No wrapper found for group: ${group}`);
-			return;
+	const wrapper = allWrappers[button_group];
+	if (!wrapper) {
+		console.warn(`No wrapper found for group: ${button_group}`);
+		return;
 
-		} else {
-
-			requestAnimationFrame(() => {
-				wrapper_element_trigger_off = true;
-				if (wrapper_element_trigger_off) {
-					triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off);
-				} else {
-					console.warn('No elements to trigger off for the portfolio wrapper.');
-					return;
-				}
-
-				setTimeout(() => {
-					wrapper_return_animation.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open'); 
-					void wrapper_return_animation.offsetHeight;
-
-					wrapper_return_animation.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
-
-					wrapper_return_animation.addEventListener('animationend', function handleMainPtfloWrapperCloseAnimationEnd() {
-
-						wrapper_return_animation.style.display = 'none';
-
-						if (typeof onWrapperCloseComplete === 'function') {
-							onWrapperCloseComplete();
-						}
-						wrapper_return_animation.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
-					});
-				}, 150 + triggerPortfolioWrapperElementsOff.length * 50);
-			});
-		}
 	}
+
+	wrapper_element_trigger_off = true;
+	await triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off);
+
+	requestAnimationFrame(() => {
+		wrapper.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open'); 
+		void wrapper.offsetHeight;
+
+		wrapper.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
+
+		wrapper.addEventListener('animationend', function handleMainPtfloWrapperCloseAnimationEnd() {
+
+			wrapper.style.display = 'none';
+
+			if (typeof onWrapperCloseComplete === 'function') {
+				onWrapperCloseComplete();
+			}
+			wrapper.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
+		});
+	});
 }
 
 function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapperEleTriggerOffComplete) {
 
 	const stagger = 50;
+	let completed = 0;
 	
 	const offportfolioUI = [
 		document.querySelector('.section_04_portfolio_year_return_button'),
@@ -524,30 +521,40 @@ function triggerPortfolioWrapperElementsOff(wrapper_element_trigger_off, onWrapp
 		document.querySelector('.section_04_select_portfolio_section_wrapper')
 	];
 
-	if (wrapper_element_trigger_off) {
-		requestAnimationFrame(() => {
-			offportfolioUI.forEach((el, index) => {
-				if (!el) {
-					return;
-				}
-
-				setTimeout(() => {
-					el.style.transition = 'opacity 0.1s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
-					el.style.opacity = '0';
-					el.style.pointerEvents = 'none';
-					el.style.visibility = 'hidden';
-				}, index * stagger);
-
-				el.addEventListener('transitionend', function handlePtfloEleOffTransitionEnd() {
-
-					if (typeof onWrapperEleTriggerOffComplete === 'function') {
-						onWrapperEleTriggerOffComplete();
+	return new Promise((resolve) => {
+		if (!wrapper_element_trigger_off) return resolve();
+		
+		if (wrapper_element_trigger_off) {
+			requestAnimationFrame(() => {
+				offportfolioUI.forEach((el, index) => {
+					if (!el) {
+						return;
 					}
-					el.removeEventListener('transitionend', handlePtfloEleOffTransitionEnd);
+
+					setTimeout(() => {
+						el.style.transition = 'opacity 0.1s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
+						el.style.opacity = '0';
+						el.style.pointerEvents = 'none';
+						el.style.visibility = 'hidden';
+					}, index * stagger);
+
+					el.addEventListener('transitionend', function handlePtfloEleOffTransitionEnd() {
+
+						completed++;
+
+						if (completed === offportfolioUI.length) {
+							resolve();
+						}
+
+						if (typeof onWrapperEleTriggerOffComplete === 'function') {
+							onWrapperEleTriggerOffComplete();
+						}
+						el.removeEventListener('transitionend', handlePtfloEleOffTransitionEnd);
+					});
 				});
 			});
-		});
-	}
+		}
+	});
 }
 
 window.PortfolioCategoryButtonAnimations = function (button) {
@@ -572,26 +579,20 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 	}
 };
 
+document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(button => {
+	button.addEventListener('click', () => PortfolioReturnTimelineButtonAnimation(button));
+});
+
 //function to close main portfolio display wrappers
+async function PortfolioReturnTimelineButtonAnimation(button) {
 
-
-window.PortfolioReturnTimelineButtonAnimation = function (button) {
-
-	//clicked buttion group
-	button_group = button.dataset.group.padStart(4, '0');
+	//clicked button group
+	const button_group = button.dataset.group.padStart(4, '0');
 
 	// Title spans
 	const return_portfolio_title = document.querySelectorAll('.Section_04_Portfolio_Title_span');
 
 	// Trigger close animation on wrapper
-	requestAnimationFrame(() => {
-		triggerPortfolioWrapperClose(button_group);
-
-		// Wait for wrapper animation to end
-		setTimeout(() => {
-
-			// Animate each title span with stagger
-			triggerPortfolioMainTitleShowAnimation(return_portfolio_title);
-		}, 650 + triggerPortfolioWrapperClose.length);
-	});
+	await triggerPortfolioWrapperClose(button_group);
+	triggerPortfolioMainTitleShowAnimation(return_portfolio_title);
 };
