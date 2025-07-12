@@ -113,37 +113,28 @@ const page_04_observer = new IntersectionObserver((entries, obs) => {
   document.querySelectorAll(selector).forEach(el => page_04_observer.observe(el))
 );
 
-document.addEventListener("DOMContentLoaded", () => {
-	const section_04_portfolio_title_wrapper = document.querySelector('.Section_04_Portfolio_Title');
+document.addEventListener("DOMContentLoaded", async() => {
 	const section_04_portfolio_title_01 = document.querySelectorAll('.Section_04_Portfolio_Title_span');
-	
 	const stagger = 200;
 
-	setTimeout(() => {
-		requestAnimationFrame(() => {
+	try {
+		await portfolio_title_wrapper_switch(true);
+		console.log('Portfolio title wrapper switch function called in page load.');
 
-			if (getComputedStyle(section_04_portfolio_title_wrapper).display === 'none') {
-				section_04_portfolio_title_wrapper.style.display = 'flex';
-			} else {
-				console.warn('Portfolio title wrapper is already set to display flex.');
-			}
-	
-			section_04_portfolio_title_01.forEach((span, index) => {
-				void span.offsetHeight;
-	
-				span.style.animationDelay = `${index * stagger}ms`;
-				span.classList.add('title_span_Page_load_triggered');
-	
-				// Listen for the end of animation and clean up
-				span.addEventListener('animationend', function handlePortfolioMainTitlePageLoadAnimationEnd() {
-					if (typeof onLoadTitleShowComplete === 'function') {
-						onLoadTitleShowComplete();
-					}
-					span.removeEventListener('animationend', handlePortfolioMainTitlePageLoadAnimationEnd);
+		setTimeout(() => {
+
+			requestAnimationFrame(() => {
+				section_04_portfolio_title_01.forEach((span, index) => {
+					void span.offsetHeight;
+					span.style.animationDelay = `${index * stagger}ms`;
+					span.classList.add('title_span_Page_load_triggered');
 				});
 			});
-		});
-	}, 2000);
+		}, 2000);
+		
+	} catch (error) {
+		console.error('Error calling portfolio_title_wrapper_switch in page load:', error);
+	}
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -312,20 +303,38 @@ async function triggerCircleAnimation(button) {
 	}
 }
 
-function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleShowComplete) {
-	const portfolio_title_wrapper = document.querySelector(`.Section_04_Portfolio_Title`);
+async function portfolio_title_wrapper_switch(fallbackDisplay = 'flex') {
+	const wrapper = document.querySelector('.Section_04_Portfolio_Title');
+	if (!wrapper) {
+		console.warn('toggleDisplay: wrapper not found.');
+		return;
+	}
+	const currentDisplay = getComputedStyle(wrapper).display;
+	const isHidden = currentDisplay === 'none';
+	const target = wrapper.dataset.display || fallbackDisplay;
+
+	await new Promise((resolve) => {
+		requestAnimationFrame(() => {
+			void wrapper.offsetHeight;
+			wrapper.style.display = isHidden ? target : 'none';
+			console.log(`Wrapper is now: ${wrapper.style.display}`);
+			resolve();
+		});
+	});
+}
+
+async function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleShowComplete) {
+	const ptfl_title_wppr_trigger = true;
 	const stagger = 100;
 
 	if (return_portfolio_title) {
 
-		requestAnimationFrame(() => {
+		if (ptfl_title_wppr_trigger === true) {
+			await portfolio_title_wrapper_switch('flex')
+			console.log('Portfolio title wrapper switch called in pftlMainTitleShowAnimation.');
+		}
 
-			if (getComputedStyle(portfolio_title_wrapper).display === 'none') {
-				portfolio_title_wrapper.style.display = 'flex';
-			} else {
-				console.warn('Portfolio title wrapper is already set to display flex.');
-			}
-	
+		requestAnimationFrame(() => {
 			return_portfolio_title.forEach((span, index) => {
 				span.classList.remove('title_span_triggered');
 				void span.offsetHeight;
@@ -346,11 +355,13 @@ function triggerPortfolioMainTitleShowAnimation(return_portfolio_title, onTitleS
 }
 
 function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComplete) {
+	const portfolio_title_wrapper = document.querySelector(`.Section_04_Portfolio_Title`);
 	const stagger = 100;
 
 	if (portfolio_title) {
 
 		requestAnimationFrame(() => {
+
 			portfolio_title.forEach((span, index) => {
 				span.classList.remove('title_span_Page_load_triggered');
 				span.classList.remove('ptfl_left_span_animation_return_btn_triggered');
@@ -361,6 +372,15 @@ function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComp
 	
 				// Listen for the end of animation and clean up
 				span.addEventListener('animationend', function handlePortfolioMainTitleHideAnimationEnd() {
+
+					if (getComputedStyle(portfolio_title_wrapper).display === 'flex') {
+						portfolio_title_wrapper.style.display = 'none';
+						void portfolio_title_wrapper.offsetHeight;
+						console.log('Portfolio title wrapper is set to display none now.');
+					} else {
+						console.warn('return Portfolio title wrapper is already set to display none.');
+						return;
+					}
 
 					if (typeof onTitleHideComplete === 'function') {
 						onTitleHideComplete();
@@ -466,7 +486,7 @@ function triggerPortfolioWrapperElementsOn(wrapper_element_trigger_on, onWrapper
 	});
 }
 
-async function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete) {
+async function triggerPortfolioWrapperClose(group, onWrapperCloseComplete) {
 
 	let wrapper_element_trigger_off = false;
 
@@ -479,9 +499,9 @@ async function triggerPortfolioWrapperClose(button_group, onWrapperCloseComplete
 		'0005': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
 	};
 
-	const wrapper = allWrappers[button_group];
+	const wrapper = allWrappers[group];
 	if (!wrapper) {
-		console.warn(`No wrapper found for group: ${button_group}`);
+		console.warn(`No wrapper found for group: ${group}`);
 		return;
 
 	}
@@ -587,12 +607,12 @@ document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(bu
 async function PortfolioReturnTimelineButtonAnimation(button) {
 
 	//clicked button group
-	const button_group = button.dataset.group.padStart(4, '0');
+	const group = button.dataset.group;
 
 	// Title spans
 	const return_portfolio_title = document.querySelectorAll('.Section_04_Portfolio_Title_span');
 
 	// Trigger close animation on wrapper
-	await triggerPortfolioWrapperClose(button_group);
+	await triggerPortfolioWrapperClose(group);
 	triggerPortfolioMainTitleShowAnimation(return_portfolio_title);
 };

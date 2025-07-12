@@ -2368,8 +2368,8 @@ body{
 }
 
 .Section_04_Portfolio_Title {
+	width: max-content;
 	height: 100px;
-	display: none;
 	gap: 20px;
 }
 
