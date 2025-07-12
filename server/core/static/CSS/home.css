@@ -2795,9 +2795,6 @@ body{
 
 .section_04_portfolio_year_return_button {
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	width: 100%;
 	height: 10%;
 	display: flex;
@@ -2827,9 +2824,6 @@ body{
 
 .section_04_portfolio_left_span_wrapper {
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	height: 90%;
 	display: flex;
 	flex-direction: column;
@@ -2887,9 +2881,6 @@ body{
 
 .section_04_portfolio_display_devider_01 {
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	width: 5px;
 	height: 88%;
 	margin: auto 0px;
@@ -2916,9 +2907,6 @@ body{
 
 .section_04_portfolio_category_wrapper {
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	width: 25%;
 	height: 100%;
 	display: flex;
@@ -3066,9 +3054,6 @@ body{
 
 .section_04_portfolio_display_viewport_wrapper {
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	width: 70%;
 	height: 95%;
 	display: flex;
@@ -3087,9 +3072,6 @@ body{
 
 .section_04_select_portfolio_section_wrapper{
 	will-change: opacity, visibility, pointer-events, transition;
-	visibility: hidden;
-	pointer-events: none;
-	opacity: 0;
 	width: 95%;
 	height: 95%;
 	display: flex;
