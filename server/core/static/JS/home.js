@@ -273,7 +273,6 @@ async function triggerCircleAnimation(button, onPtflTimelineAnimationComplete) {
 	// Utility function to handle animation with class
 	const animateWithClass = (el, className) => {
 		return new Promise((resolve) => {
-			trigger_check = false;
 			if (!el) return resolve();
 
 			el.classList.remove(className);
@@ -309,17 +308,48 @@ async function triggerCircleAnimation(button, onPtflTimelineAnimationComplete) {
 			animateWithClass(date_year, 'year_date_anim_triggered')
 		]);
 
+		trigger_check = false;
 		await triggerPortfolioWrapperOpen(group)
-		trigger_check = true;
 
 	} catch (error) {
 		console.error('Error during timeline animations:', error);
+	};
+};
+
+async function SwitchPrtflWrapperDisplay(onWrapperDisplayComplete, className) {
+	const wrapper = document.querySelector('.Section_04_Portfolio_Title');
+	if (!wrapper && !className) {
+		console.warn('SwitchPrtflWrapperDisplay: wrapper not found and no tagName provided.');
+		return;
 	}
+
+	const computedDisplay = getComputedStyle(wrapper).display;
+	const target = wrapper.dataset.display || getDefaultDisplay(className);
+	
+	return new Promise((resolve) => {
+		requestAnimationFrame(() => {
+			if (computedDisplay === 'none' && target === 'none') {
+				console.log('Wrapper is already hidden, no display change needed.');
+			} else if (computedDisplay !== target) {
+				wrapper.style.display = target;
+				console.log(`Wrapper display switched to ${target}.`);
+			} else {
+				console.log(`Wrapper is already ${target}, no change needed.`);
+			}
+
+			const handleWrapperDisplayEnd = () => {
+				wrapper.removeEventListener('transitionend', handleWrapperDisplayEnd);
+				if (typeof onWrapperDisplayComplete === 'function') onWrapperDisplayComplete();
+				resolve();
+			};
+
+			wrapper.addEventListener('transitionend', handleWrapperDisplayEnd, { once: true });
+		});
+	});
 }
 
-
-function getDefaultDisplay(tagName) {
-	const temp = document.createElement(tagName);
+function getDefaultDisplay(className) {
+	const temp = document.createElement(className);
 	document.body.appendChild(temp);
 
 	const display = getComputedStyle(temp).display;
@@ -328,30 +358,30 @@ function getDefaultDisplay(tagName) {
 	const showStates = new Set(['none', 'inline', 'inline-block', 'block']);
 	const targetDisplay = showStates.has(display) ? 'flex' : 'none';
 
-	console.log(`Default display for <${tagName}> is: ${display}`);
+	console.log(`getDefaultDisplay for: <${className}> is: ${display}`);
 	return targetDisplay;
-}
+};
 
 async function portfolio_title_wrapper_switch() {
-	await new Promise((resolve) => {
-		const wrapper = document.querySelector('.Section_04_Portfolio_Title');
-		if (!wrapper) {
-			console.warn('toggleDisplay: wrapper not found.');
-			return;
-		}
-		
-		const currentDisplay = getComputedStyle(wrapper).display;
-		const isHidden = currentDisplay === 'none';
-		const target = wrapper.dataset.display || getDefaultDisplay(wrapper.tagName.toLowerCase());
+	const wrapper = document.querySelector('.Section_04_Portfolio_Title');
+	if (!wrapper) {
+		console.warn('toggleDisplay: wrapper not found.');
+		return;
+	};
+	
+	const currentDisplay = getComputedStyle(wrapper).display;
+	const isHidden = currentDisplay === 'none';
+	const target = wrapper.dataset.display || getDefaultDisplay(wrapper.tagName.toLowerCase());
 
+	await new Promise((resolve) => {
 		requestAnimationFrame(() => {
 			void wrapper.offsetHeight;
 			wrapper.style.display = isHidden ? target : target;
-			console.log(`Wrapper is now: ${wrapper.style.display}`);
+			console.log(`portfolio_title_wrapper_switch is now: ${wrapper.style.display}`);
 			resolve();
 		});
 	});
-}
+};
 
 async function triggerPortfolioMainTitleShowAnimation(onTitleShowComplete) {
 	const stagger = 100;
@@ -388,7 +418,7 @@ async function triggerPortfolioMainTitleShowAnimation(onTitleShowComplete) {
 			span.addEventListener('animationend', handlePortfolioMainTitleShowAnimationEnd, { once: true });
 		});
 	});
-}
+};
 
 function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComplete) {
 	const stagger = 100;
@@ -426,77 +456,80 @@ function triggerPortfolioMainTitleHideAnimation(portfolio_title, onTitleHideComp
 			}, { once: true });
 		});
 	});
-}
+};
 
-async function triggerPortfolioWrapperOpen(group, onWrapperOpenComplete) {	
-	const wrappers = {
-		'1': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
-		'2': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
-		'3': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
-		'4': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
-		'5': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
+async function triggerPortfolioWrapperOpen(group, onWrapperOpenComplete) {
+	const groupIdMap = {
+		'1': '2020',
+		'2': '2021',
+		'3': '2022',
+		'4': '2023',
+		'5': '2024'
 	};
-
-	const wrapper = wrappers[group];
-
-	if (!group || !wrapper) {
-		console.error(`No wrapper found for group "${group}"`);
-		return;
-	}
-	// Only show wrapper if it's hidden
-	if (getComputedStyle(wrapper).display === 'none') {
-		wrapper.style.display = 'flex';
-		wrapper.style.opacity = '0';
-		await triggerPortfolioWrapperElementsOff();
-	} else {
-		console.warn('Wrapper already visible, skipping open animation.');
+	
+	const groupIdSuffix = groupIdMap[group];
+	const wrapper = document.getElementById(`section_04_portfolio_display_main_wrapper_${groupIdSuffix}`);
+	
+	if (!wrapper || !(wrapper instanceof Element)) {
+		console.error(`Invalid or missing wrapper for group "${group}"`);
 		return;
 	}
 
 	return new Promise((resolve) => {
 		try {
-			requestAnimationFrame(() => {
-				// Reset and trigger animation
+			triggerPortfolioWrapperElementsOff(group).then(() => {
+				console.log('Selected wrapper:', wrapper, wrapper.className, getComputedStyle(wrapper).display);
 				wrapper.classList.remove('prtfl_main_wrapper_close_return_btn_triggered');
+				wrapper.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open');
 				void wrapper.offsetHeight;
-				wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
-
-				// When wrapper animation completes
-				const handleWrapperOpenEnd = () => {
-					wrapper.removeEventListener('animationend', handleWrapperOpenEnd);
-
-					triggerPortfolioWrapperElementsOn(true);
-
-					if (typeof onWrapperOpenComplete === 'function') {
-						onWrapperOpenComplete();
-					}
-
-					resolve();
-				};
-
-				wrapper.addEventListener('animationend', handleWrapperOpenEnd, { once: true });
+				
+				requestAnimationFrame(() => {
+					wrapper.classList.add('section_04_portfolio_display_main_wrapper_triggered_open');
+	
+					// Instead of animationend, use timeout to match expected animation duration
+					setTimeout(() => {
+						triggerPortfolioWrapperElementsOn(group).then(() => {
+							if (typeof onWrapperOpenComplete === 'function') {
+								onWrapperOpenComplete();
+							}
+							resolve();
+						});
+					}, 600); // duration matches expected animation length
+				});
 			});
-
+			console.log('elements off function done');
 		} catch (error) {
-			console.error('Error during triggerPortfolioWrapperOpen execution:', error);
+			console.error('Error in triggerPortfolioWrapperOpen:', error);
+			return;
 		}
 	});
 }
 
-async function triggerPortfolioWrapperElementsOn(onWrapperEleTriggerOnComplete) {
+async function triggerPortfolioWrapperElementsOn(group, onWrapperEleTriggerOnComplete) {
+	const groupIdMap = {
+		'1': '2020',
+		'2': '2021',
+		'3': '2022',
+		'4': '2023',
+		'5': '2024'
+	};
+	
+	const groupIdSuffix = groupIdMap[group];
+	const wrapper = document.getElementById(`section_04_portfolio_display_main_wrapper_${groupIdSuffix}`);
+
 	return new Promise((resolve) => {
 
 		const stagger = 100;
 		let completed = 0;
 
 		const onportfolioUI = [
-			document.querySelector('.section_04_portfolio_year_return_button'),
-			document.querySelector('.section_04_portfolio_left_span_wrapper'),
-			document.querySelector('.section_04_portfolio_display_devider_01'),
-			document.querySelector('.section_04_portfolio_category_wrapper'),
-			document.querySelector('.section_04_portfolio_display_viewport_wrapper'),
-			document.querySelector('.section_04_select_portfolio_section_wrapper')
-		];
+			wrapper.querySelector('.section_04_portfolio_year_return_button'),
+			wrapper.querySelector('.section_04_portfolio_left_span_wrapper'),
+			wrapper.querySelector('.section_04_portfolio_display_devider_01'),
+			wrapper.querySelector('.section_04_portfolio_category_wrapper'),
+			wrapper.querySelector('.section_04_portfolio_display_viewport_wrapper'),
+			wrapper.querySelector('.section_04_select_portfolio_section_wrapper')
+		].filter(Boolean);
 
 		requestAnimationFrame(() => {
 			onportfolioUI.forEach((el, index) => {
@@ -530,103 +563,113 @@ async function triggerPortfolioWrapperElementsOn(onWrapperEleTriggerOnComplete) 
 			});
 		});
 	});
-}
+};
 
 async function triggerPortfolioWrapperClose(group, onWrapperCloseComplete) {
-
-	// Portfolio display wrappers mapped by group
-	const allWrappers = {
-		'0001': document.querySelector('.section_04_portfolio_display_main_wrapper_2020'),
-		'0002': document.querySelector('.section_04_portfolio_display_main_wrapper_2021'),
-		'0003': document.querySelector('.section_04_portfolio_display_main_wrapper_2022'),
-		'0004': document.querySelector('.section_04_portfolio_display_main_wrapper_2023'),
-		'0005': document.querySelector('.section_04_portfolio_display_main_wrapper_2024')
+	const groupIdMap = {
+		'0001': '2020',
+		'0002': '2021',
+		'0003': '2022',
+		'0004': '2023',
+		'0005': '2024'
 	};
+	
+	const groupIdSuffix = groupIdMap[group];
+	const wrapper = document.getElementById(`section_04_portfolio_display_main_wrapper_${groupIdSuffix}`);
 
-	const wrapper = allWrappers[group];
 	if (!wrapper) {
 		console.warn(`No wrapper found for group: ${group}`);
 		return;
 	}
 
-	try {
-		await triggerPortfolioWrapperElementsOff();
-		console.log('Portfolio Wrapper Elements Trigger Off called in triggerPortfolioWrapperClose.');
-	} catch (error) {
-		console.error('Error triggering portfolio wrapper elements off:', error);
-	}
+	return new Promise((resolve) => {
+		try {
+			triggerPortfolioWrapperElementsOff(group).then(() => {
+				console.log('Portfolio Wrapper Elements Trigger Off called in triggerPortfolioWrapperClose.');
+				wrapper.classList.remove('prtfl_main_wrapper_close_return_btn_triggered');
+				wrapper.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open');
+		
+				requestAnimationFrame(() => {
+					void wrapper.offsetHeight;
+					wrapper.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
 	
-
-	requestAnimationFrame(() => {
-		wrapper.classList.remove('section_04_portfolio_display_main_wrapper_triggered_open'); 
-		void wrapper.offsetHeight;
-
-		wrapper.classList.add('prtfl_main_wrapper_close_return_btn_triggered');
-
-		wrapper.addEventListener('animationend', function handleMainPtfloWrapperCloseAnimationEnd() {
-
-			wrapper.style.opacity = '0';
-			wrapper.style.display = 'none';
-
-			if (typeof onWrapperCloseComplete === 'function') {
-				onWrapperCloseComplete();
-			}
-			wrapper.removeEventListener('animationend', handleMainPtfloWrapperCloseAnimationEnd);
-		});
+					if (typeof onWrapperCloseComplete === 'function') {
+						onWrapperCloseComplete();
+					}
+					resolve();
+				});
+			});
+		} catch (error) {
+			console.error('Error triggering portfolio wrapper elements off:', error);
+		}
 	});
 }
 
-async function triggerPortfolioWrapperElementsOff(onWrapperEleTriggerOffComplete) {
+async function triggerPortfolioWrapperElementsOff(group, onWrapperEleTriggerOffComplete) {
+	const paddedGroup = String(Number(group))
+
+	const groupIdMap = {
+		'1': '2020',
+		'2': '2021',
+		'3': '2022',
+		'4': '2023',
+		'5': '2024'
+	};
+	
+	const groupIdSuffix = groupIdMap[paddedGroup];
+	const wrapper = document.getElementById(`section_04_portfolio_display_main_wrapper_${groupIdSuffix}`);
+
+
+	if (!wrapper || !(wrapper instanceof Element)) {
+		console.error(`Invalid or missing wrapper for group "${group}"`);
+		return;
+	}
+
+	const stagger = 50;
+	const offportfolioUI = [
+		wrapper.querySelector('.section_04_portfolio_year_return_button'),
+		wrapper.querySelector('.section_04_portfolio_left_span_wrapper'),
+		wrapper.querySelector('.section_04_portfolio_display_devider_01'),
+		wrapper.querySelector('.section_04_portfolio_category_wrapper'),
+		wrapper.querySelector('.section_04_portfolio_display_viewport_wrapper'),
+		wrapper.querySelector('.section_04_select_portfolio_section_wrapper')
+	].filter(Boolean);
+
+	const total = offportfolioUI.length;
+	if (total === 0) {
+		console.warn('No offportfolioUI elements found.');
+		return;
+	}
+
 	return new Promise((resolve) => {
-		const stagger = 50;
-
-		const offportfolioUI = [
-			document.querySelector('.section_04_portfolio_year_return_button'),
-			document.querySelector('.section_04_portfolio_left_span_wrapper'),
-			document.querySelector('.section_04_portfolio_display_devider_01'),
-			document.querySelector('.section_04_portfolio_category_wrapper'),
-			document.querySelector('.section_04_portfolio_display_viewport_wrapper'),
-			document.querySelector('.section_04_select_portfolio_section_wrapper')
-		];
-
-		const total = offportfolioUI.filter(Boolean).length;
-		let completed = 0;
-
 		requestAnimationFrame(() => {
 			console.log('triggerPortfolioWrapperElementsOff called');
+			let completed = 0;
 
 			offportfolioUI.forEach((el, index) => {
-				if (!el) return;
-
+				el.style.transition = 'opacity 0.3s ease';
 				el.style.opacity = '1';
 				el.style.visibility = 'visible';
 				el.style.pointerEvents = 'auto';
-				el.style.transition = 'opacity 0.1s cubic-bezier(0.65, 0.3, 0.35, 1.5)';
 
+				// Trigger fade-out
 				setTimeout(() => {
-					void el.offsetHeight;
 					el.style.opacity = '0';
 					el.style.pointerEvents = 'none';
 					el.style.visibility = 'hidden';
 				}, index * stagger);
 
-				const handlePtfloEleOffTransitionEnd = function (event) {
-					console.log(`Transition ended for element: ${el.className}`);
-					if (event.propertyName !== 'opacity') return;
-
-					el.removeEventListener('transitionend', handlePtfloEleOffTransitionEnd);
-
-					if (++completed === total) {
-						console.log('triggerPortfolioWrapperElementsOff done');
+				// Fallback counter
+				setTimeout(() => {
+					completed++;
+					if (completed === total) {
+						console.log('triggerPortfolioWrapperElementsOff done (via fallback)');
 						if (typeof onWrapperEleTriggerOffComplete === 'function') {
 							onWrapperEleTriggerOffComplete();
 						}
-
 						resolve();
 					}
-				};
-
-				el.addEventListener('transitionend', handlePtfloEleOffTransitionEnd, { once: true });
+				}, index * stagger + 400); // matches opacity duration + delay buffer
 			});
 		});
 	});
@@ -652,7 +695,7 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 		requestAnimationFrame(() => {
 			target_portfolio.classList.add('portfolio_reveal_anim_triggered');
 		});
-	}
+	};
 };
 
 document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(button => {
@@ -663,7 +706,7 @@ document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(bu
 async function PortfolioReturnTimelineButtonAnimation(button) {
 
 	//clicked button group
-	const group = button.dataset.group;
+	const group = button.dataset.group?.padStart(4, '0');
 
 	// Trigger close animation on wrapper
 	try {
@@ -671,5 +714,5 @@ async function PortfolioReturnTimelineButtonAnimation(button) {
 		triggerPortfolioMainTitleShowAnimation(true);
 	} catch (error) {
 		console.error('Error in PortfolioReturnTimelineButtonAnimation:', error);
-	}
+	};
 };
