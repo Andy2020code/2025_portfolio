@@ -675,7 +675,6 @@ async function triggerPortfolioWrapperElementsOff(group, onWrapperEleTriggerOffC
 	});
 }
 
-
 window.PortfolioCategoryButtonAnimations = function (button) {
 	const group = button.dataset.group;
 
@@ -697,6 +696,48 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 		});
 	};
 };
+
+document.querySelectorAll('.project_type_card').forEach(button => {
+	button.addEventListener('click', () => selectedProjectTypeAnimations(button));
+});
+
+async function selectedProjectTypeAnimations(button) {
+	const group = button.dataset.group;
+	const selected_project_type_wrapper = group
+		? document.querySelector(`.ars_designandi_portfolio_card_projects_container[data-group="${group}"]`)
+		: null
+	;
+	
+	if (!group || !selected_project_type_wrapper) {
+		console.error(!group
+			? 'No group found on button.'
+			: `No portfolio wrapper found for group: ${group}`);
+		return;
+	}
+
+	return new Promise((resolve) => {
+		selected_project_type_wrapper.classList.remove('ars_designandi_portfolio_reveal_trigger');
+		selected_project_type_wrapper.style.display = 'none';
+		void selected_project_type_wrapper.offsetHeight;
+
+		requestAnimationFrame(() => {
+			selected_project_type_wrapper.classList.add('ars_designandi_portfolio_reveal_trigger');
+			selected_project_type_wrapper.style.display = 'flex';
+
+			const handleAnimationEnd = () => {
+				selected_project_type_wrapper.removeEventListener('animationend', handleAnimationEnd);
+				if (typeof onWrapperOpenComplete === 'function') {
+					onWrapperOpenComplete();
+				}
+				resolve();
+			}
+			
+			selected_project_type_wrapper.addEventListener('animationend', handleAnimationEnd, { once: true });
+		});
+			
+	})
+	
+}
 
 document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(button => {
 	button.addEventListener('click', () => PortfolioReturnTimelineButtonAnimation(button));

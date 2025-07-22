@@ -307,27 +307,55 @@
 							<div class="codex_aureus_projects_container">
 								
 								<div class="codex_aureus_project proj_01">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="codex_aureus_ptfl_project_thumbnail">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/therapist_website_01.png' %}" alt="Project_Thumbnail">
+									</div>
+
+									<div class="codex_aureus_ptfl_project_selection_wrapper">
+										<button class="codex_aureus_project_selected">
+											<span>Select</span>
+											<span>Project</span>
+										</button>
+									</div>
 								</div>
 
 								<div class="codex_aureus_project proj_02">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="codex_aureus_ptfl_project_thumbnail">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/glux_website.png' %}" alt="Project_Thumbnail">
+									</div>
+
+									<div class="codex_aureus_ptfl_project_selection_wrapper">
+										<button class="codex_aureus_project_selected">
+											<span>Select</span>
+											<span>Project</span>
+										</button>
+									</div>
 								</div>
 
 								<div class="codex_aureus_project proj_03">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="codex_aureus_ptfl_project_thumbnail">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/onesourceclimate_website.png' %}" alt="Project_Thumbnail">
+									</div>
+
+									<div class="codex_aureus_ptfl_project_selection_wrapper">
+										<button class="codex_aureus_project_selected">
+											<span>Select</span>
+											<span>Project</span>
+										</button>
+									</div>
 								</div>
 
 								<div class="codex_aureus_project proj_04">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="codex_aureus_ptfl_project_thumbnail">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/jrhoyaschool_website.png' %}" alt="Project_Thumbnail">
+									</div>
+
+									<div class="codex_aureus_ptfl_project_selection_wrapper">
+										<button class="codex_aureus_project_selected">
+											<span>Select</span>
+											<span>Project</span>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -369,91 +397,155 @@
 
 						<div class="portfolio_card_project_select_type_wrapper">
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1000">
 								<span>Interior</span>
 								<span>Design</span>
 							</button>
 
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1001">
 								<span>Branding</span>
 							</button>
 
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1002">
 								<span>Ads</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1003">
 								<span>Web and</span>
 								<span>UI Design</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1004">
 								<span>Packaging</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1005">
 								<span>Print</span>
 								<span>Design</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1006">
 								<span>Landscape</span>
 								<span>Design</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1007">
 								<span>Illust</span>
 								<span>Ration</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1008">
 								<span>Typo</span>
 								<span>Graphy</span>
 							</button>
 							
-							<button class="project_type_card">
+							<button class="project_type_card" data-group="1009">
 								<span>Info</span>
 								<span>Graphics</span>
 							</button>
 						</div>
 
-						<div class="portfolio_card_project_02_viewport_wrapper">
-							<div class="portfolio_card_projects_container">
+						<div class="portfolio_card_project_viewport_wrapper">
+							<div class="ars_designandi_portfolio_card_projects_container" data-group="1002">
 								
 								<div class="portfolio_card_project proj_01">
 									<div class="project_thumbnail_wrapper">
 										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/Agency_Flyer_Art.png' %}" alt="Project_Thumbnail">
 									</div>
 							
-									<div class="project_title">
-										<span>Company</span>
-										<span>Advertizement</span>
-									</div>
-
-									<div class="select_portfolio_card_wrapper">
-										<button class="selected_portfolio_card">
-											<span>Select</span>
-											<span>Project</span>
-										</button>
+									<div class="project_card_right_viewport">
+										<div class="project_title">
+											<span>Company</span>
+											<span>Advertizement</span>
+										</div>
+	
+										<div class="select_portfolio_card_wrapper">
+											<button class="selected_portfolio_card">
+												<span>Select</span>
+												<span>Project</span>
+											</button>
+										</div>
 									</div>
 								</div>
 
 								<div class="portfolio_card_project proj_02">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="project_thumbnail_wrapper">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/Beats_Headphones_Art.png' %}" alt="Project_Thumbnail">
+									</div>
+							
+									<div class="project_card_right_viewport">
+										<div class="project_title">
+											<span>Company</span>
+											<span>Advertizement</span>
+										</div>
+	
+										<div class="select_portfolio_card_wrapper">
+											<button class="selected_portfolio_card">
+												<span>Select</span>
+												<span>Project</span>
+											</button>
+										</div>
+									</div>
 								</div>
 
 								<div class="portfolio_card_project proj_03">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="project_thumbnail_wrapper">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/Cloathing_(seasonal_ad)_Art.png' %}" alt="Project_Thumbnail">
+									</div>
+							
+									<div class="project_card_right_viewport">
+										<div class="project_title">
+											<span>Company</span>
+											<span>Advertizement</span>
+										</div>
+	
+										<div class="select_portfolio_card_wrapper">
+											<button class="selected_portfolio_card">
+												<span>Select</span>
+												<span>Project</span>
+											</button>
+										</div>
+									</div>
 								</div>
 
 								<div class="portfolio_card_project proj_04">
-									<svg class="hd_picture_svg_placeholder" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
-										<rect class="hd_picture_path" x="0" y="0" width="1920" height="1080" rx="50" ry="50"/>
-									</svg>
+									<div class="project_thumbnail_wrapper">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/Delivery_Service_Art.png' %}" alt="Project_Thumbnail">
+									</div>
+							
+									<div class="project_card_right_viewport">
+										<div class="project_title">
+											<span>Company</span>
+											<span>Advertizement</span>
+										</div>
+	
+										<div class="select_portfolio_card_wrapper">
+											<button class="selected_portfolio_card">
+												<span>Select</span>
+												<span>Project</span>
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="portfolio_card_project proj_05">
+									<div class="project_thumbnail_wrapper">
+										<img class="project_thumbnail" src="{% static 'Images/portfolio_section/We_are_Hiring_Art.png' %}" alt="Project_Thumbnail">
+									</div>
+							
+									<div class="project_card_right_viewport">
+										<div class="project_title">
+											<span>Company</span>
+											<span>Advertizement</span>
+										</div>
+	
+										<div class="select_portfolio_card_wrapper">
+											<button class="selected_portfolio_card">
+												<span>Select</span>
+												<span>Project</span>
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

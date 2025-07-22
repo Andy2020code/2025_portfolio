@@ -6,3 +6,6 @@ def home(request):
 
 def design_test(request):
 	return render(request, 'design_test.html')
+
+def ach(request):
+	return render(request, 'base.html')
