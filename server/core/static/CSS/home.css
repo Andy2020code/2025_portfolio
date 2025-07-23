@@ -3225,28 +3225,28 @@ body{
 }
 
 .codex_aureus_ptfl_project_thumbnail img {
-	transform: translate(-25%, -30%);
+	transform: translate(-25%, -35%);
 	width: 200%;
 	height: auto;
 	object-fit: fill;
 }
 
 .proj_02 .codex_aureus_ptfl_project_thumbnail img {
-	transform: translate(-0%, -9%);
+	transform: translate(-0%, -19%);
 	width: 155%;
 	height: auto;
 	object-fit: fill;
 }
 
 .proj_03 .codex_aureus_ptfl_project_thumbnail img {
-	transform: translate(-10%, -10%);
+	transform: translate(-10%, -17%);
 	width: 130%;
 	height: auto;
 	object-fit: fill;
 }
 
 .proj_04 .codex_aureus_ptfl_project_thumbnail img {
-	transform: translate(-25%, -9%);
+	transform: translate(-25%, -15%);
 	width: 135%;
 	height: auto;
 	object-fit: fill;
@@ -3431,8 +3431,8 @@ body{
 
 .project_type_card:nth-of-type(1) span:nth-child(1) {
 	width: 85%;
-	font-size: 18px;
-	letter-spacing: calc((170.25px - (8 * 18px)) / 7);
+	font-size: 15px;
+	letter-spacing: calc((180.25px - (13 * 15px)) / 12);
 	margin: 0px auto 0px auto;
 }
 
@@ -3796,7 +3796,43 @@ body{
 	margin: 0px auto 0px auto;
 }
 
+.architectural_design_ptfl_buttons_wrapper {
+	width: 100%;
+	height: auto;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
 
+.architectural_design_ptfl_buttons_wrapper button {
+	will-change: transform, opacity, box-shadow;
+	transform: translateY(-15px);
+	opacity: 0;
+	display: none;
+	width: 150px;
+	height: 80px;
+	align-items: center;
+	background: var(--section_04_ars_designandi_type_buttons_color);
+	border: 0.01em solid var(--border_color_11);
+	border-radius: 5px;
+	box-shadow:
+		6px 1px 12px rgba(0, 0, 0, 0.3),
+		2px 1px 8px rgba(245, 245, 245, 0.15)
+	;
+	transition: scale 0.3s ease, box-shadow 0.3s ease;
+}
+
+.architectural_design_buttons_animation {
+	animation: ars_designandi_architectural_design_buttons_anim 0.8s ease-in forwards;
+}
+
+@keyframes ars_designandi_architectural_design_buttons_anim {
+	to {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
 
 .portfolio_card_project_viewport_wrapper {
 	width: 100%;
@@ -4438,7 +4474,7 @@ body{
 
 	.project_type_card:nth-of-type(1) span:nth-child(1) {
 		font-size: 18px;
-		letter-spacing: calc((170.25px - (8 * 18px)) / 7);
+		letter-spacing: calc((170.25px - (13 * 18px)) / 12);
 	}
 	
 	.project_type_card:nth-of-type(1) span:nth-child(2) {
@@ -4568,6 +4604,22 @@ body{
 
 	.portfolio_card_project_05_viewport_wrapper {
 		height: 60%;
+	}
+
+	.codex_aureus_ptfl_project_thumbnail img {
+		transform: translate(-25%, -30%);
+	}
+
+	.proj_02 .codex_aureus_ptfl_project_thumbnail img {
+		transform: translate(-0%, -9%);
+	}
+
+	.proj_03 .codex_aureus_ptfl_project_thumbnail img {
+		transform: translate(-10%, -10%);
+	}
+
+	.proj_04 .codex_aureus_ptfl_project_thumbnail img {
+		transform: translate(-25%, -9%);
 	}
 
 }

@@ -697,16 +697,25 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 	};
 };
 
+////////
+
 document.querySelectorAll('.project_type_card').forEach(button => {
 	button.addEventListener('click', () => selectedProjectTypeAnimations(button));
 });
 
 async function selectedProjectTypeAnimations(button) {
 	const group = button.dataset.group;
+
+	const projectTypeWrappers = [
+		document.querySelector(`.architectural_design_ptfl_buttons_wrapper[data-group="${group}"]`),
+		document.querySelector(`.ars_designandi_portfolio_card_projects_container[data-group="${group}"]`)
+	].filter(Boolean);
+
 	const selected_project_type_wrapper = group
-		? document.querySelector(`.ars_designandi_portfolio_card_projects_container[data-group="${group}"]`)
+		? projectTypeWrappers.find(el => el?.dataset?.group === group)
 		: null
 	;
+
 	
 	if (!group || !selected_project_type_wrapper) {
 		console.error(!group
@@ -738,6 +747,8 @@ async function selectedProjectTypeAnimations(button) {
 	})
 	
 }
+
+///////
 
 document.querySelectorAll('.section_04_portfolio_year_return_button').forEach(button => {
 	button.addEventListener('click', () => PortfolioReturnTimelineButtonAnimation(button));
