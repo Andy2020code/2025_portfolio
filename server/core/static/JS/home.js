@@ -922,13 +922,74 @@ async function selectedProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 ///////
 ///////
 
-document.querySelectorAll('.project_type_card').forEach(button => {
+document.querySelectorAll('.project_type_03_card').forEach(button => {
 	button.addEventListener('click', async () => {
-		await animateAllButtons(button);
+		await animateAllButtonsCapturaLucis2020(button);
 		console.log('All buttons animated');
 		await selectedCapturaLucis2020ProjectTypeAnimations(button);
 	});
 });
+
+async function animateAllButtonsCapturaLucis2020(button) {
+	const group = button.dataset.group;
+	if (!group) {
+		console.error('No group found on button.');
+		return;
+	}
+	
+	const closest_wrapper = button.closest('.portfolio_card_project_select_type_wrapper');
+
+	if (!closest_wrapper) {
+		console.error('No wrapper found for clicked button');
+		return;
+	}
+
+	const allButtons = [...closest_wrapper.querySelectorAll('.project_type_03_card')];
+	const clickedIndex = allButtons.indexOf(button);
+	const stagger = 50;
+
+	return new Promise(resolve => {
+
+		try {			
+			//console.log('animateAllButtons called');
+
+			let completed = 0;
+
+			allButtons.forEach(btn => {
+				btn.classList.remove('ars_designandi_portfolio_reveal_trigger');
+				btn.classList.remove('project_type_card_animation');
+				void btn.offsetHeight;
+			});
+	
+			requestAnimationFrame(() => {
+				allButtons.forEach((btn, index) => {
+					const distance = Math.abs(index - clickedIndex);
+					const delay = distance * stagger;
+	
+					setTimeout(() => {
+						btn.classList.add('project_type_card_animation');
+	
+						const handleAnimationEnd = () => {
+							btn.removeEventListener('animationend', handleAnimationEnd);
+							btn.style.transform = 'translateY(0)';
+							completed++;
+							//console.log(`Completed ${completed}/${allButtons.length}`);
+							if (completed === allButtons.length) {
+								resolve();
+							}
+						};
+	
+						btn.addEventListener('animationend', handleAnimationEnd, { once: true });
+					}, delay);
+				});
+			});
+				
+		} catch (error) {
+			console.error('Error in animateAllButtonsCapturaLucis2020:', error);
+			return;
+		}
+	});
+}
 
 async function selectedCapturaLucis2020ProjectTypeAnimations(button, onCapturaLucis2020PtfloWpprOpenComplete) {
 	const group = button.dataset.group;
