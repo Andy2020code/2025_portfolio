@@ -3835,8 +3835,8 @@ body{
 	align-items: center;
 	justify-content: center;
 	gap: 20px;
-	margin-top: 150px;
-	margin-bottom: 20px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 
 }
 
@@ -3854,7 +3854,7 @@ body{
 	transition: scale 0.3s ease, box-shadow 0.3s ease;
 }
 
-.architectural_design_sub_category_buttons button {
+.architectural_design_sub_category_buttons button:hover {
 	cursor: pointer;
 	scale: 1.05;
 }
@@ -4083,6 +4083,257 @@ body{
 	line-height: 1.1;
 	text-transform: uppercase;
 	color: var(--crimson_red_MAIN);
+}
+
+.proj_06,
+.proj_07, 
+.proj_08,
+.proj_09,
+.proj_10,
+.proj_11,
+.proj_12,
+.proj_13,
+.proj_14,
+.proj_15,
+.proj_16,
+.proj_17,
+.proj_18,
+.proj_19,
+.proj_20,
+.proj_21,
+.proj_22,
+.proj_23,
+.proj_24,
+.proj_25,
+.proj_26,
+.proj_27,
+.proj_28,
+.proj_29 {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.proj_06 img,
+.proj_07 img,
+.proj_08 img,
+.proj_09 img,
+.proj_10 img,
+.proj_11 img,
+.proj_12 img,
+.proj_13 img,
+.proj_14 img,
+.proj_15 img,
+.proj_16 img,
+.proj_17 img,
+.proj_18 img,
+.proj_19 img,
+.proj_20 img,
+.proj_21 img,
+.proj_22 img,
+.proj_23 img,
+.proj_24 img,
+.proj_25 img,
+.proj_26 img,
+.proj_27 img,
+.proj_28 img,
+.proj_29 img {
+	width: auto;
+	height: 80%;
+}
+
+.proj_06 span,
+.proj_07 span,
+.proj_08 span,
+.proj_09 span,
+.proj_10 span,
+.proj_11 span,
+.proj_12 span,
+.proj_13 span,
+.proj_14 span,
+.proj_15 span,
+.proj_16 span,
+.proj_17 span,
+.proj_18 span,
+.proj_19 span,
+.proj_20 span,
+.proj_21 span,
+.proj_22 span,
+.proj_23 span,
+.proj_24 span,
+.proj_25 span,
+.proj_26 span,
+.proj_27 span,
+.proj_28 span,
+.proj_29 span {
+	font-family: 'Prata_Custom', 'sans-serif';
+	font-weight: 400;
+	font-size: 22px;
+	letter-spacing: 0.5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--text_color_12);
+}
+
+.architectural_interior_design_wrapper {
+	position: relative;
+	width: 100%;
+	height: 440px;
+	display: none;
+	flex-direction: row;
+	align-items: flex-start;
+	overflow: hidden;
+	border: 1px solid var(--border_color_04);
+	border-radius: 10px;
+}
+
+.architectural_interior_design_wrapper_animation {
+	animation: architectural_interior_design_wrapper_Keyframes 1s ease-out forwards;
+}
+
+@keyframes architectural_interior_design_wrapper_Keyframes {
+	from {
+		transform: translateY(15px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+.architectural_interior_design_thumbnail_wrapper_01 {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_01 img {
+	width: 100%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_02 {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_02 img {
+	width: 100%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_03 {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 45%;
+	left: 0%;
+	width: 50%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_03 img {
+	width: 100%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_04 {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 43%;
+	left: 50%;
+	width: 50%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_04 img {
+	width: 100%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_05 {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 43%;
+	left: 50%;
+	width: 50%;
+	height: auto;
+}
+
+.architectural_interior_design_thumbnail_wrapper_05 img {
+	width: 100%;
+	height: auto;
+}
+
+.architectural_exterior_design_wrapper,
+.ars_designandi_portfolio_brands_wrapper,
+.ars_designandi_portfolio_website_design_wrapper,
+.ars_designandi_portfolio_package_design_wrapper,
+.ars_designandi_portfolio_print_design_wrapper,
+.ars_designandi_portfolio_landscape_design_wrapper, 
+.ars_designandi_portfolio_illustration_design_wrapper, 
+.ars_designandi_portfolio_typography_design_wrapper, 
+.ars_designandi_portfolio_infographics_design_wrapper{
+	width: 100%;
+	height: max-content;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 30px 0px 20px 0px;
+}
+
+.architectural_exterior_design_wrapper img,
+.ars_designandi_portfolio_brands_wrapper img,
+.ars_designandi_portfolio_website_design_wrapper img,
+.ars_designandi_portfolio_package_design_wrapper img,
+.ars_designandi_portfolio_print_design_wrapper img,
+.ars_designandi_portfolio_landscape_design_wrapper img, 
+.ars_designandi_portfolio_illustration_design_wrapper img, 
+.ars_designandi_portfolio_typography_design_wrapper img, 
+.ars_designandi_portfolio_infographics_design_wrapper img {
+	width: 30%;
+	height: auto;
+}
+
+.architectural_exterior_design_wrapper span,
+.ars_designandi_portfolio_brands_wrapper span,
+.ars_designandi_portfolio_website_design_wrapper span,
+.ars_designandi_portfolio_package_design_wrapper span,
+.ars_designandi_portfolio_print_design_wrapper span,
+.ars_designandi_portfolio_landscape_design_wrapper span, 
+.ars_designandi_portfolio_illustration_design_wrapper span, 
+.ars_designandi_portfolio_typography_design_wrapper span, 
+.ars_designandi_portfolio_infographics_design_wrapper span {
+	font-family: 'Bodoni_Custom', sans-serif;
+	font-weight: 800;
+	font-style: normal;
+	font-size: 22px;
+	text-transform: uppercase;
+	color: var(--text_color_11);
+}
+
+.portfolio_card_portrait_projects_container,
+.portfolio_card_landscape_projects_container,
+.portfolio_card_city_projects_container,
+.portfolio_card_events_projects_container,
+.portfolio_card_new_born_projects_container,
+.portfolio_card_graduation_projects_container {
+	width: 100%;
+	height: auto;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(0px);
 }
 
 @media screen and (max-width: 2000px) {
@@ -4713,10 +4964,13 @@ body{
 		transform: translate(-25%, -9%);
 	}
 
+	.ars_designandi_portfolio_card_projects_container {
+		margin-top: 0px;
+	}
+
 	.architectural_design_sub_category_buttons {
 		margin-top: 50px;
 		margin-bottom: 20px;
-	
 	}
 	
 	.architectural_design_sub_category_buttons button {
@@ -4755,50 +5009,12 @@ body{
 		height: 70%;
 		
 	}
-
-	
-
-
-
-
-
-
-
-
-
-	.architectural_interior_design_wrapper {
-		position: relative;
-		width: 100%;
-		height: 440px;
-		display: none;
-		flex-direction: row;
-		align-items: flex-start;
-		overflow: hidden;
-		border: 1px solid var(--border_color_04);
-		border-radius: 10px;
-	}
-
-	.architectural_interior_design_wrapper_animation {
-		animation: architectural_interior_design_wrapper_Keyframes 1s ease-out forwards;
-	}
-
-	@keyframes architectural_interior_design_wrapper_Keyframes {
-		from {
-			transform: translateY(15px);
-			opacity: 0;
-		}
-
-		to {
-			transform: translateY(0px);
-			opacity: 1;
-		}
-	}
 	
 	.architectural_interior_design_thumbnail_wrapper_01 {
 		position: absolute;
-		transform: translate(-50%, -50);
-		top: 0;
-		left: 0;
+		transform: translate(-50%, -50%);
+		top: 24.3%;
+		left: 25%;
 		width: 50%;
 		height: auto;
 	}
@@ -4810,9 +5026,9 @@ body{
 
 	.architectural_interior_design_thumbnail_wrapper_02 {
 		position: absolute;
-		transform: translate(-50%, -50);
-		top: 0;
-		left: 50%;
+		transform: translate(-50%, -50%);
+		top: 50%;
+		left: 75%;
 		width: 50%;
 		height: auto;
 	}
@@ -4824,9 +5040,9 @@ body{
 
 	.architectural_interior_design_thumbnail_wrapper_03 {
 		position: absolute;
-		transform: translate(-50%, -50);
-		top: 45%;
-		left: 0%;
+		transform: translate(-50%, -50%);
+		top: 75%;
+		left: 25%;
 		width: 50%;
 		height: auto;
 	}
@@ -4834,96 +5050,5 @@ body{
 	.architectural_interior_design_thumbnail_wrapper_03 img {
 		width: 100%;
 		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_04 {
-		position: absolute;
-		transform: translate(-50%, -50);
-		top: 43%;
-		left: 50%;
-		width: 50%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_04 img {
-		width: 100%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_05 {
-		position: absolute;
-		transform: translate(-50%, -50);
-		top: 43%;
-		left: 50%;
-		width: 50%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_05 img {
-		width: 100%;
-		height: auto;
-	}
-
-	.architectural_exterior_design_wrapper,
-	.ars_designandi_portfolio_brands_wrapper,
-	.ars_designandi_portfolio_website_design_wrapper,
-	.ars_designandi_portfolio_package_design_wrapper,
-	.ars_designandi_portfolio_print_design_wrapper,
-	.ars_designandi_portfolio_landscape_design_wrapper, 
-	.ars_designandi_portfolio_illustration_design_wrapper, 
-	.ars_designandi_portfolio_typography_design_wrapper, 
-	.ars_designandi_portfolio_infographics_design_wrapper{
-		width: 100%;
-		height: max-content;
-		display: none;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 30px 0px 20px 0px;
-	}
-
-	.architectural_exterior_design_wrapper img,
-	.ars_designandi_portfolio_brands_wrapper img,
-	.ars_designandi_portfolio_website_design_wrapper img,
-	.ars_designandi_portfolio_package_design_wrapper img,
-	.ars_designandi_portfolio_print_design_wrapper img,
-	.ars_designandi_portfolio_landscape_design_wrapper img, 
-	.ars_designandi_portfolio_illustration_design_wrapper img, 
-	.ars_designandi_portfolio_typography_design_wrapper img, 
-	.ars_designandi_portfolio_infographics_design_wrapper img {
-		width: 30%;
-		height: auto;
-	}
-
-	.architectural_exterior_design_wrapper span,
-	.ars_designandi_portfolio_brands_wrapper span,
-	.ars_designandi_portfolio_website_design_wrapper span,
-	.ars_designandi_portfolio_package_design_wrapper span,
-	.ars_designandi_portfolio_print_design_wrapper span,
-	.ars_designandi_portfolio_landscape_design_wrapper span, 
-	.ars_designandi_portfolio_illustration_design_wrapper span, 
-	.ars_designandi_portfolio_typography_design_wrapper span, 
-	.ars_designandi_portfolio_infographics_design_wrapper span {
-		font-family: 'Bodoni_Custom', sans-serif;
-		font-weight: 800;
-		font-style: normal;
-		font-size: 22px;
-		text-transform: uppercase;
-		color: var(--text_color_11);
-	}
-
-	.portfolio_card_portrait_projects_container,
-	.portfolio_card_landscape_projects_container,
-	.portfolio_card_city_projects_container,
-	.portfolio_card_events_projects_container,
-	.portfolio_card_new_born_projects_container,
-	.portfolio_card_graduation_projects_container {
-		width: 100%;
-		height: auto;
-		display: none;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		transform: translateY(0px);
 	}
 }
