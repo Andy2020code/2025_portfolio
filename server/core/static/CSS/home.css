@@ -3368,6 +3368,7 @@ body{
 	margin-left: 20px;
 }
 
+.Ars_Designandi_portfolio_card_project_select_type_wrapper,
 .portfolio_card_project_select_type_wrapper {
 	width: 95%;
 	height: 30%;
@@ -3380,6 +3381,7 @@ body{
 	margin: 30px 0px 0px 0px;
 }	
 
+.project_type_Ars_Designandi_card,
 .project_type_card,
 .project_type_02_card,
 .project_type_03_card,
@@ -3403,6 +3405,7 @@ body{
 	transition: scale 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease-in;
 }
 
+.project_type_Ars_Designandi_card:hover,
 .project_type_card:hover,
 .project_type_02_card:hover,
 .project_type_03_card:hover,
@@ -3422,6 +3425,7 @@ body{
 	display: flex;
 }
 
+.project_type_Ars_Designandi_card span,
 .project_type_card span,
 .project_type_02_card span,
 .project_type_03_card span,
@@ -3893,6 +3897,7 @@ body{
 	}
 }
 
+.Ars_Designandi_portfolio_card_project_viewport_wrapper,
 .portfolio_card_project_viewport_wrapper {
 	width: 100%;
 	display: flex;
@@ -3907,6 +3912,32 @@ body{
 }
 
 .portfolio_card_project_03_viewport_wrapper {
+	width: 100%;
+	display: flex;
+	height: max-content;
+	justify-content: center;
+	align-items: flex-start;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.portfolio_card_project_04_viewport_wrapper {
+	width: 100%;
+	display: flex;
+	height: max-content;
+	justify-content: center;
+	align-items: flex-start;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.portfolio_card_project_05_viewport_wrapper {
 	width: 100%;
 	display: flex;
 	height: max-content;
@@ -4108,7 +4139,11 @@ body{
 .proj_26,
 .proj_27,
 .proj_28,
-.proj_29 {
+.proj_29,
+.proj_30,
+.proj_31,
+.proj_32,
+.proj_33 {
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
@@ -4137,7 +4172,11 @@ body{
 .proj_26 img,
 .proj_27 img,
 .proj_28 img,
-.proj_29 img {
+.proj_29 img,
+.proj_30 img,
+.proj_31 img,
+.proj_32 img,
+.proj_33 img {
 	width: auto;
 	height: 80%;
 }
@@ -4165,7 +4204,11 @@ body{
 .proj_26 span,
 .proj_27 span,
 .proj_28 span,
-.proj_29 span {
+.proj_29 span,
+.proj_30 span,
+.proj_31 span,
+.proj_32 span,
+.proj_33 span {
 	font-family: 'Prata_Custom', 'sans-serif';
 	font-weight: 400;
 	font-size: 22px;
@@ -4334,6 +4377,45 @@ body{
 	justify-content: center;
 	align-items: center;
 	transform: translateY(0px);
+}
+
+.portfolio_card_projects_container{
+	width: 95%;
+	height: auto;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(0px);
+	margin-top: 20px;
+}
+
+.portfolio_card_project {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--portfolio_card_background_01);
+	border-radius: 10px;
+	margin: 20px auto 0 auto;
+	overflow: hidden;
+}
+
+.portfolio_card_project img {
+	width: auto;
+	height: 70%;
+}
+
+.portfolio_card_project span {
+	font-family: 'Prata_Custom', 'sans-serif';
+	font-weight: 400;
+	font-size: 22px;
+	letter-spacing: 0.5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--text_color_12);
+	margin-left: 20px;
 }
 
 @media screen and (max-width: 2000px) {
