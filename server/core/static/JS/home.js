@@ -777,46 +777,56 @@ async function animate_all_Ars_Designandi_wppr_cards(button) {
 }
 
 async function ars_Designandi_Ptflo_wppr_display_switch(button, onPtfloWpprOpenComplete) {
+	const group = button.dataset.group;
+	if (!group) {
+		console.error('No group found on button in function ars_Designandi_Ptflo_wppr_display_switch.');
+		return;
+	}
+
 	const year = button.closest('[data-year]')?.dataset.year;
 	const yearWrapper = document.querySelector(`.section_04_portfolio_display_main_wrapper[data-year="${year}"]`);
+	console.log('Ars Designandi Year wrapper:', year);
 	if (!yearWrapper) {
-		console.error('No year wrapper found for clicked button.');
+		console.error('No year wrapper found for clicked button group: ' + group + '.');
 		return;
 	}
-
-	const group = button.dataset.group;
 	
 	try {
-		const buttons_wrapper = Array.from(
-			yearWrapper?.querySelectorAll(`.portfolio_card_project_select_type_wrapper`) || []
-		);
-		if (buttons_wrapper.length === 0) {
-			console.error('No buttons wrapper found in year wrapper.');
+		const buttons_wrapper = yearWrapper?.querySelector(`.portfolio_card_project_select_type_wrapper`)
+		console.log('Ars DesignandiYear Buttons wrapper:', buttons_wrapper ? 'found' : 'not found');
+			
+		if (!buttons_wrapper) {
+			console.error('No button wrapper found in year ' + year + ' Ars Designandi Year wrapper.');
 			return;
 		}
-		buttons_wrapper.forEach(wrapper => {
-			wrapper.style.height = 'max-content';
-		});
-		console.log('buttons_wrapper height set to max-content');
+		buttons_wrapper.style.height = 'max-content';
+		console.log('Ars Designandi buttons wrapper height set to max-content');
 	} catch (error) {
-		console.error('Error setting buttons_wrapper height:', error);
+		console.error('Error setting Ars Designandi buttons wrapper height:', error);
 		return;
 	}
 
-	const allWrappers = Array.from(yearWrapper?.querySelectorAll(
-		'.architectural_design_sub_category_buttons, \
-		.ars_designandi_portfolio_card_projects_container, \
-		.architectural_interior_design_wrapper, \
-		.architectural_exterior_design_wrapper, \
-		.ars_designandi_portfolio_brands_wrapper, \
-		.ars_designandi_portfolio_website_design_wrapper, \
-		.ars_designandi_portfolio_package_design_wrapper, \
-		.ars_designandi_portfolio_print_design_wrapper, \
-		.ars_designandi_portfolio_landscape_design_wrapper, \
-		.ars_designandi_portfolio_illustration_design_wrapper, \
-		.ars_designandi_portfolio_typography_design_wrapper, \
-		.ars_designandi_portfolio_infographics_design_wrapper'
-	));
+	const allWrappers = Array.from(
+		yearWrapper?.querySelectorAll(`
+			.architectural_design_sub_category_buttons,
+			.ars_designandi_portfolio_ads_wrapper,
+			.architectural_interior_design_wrapper,
+			.architectural_exterior_design_wrapper,
+			.ars_designandi_portfolio_brands_wrapper,
+			.ars_designandi_portfolio_website_design_wrapper,
+			.ars_designandi_portfolio_package_design_wrapper,
+			.ars_designandi_portfolio_print_design_wrapper,
+			.ars_designandi_portfolio_landscape_design_wrapper,
+			.ars_designandi_portfolio_illustration_design_wrapper,
+			.ars_designandi_portfolio_typography_design_wrapper,
+			.ars_designandi_portfolio_infographics_design_wrapper
+		`) || []
+	);
+	console.log('Ars Designandi Wrappers found:', allWrappers.length);
+	if (allWrappers.length === 0) {
+		console.error('No Ars Designandi wrappers found for group: ' + group);
+		return;
+	}
 
 	return new Promise(resolve => {
 		allWrappers.forEach(wrapper => {
@@ -848,28 +858,19 @@ async function ars_Designandi_Ptflo_wppr_display_switch(button, onPtfloWpprOpenC
 /////////
 //////////
 
-document.querySelectorAll('.architectural_design_sub_category_buttons button').forEach(button => {
+document.querySelectorAll('.Interior_design_sub_category_button').forEach(button => {
+	button.addEventListener('click', async () => {
+		await architechtural_Interior_Design_Ptfl_show(button);
+	});
+});
 
-	group = button.dataset.group;
+async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesignPtflAnimationEnd) {
+	const group = button.dataset.group;
 	if (!group) {
 		console.error('No group found on button.');
 		return;
 	}
 
-	const functions = {
-		'1012': architechtural_Interior_Design_Ptfl_show,
-		'1013': architechtural_Exterior_Design_Ptfl_show
-	};
-
-
-	button.addEventListener('click', async () => {
-
-
-		await functions[group](button);
-	});
-});
-
-async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesignPtflAnimationEnd) {
 	const year = button.closest('[data-year]')?.dataset.year;
 	const yearWrapper = document.querySelector(`.section_04_portfolio_display_main_wrapper[data-year="${year}"]`);
 	if (!yearWrapper) {
@@ -877,26 +878,27 @@ async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesign
 		return;
 	}
 
-	const group = button.dataset.group;
-	if (!group) {
-		console.error('No group found on button.');
+	//buttons wppr
+	const interior_exterior_button_wrapper = yearWrapper?.querySelector(`.architectural_design_sub_category_buttons`);
+	if (!interior_exterior_button_wrapper) {
+		console.error('Interior/Exterior button wrapper not found.');
 		return;
 	}
 
-	//buttons wppr
-	const interior_exterior_button_wrapper = yearWrapper?.querySelector(`.architectural_design_sub_category_buttons`) || []
-
 	//Elements wppr
-	const interior_design_ptfl_wrapper = yearWrapper?.querySelector(`.architectural_interior_design_wrapper[data-group="${group}"]`) || [];
-
-	if (!interior_design_ptfl_wrapper || !interior_exterior_button_wrapper) {
-		console.error('One or both wrappers not found.');
+	const interior_design_ptfl_wrapper = yearWrapper?.querySelector(`.architectural_interior_design_wrapper[data-group="${group}"]`);
+	if (!interior_design_ptfl_wrapper) {
+		console.error(`Interior Design Portfolio wrapper not found for group: ${group}`);
 		return;
 	}
 
 	return new Promise(resolve => {
 		try {
-			interior_exterior_button_wrapper.style.display = 'none';
+			if (getComputedStyle(interior_exterior_button_wrapper).display === 'flex') {
+				interior_exterior_button_wrapper.style.display = 'none';
+			} else {
+				console.warn('Interior/Exterior button wrapper is not displayed, no action taken.');;
+			}
 		} catch (error) {
 			console.error('Error hiding interior/exterior button wrappers:', error);
 			return;
@@ -904,7 +906,7 @@ async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesign
 
 		//reset animation for content wpprs
 		interior_design_ptfl_wrapper.classList.remove('architectural_interior_design_wrapper_animation');
-		if (interior_design_ptfl_wrapper.style.display === 'flex') {
+		if (getComputedStyle(interior_design_ptfl_wrapper).display === 'flex') {
 			interior_design_ptfl_wrapper.style.display = 'none';
 		}
 		void interior_design_ptfl_wrapper.offsetHeight;
@@ -912,9 +914,10 @@ async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesign
 
 
 		requestAnimationFrame(() => {
-			if (interior_design_ptfl_wrapper.style.display === 'none') {
+			if (getComputedStyle(interior_design_ptfl_wrapper).display === 'none') {
 				interior_design_ptfl_wrapper.style.display = 'flex';
 			}
+			console.log('Animating interior wrapper for group:', group, 'year:', year);
 			interior_design_ptfl_wrapper.classList.add('architectural_interior_design_wrapper_animation');
 			void interior_design_ptfl_wrapper.offsetHeight;
 
@@ -933,7 +936,16 @@ async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesign
 	});
 }
 
-async function architechtural_Interior_Design_Ptfl_show(button, onExteriorDesignPtflAnimationEnd) {
+/////////
+/////////
+
+document.querySelectorAll('.Exterior_design_sub_category_button').forEach(button => {
+	button.addEventListener('click', async () => {
+		await architechtural_Exterior_Design_Ptfl_show(button);
+	});
+});
+
+async function architechtural_Exterior_Design_Ptfl_show(button, onExteriorDesignPtflAnimationEnd) {
 	const year = button.closest('[data-year]')?.dataset.year;
 	const yearWrapper = document.querySelector(`.section_04_portfolio_display_main_wrapper[data-year="${year}"]`);
 	if (!yearWrapper) {
@@ -949,12 +961,16 @@ async function architechtural_Interior_Design_Ptfl_show(button, onExteriorDesign
 
 	//buttons wppr
 	const interior_exterior_button_wrapper = yearWrapper?.querySelector(`.architectural_design_sub_category_buttons`) || []
+	if (!interior_exterior_button_wrapper) {
+		console.error('interior/exterior button wrapper not found in year ' + year + '.');
+		return;
+	}
 
 	//Elements wppr
 	const exterior_design_ptfl_wrapper = yearWrapper?.querySelector(`.architectural_exterior_design_wrapper[data-group="${group}"]`) || [];
 
-	if (!exterior_design_ptfl_wrapper || !interior_exterior_button_wrapper) {
-		console.error('One or both wrappers not found.');
+	if (!exterior_design_ptfl_wrapper) {
+		console.error('exterior design wrapper not found in year ' + year + '.');
 		return;
 	}
 
@@ -976,10 +992,10 @@ async function architechtural_Interior_Design_Ptfl_show(button, onExteriorDesign
 
 
 		requestAnimationFrame(() => {
+			exterior_design_ptfl_wrapper.classList.add('architectural_exterior_design_wrapper_animation');
 			if (exterior_design_ptfl_wrapper.style.display === 'none') {
 				exterior_design_ptfl_wrapper.style.display = 'flex';
 			}
-			exterior_design_ptfl_wrapper.classList.add('architectural_exterior_design_wrapper_animation');
 			void exterior_design_ptfl_wrapper.offsetHeight;
 
 			const handleAnimationEnd = () => {
@@ -1088,7 +1104,7 @@ async function selectedProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 
 	const allWrappers = Array.from(document.querySelectorAll(
 		'.architectural_design_sub_category_buttons, \
-		.ars_designandi_portfolio_card_projects_container, \
+		.ars_designandi_portfolio_ads_wrapper, \
 		.architectural_interior_design_wrapper, \
 		.architectural_exterior_design_wrapper, \
 		.ars_designandi_portfolio_brands_wrapper, \
