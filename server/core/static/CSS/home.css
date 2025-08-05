@@ -3230,15 +3230,13 @@ body{
 	z-index: -1;
 }
 
-.codex_aureus[data-group="6"] .codex_aureus_ptfl_project_thumbnail,
-.codex_aureus[data-group="16"] .codex_aureus_ptfl_project_thumbnail {
+.codex_aureus_ptfl_project_thumbnail {
 	width: max-content;
 	height: 70%;
 	margin: 0px 0px 0px 50px;
 }
 
-.codex_aureus[data-group="26"] .codex_aureus_ptfl_project_thumbnail,
-.codex_aureus[data-group="31"] .codex_aureus_ptfl_project_thumbnail {
+.codex_aureus_ptfl_project_thumbnail {
 	width: 95%;
 	height: 95%;
 	margin: 0;
@@ -4109,32 +4107,24 @@ body{
 	margin-top: 20px;
 }
 
-.ars_designandi_portfolio_ads_wrapper[data-group="1002"] 
-.portfolio_card_project:nth-of-type(1)
-.portfolio_card_project:nth-of-type(2) {
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
-}
-
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .portfolio_card_project {
+.section_04_portfolio_display_main_wrapper .portfolio_card_project {
 	width: 100%;
 	height: 200px;
 	overflow: hidden;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_thumbnail_wrapper {
+.section_04_portfolio_display_main_wrapper .project_thumbnail_wrapper {
 	width: 50%;
 	height: auto;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_thumbnail_wrapper img {
+.section_04_portfolio_display_main_wrapper .project_thumbnail_wrapper img {
 	image-resolution: 80dpi;
 	width: 100%;
 	height: auto;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_card_right_viewport {
+.section_04_portfolio_display_main_wrapper .project_card_right_viewport {
 	width: 50%;
 	height: 100%;
 	display: flex;
@@ -4143,7 +4133,7 @@ body{
 	align-items: center;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_title {
+.section_04_portfolio_display_main_wrapper .project_title {
 	width: 95%;
 	height: max-content;
 	display: flex;
@@ -4154,7 +4144,7 @@ body{
 	margin: 10px auto 0 auto;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_title span {
+.section_04_portfolio_display_main_wrapper .project_title span {
 	font-family: 'Prata_Custom', sans-serif;
 	font-weight: 800;
 	font-style: normal;
@@ -4166,7 +4156,7 @@ body{
 	color: var(--text_color_12);
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .select_portfolio_card_wrapper {
+.section_04_portfolio_display_main_wrapper .select_portfolio_card_wrapper {
 	width: 100%;
 	height: max-content;
 	display: flex;
@@ -4175,7 +4165,7 @@ body{
 	align-items: center;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card {
+.section_04_portfolio_display_main_wrapper .selected_portfolio_card {
 	width: 250px;
 	height: 40px;
 	background: var(--button_color_04);
@@ -4190,12 +4180,12 @@ body{
 	transition: transform 0.25s ease;
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card:hover {
+.section_04_portfolio_display_main_wrapper .selected_portfolio_card:hover {
 	cursor: pointer;
 	transform: scale(1.03) translateY(-7px);
 }
 
-.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card span {
+.section_04_portfolio_display_main_wrapper .selected_portfolio_card span {
 	font-family: 'Bodoni_Custom', sans-serif;
 	font-weight: 800;
 	font-style: normal;
@@ -5120,22 +5110,6 @@ body{
 		height: 60%;
 	}
 
-	.codex_aureus_ptfl_project_thumbnail img {
-		transform: translate(-25%, -30%);
-	}
-
-	.proj_02 .codex_aureus_ptfl_project_thumbnail img {
-		transform: translate(-0%, -9%);
-	}
-
-	.proj_03 .codex_aureus_ptfl_project_thumbnail img {
-		transform: translate(-10%, -10%);
-	}
-
-	.proj_04 .codex_aureus_ptfl_project_thumbnail img {
-		transform: translate(-25%, -9%);
-	}
-
 	.ars_designandi_portfolio_card_projects_container {
 		margin-top: 0px;
 	}
@@ -5160,67 +5134,21 @@ body{
 		letter-spacing: 0.5px;
 	}
 
-	.portfolio_card_project_viewport_wrapper:nth-child(0) {
-		height: 50%;
+	.codex_aureus_project {
+		width: 100%;
+		height: 200px;
 	}
-	
-	.portfolio_card_project_viewport_wrapper:nth-child(1) {
-		height: 60%;
-		margin-top: 100px;
-	}
-	
-	.portfolio_card_project_03_viewport_wrapper:nth-child(2) {
-		height: 60%;
-	}
-	
-	.portfolio_card_project_04_viewport_wrapper:nth-child(3) {
-		height: 60%;
-	}
-	
-	.portfolio_card_project_05_viewport_wrapper:nth-child(4) {
+
+	.codex_aureus_ptfl_project_thumbnail {
+		width: auto;
 		height: 70%;
-		
-	}
-	
-	.architectural_interior_design_thumbnail_wrapper_01 {
-		position: absolute;
-		transform: translate(-50%, -50%);
-		top: 24.3%;
-		left: 25%;
-		width: 50%;
-		height: auto;
+		margin: 0px 0px 0px 50px;
 	}
 
-	.architectural_interior_design_thumbnail_wrapper_01 img {
-		width: 100%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_02 {
-		position: absolute;
-		transform: translate(-50%, -50%);
-		top: 50%;
-		left: 75%;
-		width: 50%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_02 img {
-		width: 100%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_03 {
-		position: absolute;
-		transform: translate(-50%, -50%);
-		top: 75%;
-		left: 25%;
-		width: 50%;
-		height: auto;
-	}
-
-	.architectural_interior_design_thumbnail_wrapper_03 img {
-		width: 100%;
-		height: auto;
+	.codex_aureus_project span {
+		width: max-content;
+		font-weight: 200;
+		font-size: 18px;
+		margin: 0px 0px 0px 0px;
 	}
 }
