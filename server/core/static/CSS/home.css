@@ -4088,6 +4088,16 @@ body{
 	background: transparent;
 }
 
+.ars_designandi_portfolio_reveal_trigger {
+	animation: ars_designandi_portfolio_reveal_anim_triggered 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+  
+@keyframes ars_designandi_portfolio_reveal_anim_triggered {
+	to {
+		transform: translateY(15px);
+	}
+}
+
 .ars_designandi_portfolio_ads_wrapper {
 	width: 95%;
 	height: auto;
@@ -4100,116 +4110,92 @@ body{
 }
 
 .ars_designandi_portfolio_ads_wrapper[data-group="1002"] 
-.portfolio_card_project:nth-of-type(1) {
+.portfolio_card_project:nth-of-type(1)
+.portfolio_card_project:nth-of-type(2) {
 	width: 50%;
 	height: 100%;
 	overflow: hidden;
 }
 
-.ars_designandi_portfolio_ads_wrapper[data-group="2002"] 
-.portfolio_card_project:nth-of-type(1)
-.project_thumbnail_wrapper {
-	width: 50%;
-	height: 100%;
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .portfolio_card_project {
+	width: 100%;
+	height: 200px;
 	overflow: hidden;
 }
 
-.ars_designandi_portfolio_ads_wrapper[data-group="2002"] 
-.portfolio_card_project:nth-of-type(1)
-.project_thumbnail_wrapper
-.project_thumbnail {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_thumbnail_wrapper {
+	width: 50%;
+	height: auto;
+}
+
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_thumbnail_wrapper img {
 	image-resolution: 80dpi;
 	width: 100%;
 	height: auto;
 }
 
-.ars_designandi_portfolio_reveal_trigger {
-	animation: ars_designandi_portfolio_reveal_anim_triggered 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-  
-@keyframes ars_designandi_portfolio_reveal_anim_triggered {
-	to {
-		transform: translateY(15px);
-	}
-}
-
-.portfolio_card_project {
-	width: 100%;
-	height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--portfolio_card_background_01);
-	border-radius: 10px;
-	margin: 20px auto 0 auto;
-	overflow: hidden;
-}
-
-.portfolio_card_project:nth-child(1) {
-	margin-top: 0px;
-}
-
-.project_card_right_viewport {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_card_right_viewport {
 	width: 50%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 }
 
-.project_title {
-	width: max-content;
-	height: auto;
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_title {
+	width: 95%;
+	height: max-content;
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 10px;
-	margin: 30px calc((100% - 286px) / 2);
+	flex-wrap: wrap;
+	justify-content: left;
+	background: var(--portfolio_card_background_01);
+	border-radius: 10px;
+	margin: 10px auto 0 auto;
 }
 
-.project_title span {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .project_title span {
 	font-family: 'Prata_Custom', sans-serif;
 	font-weight: 800;
 	font-style: normal;
 	font-size: 22px;
 	letter-spacing: 0.7px;
-	line-height: 1;
+	line-height: 1.5;
 	text-transform: uppercase;
+	text-align: center;
 	color: var(--text_color_12);
 }
 
-.select_portfolio_card_wrapper {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .select_portfolio_card_wrapper {
 	width: 100%;
-	height: auto;
+	height: max-content;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 }
 
-.selected_portfolio_card {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card {
 	width: 250px;
 	height: 40px;
 	background: var(--button_color_04);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10px;
+	gap: 20px;
 	border: none;
-	align-self: flex-end;
 	border-radius: 50px;
 	margin-right: 25px;
 	transform: scale(1) translateY(0px);
 	transition: transform 0.25s ease;
-	margin: 30px calc((100% - 250px) / 2);
 }
 
-.selected_portfolio_card:hover {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card:hover {
 	cursor: pointer;
 	transform: scale(1.03) translateY(-7px);
 }
 
-.selected_portfolio_card span {
+.section_04_portfolio_display_main_wrapper[data-year="2021"] .selected_portfolio_card span {
 	font-family: 'Bodoni_Custom', sans-serif;
 	font-weight: 800;
 	font-style: normal;
