@@ -1050,7 +1050,7 @@ async function animateAllButtons(button) {
 			let completed = 0;
 
 			allButtons.forEach(btn => {
-				btn.classList.remove('ars_designandi_portfolio_reveal_trigger');
+				btn.classList.remove('architectural_design_wrapper_animation');
 				btn.classList.remove('project_type_card_animation');
 				void btn.offsetHeight;
 			});
@@ -1119,8 +1119,9 @@ async function selectedProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 
 	return new Promise(resolve => {
 		allWrappers.forEach(wrapper => {
-			wrapper.classList.remove('project_type_card_animation', 'ars_designandi_portfolio_reveal_trigger');
+			wrapper.classList.remove('project_type_card_animation', 'architectural_design_wrapper_animation');
 			wrapper.style.display = 'none';
+			wrapper.style.opacity = '0';
 			void wrapper.offsetHeight;
 		});
 
@@ -1129,7 +1130,7 @@ async function selectedProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 
 		requestAnimationFrame(() => {
 			selectedWrapper.style.display = 'flex';
-			selectedWrapper.classList.add('ars_designandi_portfolio_reveal_trigger');
+			selectedWrapper.classList.add('architectural_design_wrapper_animation');
 
 			const handleAnimationEnd = () => {
 				selectedWrapper.removeEventListener('animationend', handleAnimationEnd);
