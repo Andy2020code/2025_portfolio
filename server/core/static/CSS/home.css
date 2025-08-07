@@ -3388,7 +3388,7 @@ body{
 .project_type_Ars_Designandi_card,
 .project_type_card,
 .project_type_02_card,
-.project_type_03_card,
+.project_type_captura_lucis_card,
 .project_type_04_card,
 .project_type_05_card {
 	will-change: scale, transform, box-shadow;
@@ -3415,7 +3415,7 @@ body{
 .project_type_Ars_Designandi_card:hover,
 .project_type_card:hover,
 .project_type_02_card:hover,
-.project_type_03_card:hover,
+.project_type_captura_lucis_card:hover,
 .project_type_04_card:hover,
 .project_type_05_card:hover {
 	cursor: pointer;
@@ -3435,7 +3435,7 @@ body{
 .project_type_Ars_Designandi_card span,
 .project_type_card span,
 .project_type_02_card span,
-.project_type_03_card span,
+.project_type_captura_lucis_card span,
 .project_type_04_card span,
 .project_type_05_card span {
 	width: 150px;
@@ -3784,18 +3784,77 @@ body{
 	overflow: hidden;
 }
 
-.section_04_portfolio_display_main_wrapper .project_thumbnail_wrapper {
+.portfolio_card_project .portfolio_card_project_thumbnail_wrapper {
+	width: auto;
+	height: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 50px;
+}
+
+.portfolio_card_project .portfolio_card_project_thumbnail_wrapper .project_thumbnail {
+	width: auto;
+	height: 100%;
+}
+
+.portfolio_card_project span {
+	font-family: 'Bodoni_Custom', 'monospace';
+	font-weight: 200;
+	font-style: normal;
+	font-size: 18px;
+	letter-spacing: 0.5px;
+	line-height: 1.0;
+	text-transform: uppercase;
+	color: var(--text_color_12);
+	margin: 0px 30px 0px 0px;
+}
+
+.portfolio_card_project .portfolio_card_project_selection_wrapper {
+	width: auto;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.portfolio_card_project .portfolio_card_project_selection_wrapper .portfolio_card_project_selected {
+	width: 40px;
+	height: 100%;
+	background-color: var(--crimson_red_MAIN);
+	border: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.portfolio_card_project .portfolio_card_project_selection_wrapper .portfolio_card_project_selected span {
+	font-family: 'Bodoni_Custom', 'monospace';
+	writing-mode: vertical-lr;
+	font-weight: 200;
+	font-style: normal;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+	line-height: 1.0;
+	text-transform: uppercase;
+	color: var(--text_color_12);
+	margin: 0px 0px 0px 0px;
+}
+
+.section_04_portfolio_display_main_wrapper .ars_designandi .project_thumbnail_wrapper {
 	width: 50%;
 	height: auto;
 }
 
-.section_04_portfolio_display_main_wrapper .project_thumbnail_wrapper img {
+.section_04_portfolio_display_main_wrapper .ars_designandi .project_thumbnail_wrapper img {
 	image-resolution: 80dpi;
 	width: 100%;
 	height: auto;
 }
 
-.section_04_portfolio_display_main_wrapper .project_card_right_viewport {
+.section_04_portfolio_display_main_wrapper .ars_designandi .project_card_right_viewport {
 	width: max-content;
 	height: 75%;
 	display: flex;
@@ -3805,7 +3864,7 @@ body{
 	margin: 0px auto 0px auto;
 }
 
-.section_04_portfolio_display_main_wrapper .project_title {
+.section_04_portfolio_display_main_wrapper .ars_designandi .project_title {
 	width: max-content;
 	height: auto;
 	display: flex;
@@ -3815,7 +3874,7 @@ body{
 	border-radius: 10px;
 }
 
-.section_04_portfolio_display_main_wrapper .project_title span {
+.section_04_portfolio_display_main_wrapper .ars_designandi .project_title span {
 	font-family: 'Prata_Custom', 'monospace';
 	font-weight: 800;
 	font-style: normal;
@@ -3826,7 +3885,7 @@ body{
 	color: var(--text_color_12);
 }
 
-.section_04_portfolio_display_main_wrapper .select_portfolio_card_wrapper {
+.section_04_portfolio_display_main_wrapper .ars_designandi .select_portfolio_card_wrapper {
 	width: max-content;
 	height: auto;
 	display: flex;
@@ -3834,7 +3893,7 @@ body{
 	align-items: center;
 }
 
-.section_04_portfolio_display_main_wrapper .selected_portfolio_card {
+.section_04_portfolio_display_main_wrapper .ars_designandi .selected_portfolio_card {
 	width: 250px;
 	height: 40px;
 	background: var(--button_color_04);
@@ -3849,12 +3908,12 @@ body{
 	transition: transform 0.25s ease;
 }
 
-.section_04_portfolio_display_main_wrapper .selected_portfolio_card:hover {
+.section_04_portfolio_display_main_wrapper .ars_designandi .selected_portfolio_card:hover {
 	cursor: pointer;
 	transform: scale(1.03) translateY(-7px);
 }
 
-.section_04_portfolio_display_main_wrapper .selected_portfolio_card span {
+.section_04_portfolio_display_main_wrapper .ars_designandi .selected_portfolio_card span {
 	font-family: 'Bodoni_Custom', 'monospace';
 	font-weight: 800;
 	font-style: normal;
@@ -4138,7 +4197,7 @@ body{
 .portfolio_card_events_projects_container,
 .portfolio_card_new_born_projects_container,
 .portfolio_card_graduation_projects_container {
-	width: 100%;
+	width: 95%;
 	height: auto;
 	display: none;
 	flex-direction: column;
@@ -4612,7 +4671,7 @@ body{
 
 	.project_type_Ars_Designandi_card,
 	.project_type_02_card,
-	.project_type_03_card,
+	.project_type_captura_lucis_card,
 	.project_type_04_card,
 	.project_type_05_card {
 		width: 120px;
