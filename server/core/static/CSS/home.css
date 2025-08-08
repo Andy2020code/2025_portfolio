@@ -3670,6 +3670,7 @@ body{
 	scroll-behavior: smooth;
 	border-radius: 10px;
 	margin-top: 20px;
+	gap: 20px;
 }
 
 .Ars_Designandi_portfolio_card_project_viewport_wrapper {
@@ -3941,108 +3942,6 @@ body{
 
 .section_04_portfolio_display_main_wrapper[data-year='2020'] .ars_designandi_portfolio_ads_wrapper .portfolio_card_project:nth-of-type(5) .project_thumbnail_wrapper {
 	transform: translate(0%, 6%);
-}
-
-.proj_06,
-.proj_07, 
-.proj_08,
-.proj_09,
-.proj_10,
-.proj_11,
-.proj_12,
-.proj_13,
-.proj_14,
-.proj_15,
-.proj_16,
-.proj_17,
-.proj_18,
-.proj_19,
-.proj_20,
-.proj_21,
-.proj_22,
-.proj_23,
-.proj_24,
-.proj_25,
-.proj_26,
-.proj_27,
-.proj_28,
-.proj_29,
-.proj_30,
-.proj_31,
-.proj_32,
-.proj_33 {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-}
-
-.proj_06 img,
-.proj_07 img,
-.proj_08 img,
-.proj_09 img,
-.proj_10 img,
-.proj_11 img,
-.proj_12 img,
-.proj_13 img,
-.proj_14 img,
-.proj_15 img,
-.proj_16 img,
-.proj_17 img,
-.proj_18 img,
-.proj_19 img,
-.proj_20 img,
-.proj_21 img,
-.proj_22 img,
-.proj_23 img,
-.proj_24 img,
-.proj_25 img,
-.proj_26 img,
-.proj_27 img,
-.proj_28 img,
-.proj_29 img,
-.proj_30 img,
-.proj_31 img,
-.proj_32 img,
-.proj_33 img {
-	width: auto;
-	height: 80%;
-}
-
-.proj_06 span,
-.proj_07 span,
-.proj_08 span,
-.proj_09 span,
-.proj_10 span,
-.proj_11 span,
-.proj_12 span,
-.proj_13 span,
-.proj_14 span,
-.proj_15 span,
-.proj_16 span,
-.proj_17 span,
-.proj_18 span,
-.proj_19 span,
-.proj_20 span,
-.proj_21 span,
-.proj_22 span,
-.proj_23 span,
-.proj_24 span,
-.proj_25 span,
-.proj_26 span,
-.proj_27 span,
-.proj_28 span,
-.proj_29 span,
-.proj_30 span,
-.proj_31 span,
-.proj_32 span,
-.proj_33 span {
-	font-family: 'Prata_Custom', 'sans-serif';
-	font-weight: 400;
-	font-size: 22px;
-	letter-spacing: 0.5px;
-	text-align: center;
-	text-transform: uppercase;
-	color: var(--text_color_12);
 }
 
 .architectural_interior_design_wrapper {
