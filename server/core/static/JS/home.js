@@ -698,83 +698,52 @@ window.PortfolioCategoryButtonAnimations = function (button) {
 };
 
 //////////
+//Buttons Event Listener, Triggers, etc.
 //////////
 
 document.querySelectorAll('.project_type_Ars_Designandi_card').forEach(button => {
 	button.addEventListener('click', async () => {
-		await animate_all_Ars_Designandi_wppr_cards(button);
+		await animateAllButtons(button);
+		console.log('All Ars Designandi buttons animated');
 		await ars_Designandi_Ptflo_wppr_display_switch(button);
 	});
 });
 
-async function animate_all_Ars_Designandi_wppr_cards(button) {
-	const year = button.closest('[data-year]')?.dataset.year;
-	const yearWrapper = document.querySelector(`.section_04_portfolio_display_main_wrapper[data-year="${year}"]`);
-	if (!yearWrapper) {
-		console.error('No year wrapper found for clicked button.');
-		return;
-	}
-
-	const group = button.dataset.group;
-	if (!group) {
-		console.error(`No group found on button ${button} with group ${group}.`);
-		return;
-	}
-
-	const allButtons = Array.from(
-		yearWrapper?.querySelectorAll(`.project_type_Ars_Designandi_card`) || []
-	);
-	console.log('Buttons found:', allButtons.length);
-
-	const clickedIndex = allButtons.indexOf(button);
-	if (clickedIndex === -1) {
-		console.error('Clicked button not found in group.');
-		return;
-	}
-
-	const stagger = 50;
-
-	return new Promise(resolve => {
-
-		try {			
-			//console.log('animateAllButtons called');
-
-			let completed = 0;
-
-			allButtons.forEach(btn => {
-				btn.classList.remove('ars_designandi_portfolio_reveal_trigger', 'project_type_card_animation');
-				void btn.offsetWidth;
-			});
-
-			requestAnimationFrame(() => {
-				allButtons.forEach((btn, index) => {
-					const distance = Math.abs(index - clickedIndex);
-					const delay = distance * stagger;
-	
-					setTimeout(() => {
-						btn.classList.add('project_type_card_animation');
-	
-						const handleAnimationEnd = () => {
-							btn.removeEventListener('animationend', handleAnimationEnd);
-							btn.style.transform = 'translateY(0)';
-							completed++;
-							//console.log(`Completed ${completed}/${allButtons.length}`);
-							if (completed === allButtons.length) {
-								resolve();
-							}
-						};
-	
-						btn.addEventListener('animationend', handleAnimationEnd, { once: true });
-					}, delay);
-				});
-			});
-				
-		} catch (error) {
-			console.error('Error in animateAllButtons:', error);
-			return;
-		}
+document.querySelectorAll('.Interior_design_sub_category_button').forEach(button => {
+	button.addEventListener('click', async () => {
+		await architechtural_Interior_Design_Ptfl_show(button);
 	});
-}
+});
+
+document.querySelectorAll('.Exterior_design_sub_category_button').forEach(button => {
+	button.addEventListener('click', async () => {
+		await architechtural_Exterior_Design_Ptfl_show(button);
+	});
+});
+
+document.querySelectorAll('.project_type_captura_lucis_card').forEach(button => {
+	button.addEventListener('click', async () => {
+		await animateAllButtons(button);
+		console.log('All Captura Lucis buttons animated');
+		await selectedCapturaLucisProjectTypeAnimations(button);
+	});
+});
+
+document.querySelectorAll('.project_type_lux_in_motu_card').forEach(button => {
+	button.addEventListener('click', async () => {
+		await animateAllButtons(button);
+		console.log('All Lux In Motu buttons animated');
+		await selectedLuxInMotuProjectTypeAnimations(button);
+	});
+});
+
+document.querySelectorAll('.project_type_tri_forma_card').forEach(button => {
+	button.addEventListener('click', async () => {
+		await animateAllButtons(button);
+		console.log('All Tri Forma buttons animated');
+		await selectedTriFormaProjectTypeAnimations(button);
+	});
+});
 
 async function ars_Designandi_Ptflo_wppr_display_switch(button, onPtfloWpprOpenComplete) {
 	const group = button.dataset.group;
@@ -855,14 +824,11 @@ async function ars_Designandi_Ptflo_wppr_display_switch(button, onPtfloWpprOpenC
 	});
 }
 
-/////////
-//////////
+/////////////////////////////////////////////////
+//End of buttons Event Listener, Triggers, etc.
+/////////////////////////////////////////////////
 
-document.querySelectorAll('.Interior_design_sub_category_button').forEach(button => {
-	button.addEventListener('click', async () => {
-		await architechtural_Interior_Design_Ptfl_show(button);
-	});
-});
+
 
 async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesignPtflAnimationEnd) {
 	const group = button.dataset.group;
@@ -939,11 +905,7 @@ async function architechtural_Interior_Design_Ptfl_show(button, onInteriorDesign
 /////////
 /////////
 
-document.querySelectorAll('.Exterior_design_sub_category_button').forEach(button => {
-	button.addEventListener('click', async () => {
-		await architechtural_Exterior_Design_Ptfl_show(button);
-	});
-});
+
 
 async function architechtural_Exterior_Design_Ptfl_show(button, onExteriorDesignPtflAnimationEnd) {
 	const year = button.closest('[data-year]')?.dataset.year;
@@ -1016,13 +978,7 @@ async function architechtural_Exterior_Design_Ptfl_show(button, onExteriorDesign
 /////////
 /////////
 
-document.querySelectorAll('.project_type_Ars_Designandi_card-').forEach(button => {
-	button.addEventListener('click', async () => {
-		await animateAllButtons(button);
-		console.log('All buttons animated');
-		await selectedArsDesignandiProjectTypeAnimations(button);
-	});
-});
+
 
 async function animateAllButtons(button) {
 	const group = button.dataset.group;
@@ -1148,13 +1104,7 @@ async function selectedArsDesignandiProjectTypeAnimations(button, onPtfloWpprOpe
 ///////
 ///////
 
-document.querySelectorAll('.project_type_captura_lucis_card').forEach(button => {
-	button.addEventListener('click', async () => {
-		await animateAllButtons(button);
-		console.log('All buttons animated');
-		await selectedCapturaLucisProjectTypeAnimations(button);
-	});
-});
+
 
 async function selectedCapturaLucisProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 	const group = button.dataset.group;
@@ -1213,76 +1163,9 @@ async function selectedCapturaLucisProjectTypeAnimations(button, onPtfloWpprOpen
 ///////
 //////////
 
-document.querySelectorAll('.portfolio_card_project_select_type_wrapper button').forEach(button => {
-	button.addEventListener('click', async () => {
-		await animate_All_Lux_In_Moto_Buttons(button);
-		await selected_Lux_In_Motu_Ptfl_Show_viewport(button);
-	});
-});
-
-async function animate_All_Lux_In_Moto_Buttons(button) {
-	const group = button.dataset.group;
-	if (!group) {
-		console.error('No group found on button.');
-		return;
-	}
-	
-	const closest_wrapper = button.closest('.portfolio_card_project_select_type_wrapper');
-
-	if (!closest_wrapper) {
-		console.error('No wrapper found for clicked button');
-		return;
-	}
-
-	const allButtons = [...closest_wrapper.querySelectorAll('.project_type_04_card')];
-	const clickedIndex = allButtons.indexOf(button);
-	const stagger = 50;
-
-	return new Promise(resolve => {
-
-		try {			
-			//console.log('animateAllButtons called');
-
-			let completed = 0;
-
-			allButtons.forEach(btn => {
-				btn.classList.remove('ars_designandi_portfolio_reveal_trigger');
-				btn.classList.remove('project_type_card_animation');
-				void btn.offsetHeight;
-			});
-	
-			requestAnimationFrame(() => {
-				allButtons.forEach((btn, index) => {
-					const distance = Math.abs(index - clickedIndex);
-					const delay = distance * stagger;
-	
-					setTimeout(() => {
-						btn.classList.add('project_type_card_animation');
-	
-						const handleAnimationEnd = () => {
-							btn.removeEventListener('animationend', handleAnimationEnd);
-							btn.style.transform = 'translateY(0)';
-							completed++;
-							//console.log(`Completed ${completed}/${allButtons.length}`);
-							if (completed === allButtons.length) {
-								resolve();
-							}
-						};
-	
-						btn.addEventListener('animationend', handleAnimationEnd, { once: true });
-					}, delay);
-				});
-			});
-				
-		} catch (error) {
-			console.error('Error in animateAllButtons:', error);
-			return;
-		}
-	});
-}
 
 
-async function selected_Lux_In_Motu_Ptfl_Show_viewport(button, onLuxInMotu2020PtfloWpprOpenComplete) {
+async function selectedLuxInMotuProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 	const group = button.dataset.group;
 
 	const buttons_wrapper = document.querySelector('.portfolio_card_project_select_type_wrapper');
@@ -1300,13 +1183,19 @@ async function selected_Lux_In_Motu_Ptfl_Show_viewport(button, onLuxInMotu2020Pt
 	}
 
 	const allWrappers = Array.from(document.querySelectorAll(
-		'.portfolio_card_projects_container'
+		'.portfolio_card_directing_projects_container, \
+		.portfolio_card_camera_operation_projects_container, \
+		.portfolio_card_post_production_projects_container, \
+		.portfolio_card_animation_projects_container, \
+		.portfolio_card_notion_graphics_projects_container, \
+		.portfolio_card_visual_effects_projects_container'
 	));
 
 	return new Promise(resolve => {
 		allWrappers.forEach(wrapper => {
-			wrapper.classList.remove('project_type_card_animation', 'ars_designandi_portfolio_reveal_trigger');
+			wrapper.classList.remove('project_type_card_animation', 'architectural_design_wrapper_animation');
 			wrapper.style.display = 'none';
+			wrapper.style.opacity = '0';
 			void wrapper.offsetHeight;
 		});
 
@@ -1315,12 +1204,12 @@ async function selected_Lux_In_Motu_Ptfl_Show_viewport(button, onLuxInMotu2020Pt
 
 		requestAnimationFrame(() => {
 			selectedWrapper.style.display = 'flex';
-			selectedWrapper.classList.add('ars_designandi_portfolio_reveal_trigger');
+			selectedWrapper.classList.add('architectural_design_wrapper_animation');
 
 			const handleAnimationEnd = () => {
 				selectedWrapper.removeEventListener('animationend', handleAnimationEnd);
-				if (typeof onLuxInMotu2020PtfloWpprOpenComplete === 'function') {
-					onLuxInMotu2020PtfloWpprOpenComplete();
+				if (typeof onPtfloWpprOpenComplete === 'function') {
+					onPtfloWpprOpenComplete();
 				}
 				resolve();
 			};
@@ -1332,75 +1221,9 @@ async function selected_Lux_In_Motu_Ptfl_Show_viewport(button, onLuxInMotu2020Pt
 /////////
 //////////
 
-document.querySelectorAll('.portfolio_card_project_select_type_wrapper button').forEach(button => {
-	button.addEventListener('click', async () => {
-		await animate_Tri_Forma_Buttons(button);
-		await selected_Tri_Forma_Ptfl_Show_viewport(button);
-	});
-});
 
-async function animate_Tri_Forma_Buttons(button) {
-	const group = button.dataset.group;
-	if (!group) {
-		console.error('No group found on button.');
-		return;
-	}
-	
-	const closest_wrapper = button.closest('.portfolio_card_project_select_type_wrapper');
 
-	if (!closest_wrapper) {
-		console.error('No wrapper found for clicked button');
-		return;
-	}
-
-	const allButtons = [...closest_wrapper.querySelectorAll('.project_type_05_card')];
-	const clickedIndex = allButtons.indexOf(button);
-	const stagger = 50;
-
-	return new Promise(resolve => {
-
-		try {			
-			//console.log('animateAllButtons called');
-
-			let completed = 0;
-
-			allButtons.forEach(btn => {
-				btn.classList.remove('ars_designandi_portfolio_reveal_trigger');
-				btn.classList.remove('project_type_card_animation');
-				void btn.offsetHeight;
-			});
-	
-			requestAnimationFrame(() => {
-				allButtons.forEach((btn, index) => {
-					const distance = Math.abs(index - clickedIndex);
-					const delay = distance * stagger;
-	
-					setTimeout(() => {
-						btn.classList.add('project_type_card_animation');
-	
-						const handleAnimationEnd = () => {
-							btn.removeEventListener('animationend', handleAnimationEnd);
-							btn.style.transform = 'translateY(0)';
-							completed++;
-							//console.log(`Completed ${completed}/${allButtons.length}`);
-							if (completed === allButtons.length) {
-								resolve();
-							}
-						};
-	
-						btn.addEventListener('animationend', handleAnimationEnd, { once: true });
-					}, delay);
-				});
-			});
-				
-		} catch (error) {
-			console.error('Error in animateAllButtons:', error);
-			return;
-		}
-	});
-}
-
-async function selected_Tri_Forma_Ptfl_Show_viewport(button, onTriForma2020PtfloWpprOpenComplete) {
+async function selectedTriFormaProjectTypeAnimations(button, onPtfloWpprOpenComplete) {
 	const group = button.dataset.group;
 
 	const buttons_wrapper = document.querySelector('.portfolio_card_project_select_type_wrapper');
@@ -1418,13 +1241,18 @@ async function selected_Tri_Forma_Ptfl_Show_viewport(button, onTriForma2020Ptflo
 	}
 
 	const allWrappers = Array.from(document.querySelectorAll(
-		'.portfolio_card_projects_container'
+		'.portfolio_card_model_assets_projects_container, \
+		.portfolio_card_texture_assets_projects_container, \
+		.portfolio_card_motion_renders_projects_container, \
+		.portfolio_card_still_renders_projects_container, \
+		.portfolio_card_argumented_reality_projects_container'
 	));
 
 	return new Promise(resolve => {
 		allWrappers.forEach(wrapper => {
-			wrapper.classList.remove('project_type_card_animation', 'ars_designandi_portfolio_reveal_trigger');
+			wrapper.classList.remove('project_type_card_animation', 'architectural_design_wrapper_animation');
 			wrapper.style.display = 'none';
+			wrapper.style.opacity = '0';
 			void wrapper.offsetHeight;
 		});
 
@@ -1433,12 +1261,12 @@ async function selected_Tri_Forma_Ptfl_Show_viewport(button, onTriForma2020Ptflo
 
 		requestAnimationFrame(() => {
 			selectedWrapper.style.display = 'flex';
-			selectedWrapper.classList.add('ars_designandi_portfolio_reveal_trigger');
+			selectedWrapper.classList.add('architectural_design_wrapper_animation');
 
 			const handleAnimationEnd = () => {
 				selectedWrapper.removeEventListener('animationend', handleAnimationEnd);
-				if (typeof onTriForma2020PtfloWpprOpenComplete === 'function') {
-					onTriForma2020PtfloWpprOpenComplete();
+				if (typeof onPtfloWpprOpenComplete === 'function') {
+					onPtfloWpprOpenComplete();
 				}
 				resolve();
 			};

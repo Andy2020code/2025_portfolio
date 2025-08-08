@@ -173,7 +173,7 @@
 	--crimson_red_MAIN: #990000;
 	--crimson_red_OPAQUE: #A01821;
 
-	--portfolio_card_background_01: #173344;
+	--portfolio_card_background_01: #1A5276;
 	--portfolio_card_background_02: #990000;
 	--portfolio_card_background_03: #EDCD44;
 }
@@ -3389,8 +3389,8 @@ body{
 .project_type_card,
 .project_type_02_card,
 .project_type_captura_lucis_card,
-.project_type_04_card,
-.project_type_05_card {
+.project_type_lux_in_motu_card,
+.project_type_tri_forma_card {
 	will-change: scale, transform, box-shadow;
 	transform: translateY(0px);
 	width: 150px;
@@ -3416,8 +3416,8 @@ body{
 .project_type_card:hover,
 .project_type_02_card:hover,
 .project_type_captura_lucis_card:hover,
-.project_type_04_card:hover,
-.project_type_05_card:hover {
+.project_type_lux_in_motu_card:hover,
+.project_type_tri_forma_card:hover {
 	cursor: pointer;
 	scale: 1.05;
 	box-shadow:
@@ -3436,8 +3436,8 @@ body{
 .project_type_card span,
 .project_type_02_card span,
 .project_type_captura_lucis_card span,
-.project_type_04_card span,
-.project_type_05_card span {
+.project_type_lux_in_motu_card span,
+.project_type_tri_forma_card span {
 	width: 150px;
 	font-family: 'Bodoni_Custom', 'monospace';
 	line-height: 1;
@@ -4100,6 +4100,38 @@ body{
 	height: auto;
 	display: none;
 	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(0px);
+}
+
+.portfolio_card_directing_projects_container,
+.portfolio_card_camera_operation_projects_container,
+.portfolio_card_post_production_projects_container,
+.portfolio_card_animation_projects_container,
+.portfolio_card_notion_graphics_projects_container,
+.portfolio_card_visual_effects_projects_container {
+	width: 95%;
+	height: auto;
+	display: none;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(0px);
+}
+
+.portfolio_card_model_assets_projects_container,
+.portfolio_card_texture_assets_projects_container,
+.portfolio_card_motion_renders_projects_container,
+.portfolio_card_still_renders_projects_container,
+.portfolio_card_argumented_reality_projects_container {
+	width: 95%;
+	height: auto;
+	display: none;
+	flex-direction: column;
+	gap: 20px;
 	justify-content: center;
 	align-items: center;
 	transform: translateY(0px);
@@ -4571,8 +4603,8 @@ body{
 	.project_type_Ars_Designandi_card,
 	.project_type_02_card,
 	.project_type_captura_lucis_card,
-	.project_type_04_card,
-	.project_type_05_card {
+	.project_type_lux_in_motu_card,
+	.project_type_tri_forma_card {
 		width: 120px;
 		height: 60px;
 	}
